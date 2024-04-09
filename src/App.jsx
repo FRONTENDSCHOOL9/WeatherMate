@@ -1,7 +1,11 @@
-import './App.css'
+import MainWeather from '@pages/weather/MainWeather';
 
 function App() {
-  
+  return (
+    <div>
+      <MainWeather />
+    </div>
+  );
 }
 
-export default App
+export default App;
