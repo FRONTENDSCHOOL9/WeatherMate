@@ -1,5 +1,12 @@
+import Home from './Home';
+
+
 function MbtiTest() {
-  return <div>MbtiTest</div>;
+  return (
+  <>
+    <Home />
+  </>
+  )
 }
 
 export default MbtiTest;
