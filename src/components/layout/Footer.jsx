@@ -12,21 +12,23 @@ function Footer() {
           <GoHomeFill className="text-4xl" />
           <p className="text-nowrap">홈</p>
         </Link>
+    
         <Link to="/community" className="flex flex-col items-center px-2 text-primary">
           <SiGooglechat className="text-4xl" />
           <p className="text-nowrap">커뮤니티</p>
         </Link>
-        <Link
-          to="/allcities"
-          className="flex flex-col items-center px-2 text-primary"
-        >
+    
+        <Link to="/allcities"
+          className="flex flex-col items-center px-2 text-primary">
           <MdLocationOn className="text-4xl" />
           <p className="text-nowrap">장소추천</p>
         </Link>
+    
         <Link to="/user" className="flex flex-col items-center px-2 text-primary">
           <FaAddressBook className="text-4xl" />
           <p className="text-nowrap">마이페이지</p>
         </Link>
+    
       </footer>
     </>
   );
