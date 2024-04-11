@@ -1,0 +1,61 @@
+import { createBrowserRouter } from 'react-router-dom';
+
+import Layout from '@components/layout';
+import MainPage from '@pages/main/MainPage';
+import Community from '@pages/community/Community';
+import Location from '@pages/location/Location';
+import MbtiTest from '@pages/Mbti/MbtiTest';
+import Login from '@pages/user/Login';
+import ErrorPage from '@pages/ErrorPage';
+import CommunityNew from '@pages/community/CommunityNew';
+import CommunityDetail from './pages/community/CommunityDetail';
+import AllCitiesWeather from '@pages/main/AllCitiesWeather';
+import Question from './pages/Mbti/Question';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    errorElement: <ErrorPage />,
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <MainPage />,
+      },
+      {
+        path: 'allcities',
+        element: <AllCitiesWeather />,
+      },
+      {
+        path: 'community',
+        element: <Community />,
+      },
+      {
+        path: "community/new",
+        element: <CommunityNew />
+      },
+      {
+        path: "community/detail",
+        element: <CommunityDetail />
+      },
+      {
+        path: 'loaction/:_id',
+        element: <Location />,
+      },
+      {
+        path: 'mbti',
+        element: <MbtiTest />,
+      },
+      {
+        path: 'mbti/question',
+        element: <Question />,
+      },
+      {
+        path: 'user',
+        element: <Login />,
+      },
+    ],
+  },
+]);
+
+export default router;
