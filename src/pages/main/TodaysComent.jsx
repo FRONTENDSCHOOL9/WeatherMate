@@ -2,7 +2,6 @@ import { useRecoilValue } from 'recoil';
 import { userWeatherState } from '../../recoil/atom.mjs';
 import dummyData from '../../assets/WeatherData';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 /** 날씨에 따른 의상 추천 & 이미지 보여주기 */
 function TodaysComent() {
@@ -44,8 +43,7 @@ function TodaysComent() {
           className="w-[160px] h-[160px]"
         />
       </div>
-      <Link to=""></Link>
-      <img src="/WeatherMate/public/01.svg" alt="My Happy SVG" />
+      <img src="/public/01.svg" alt="My Happy SVG" />
     </div>
   );
 }
