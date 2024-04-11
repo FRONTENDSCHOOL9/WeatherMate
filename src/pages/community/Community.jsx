@@ -1,5 +1,13 @@
+import CommunityHeader from "./CommunityHeader";
+import CommunityMain from "./CommunityMain";
+
 function Community() {
-  return <div>Community</div>;
+  return (
+    <>
+      <CommunityHeader />
+      <CommunityMain />
+    </>
+  );
 }
 
 export default Community;
