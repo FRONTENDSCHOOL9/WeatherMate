@@ -7,6 +7,8 @@ import Location from '@pages/location/Location';
 import MbtiTest from '@pages/Mbti/MbtiTest';
 import Login from '@pages/user/Login';
 import ErrorPage from '@pages/ErrorPage';
+import CommunityNew from '@pages/community/CommunityNew';
+import CommunityDetail from './pages/community/CommunityDetail';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import Question from './pages/Mbti/Question';
 
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
       {
         path: 'community',
         element: <Community />,
+      },
+      {
+        path: "community/new",
+        element: <CommunityNew />
+      },
+      {
+        path: "community/detail",
+        element: <CommunityDetail />
       },
       {
         path: 'loaction/:_id',
