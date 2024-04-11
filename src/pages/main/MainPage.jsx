@@ -1,11 +1,15 @@
+// import AllCitiesWeather from './ChoiceWeather';
 import MyLocationWeather from './MyLocationWeather';
-import SomeCitiesWeather from './SomeCitiesWeather';
+import TodaysComent from './TodaysComent';
+import WeatherByTimeZone from './WeatherByTimeZone';
 
 function MainWeather() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div>
+      <TodaysComent />
+      {/* <AllCitiesWeather /> */}
       <MyLocationWeather />
-      <SomeCitiesWeather />
+      <WeatherByTimeZone />
     </div>
   );
 }
