@@ -1,3 +1,9 @@
+import { GoHomeFill } from 'react-icons/go';
+import { SiGooglechat } from 'react-icons/si';
+import { MdLocationOn } from 'react-icons/md';
+import { FaAddressBook } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
 function Footer() {
   return (
     <>
@@ -26,4 +32,4 @@ function Footer() {
   );
 }
 
-export default Footer
+export default Footer;
