@@ -8,6 +8,7 @@ import MbtiTest from '@pages/Mbti/MbtiTest';
 import Login from '@pages/user/Login';
 import ErrorPage from '@pages/ErrorPage';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
+import Question from './pages/Mbti/Question';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: 'mbti',
         element: <MbtiTest />,
+      },
+      {
+        path: 'mbti/question',
+        element: <Question />,
       },
       {
         path: 'user',
