@@ -7,6 +7,7 @@ import Location from '@pages/location/Location';
 import MbtiTest from '@pages/Mbti/MbtiTest';
 import Login from '@pages/user/Login';
 import ErrorPage from '@pages/ErrorPage';
+import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <MainPage />,
+      },
+      {
+        path: 'allcities',
+        element: <AllCitiesWeather />,
       },
       {
         path: 'community',
