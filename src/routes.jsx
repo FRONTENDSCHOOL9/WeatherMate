@@ -11,6 +11,7 @@ import CommunityNew from '@pages/community/CommunityNew';
 import CommunityDetail from './pages/community/CommunityDetail';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import Question from './pages/Mbti/Question';
+import Result from './pages/Mbti/Result';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: 'mbti/question',
         element: <Question />,
+      },
+      {
+        path: 'mbti/result',
+        element: <Result />,
       },
       {
         path: 'user',
