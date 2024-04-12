@@ -1,4 +1,5 @@
 const MbtiResultData = [
+  // TODO: Data만들기
   {
     id: 1,
     name: '1',

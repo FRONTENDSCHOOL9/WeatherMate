@@ -5,7 +5,7 @@ import WeatherByTimeZone from './WeatherByTimeZone';
 
 function MainWeather() {
   return (
-    <div className="bg-primary">
+    <div className="bg-primary w-full h-screen">
       {/* AllCitiesWeather :  지역선택 */}
       {/* <AllCitiesWeather /> */}
       <TodaysComent />
@@ -13,6 +13,7 @@ function MainWeather() {
       <MyLocationWeather />
       {/* 현재 내위치 날씨 */}
       <WeatherByTimeZone />
+
       {/* 시간대 별 날씨 */}
     </div>
   );

@@ -9,21 +9,20 @@ function TodaysComent() {
   const [recomendClothes, setRecomendClothes] = useState(null);
   const [recommendationImage, setRecommendationImage] = useState(null);
 
-  const getRecommendedClothes = () => {
-    const userTemperature = userWeather?.main.temp - 273.15;
-    let selectedDummyData;
-    // 더미 데이터를 기반으로 온도에 따른 추천 선택
-    for (let i = 0; i < dummyData.length; i++) {
-      if (userTemperature <= dummyData[i].temperature) {
-        selectedDummyData = dummyData[i];
-        break;
-      }
-    }
-    setRecomendClothes(selectedDummyData?.recommendation);
-    setRecommendationImage(selectedDummyData?.IMG_URL); // 추천 이미지 설정
-  };
-
   useEffect(() => {
+    const getRecommendedClothes = () => {
+      const userTemperature = userWeather?.main.temp - 273.15;
+      let selectedDummyData;
+      // 더미 데이터를 기반으로 온도에 따른 추천 선택
+      for (let i = 0; i < dummyData.length; i++) {
+        if (userTemperature <= dummyData[i].temperature) {
+          selectedDummyData = dummyData[i];
+          break;
+        }
+      }
+      setRecomendClothes(selectedDummyData?.recommendation);
+      setRecommendationImage(selectedDummyData?.IMG_URL); // 추천 이미지 설정
+    };
     getRecommendedClothes();
   }, [userWeather]); // userWeather가 변경될 때마다 실행
 
@@ -39,12 +38,9 @@ function TodaysComent() {
         </div>
       </div>
       <div className="flex justify-center items-center">
-        <img
-          src="https://svgsilh.com/svg/1598269-ffffff.svg"
-          className="w-[160px] h-[160px]"
-        />
+        <div className="w-[160px] h-[160px] bg-white"></div>
       </div>
-      <img src={fileName} alt="My Happy SVG" />
+      <img src={fileName} className="" style={{ display: 'none' }} />
     </div>
   );
 }
