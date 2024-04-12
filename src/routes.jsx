@@ -5,13 +5,13 @@ import MainPage from '@pages/main/MainPage';
 import Community from '@pages/community/Community';
 import Location from '@pages/location/Location';
 import MbtiTest from '@pages/Mbti/MbtiTest';
-import Login from '@pages/user/Login';
 import ErrorPage from '@pages/ErrorPage';
 import CommunityNew from '@pages/community/CommunityNew';
 import CommunityDetail from './pages/community/CommunityDetail';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import Question from './pages/Mbti/Question';
 import Result from './pages/Mbti/Result';
+import SignUp from '@pages/user/SignUp';
 
 const router = createBrowserRouter([
   {
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'user',
-        element: <Login />,
+        element: <SignUp />,
       },
     ],
   },
