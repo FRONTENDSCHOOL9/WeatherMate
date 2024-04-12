@@ -1,33 +1,46 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import useCurrentLocation from '../../hooks/useCurrentLocation';
 
 const apiKey =
   'Tni56ZINiQ1IRiydSoRdwSLjhCAXtB2FKJPCTEQPxyyr0%2FJvNjWymNpCJQzOtAmEEr1jyhFa2zejQamJnkB9Uw%3D%3D';
 
 function Location() {
   const [locationData, setLocationData] = useState([]);
-  const lat = '37.568477';
-  const lon = '126.981611';
-  const radius = '10000';
+  const [locationReady, setLocationReady] = useState(false);
+
+  const radius = '100000';
+
+  const { latitude, longitude } = useCurrentLocation();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=2&numOfRows=15&mapX=${lon}&mapY=${lat}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=25&_type=json&contentTypeId=15`,
-        );
-        setLocationData(response.data.response.body.items.item);
-        console.log(response.data);
-      } catch (error) {
-        console.error(
-          '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
-          error,
-        );
-      }
-    };
+    if (latitude !== null && longitude !== null) {
+      setLocationReady(true);
+    }
+  }, [latitude, longitude]);
 
-    fetchData();
-  }, []);
+  useEffect(() => {
+    if (locationReady) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=2&numOfRows=20&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=25&_type=json&contentTypeId=15`,
+          );
+          setLocationData(response.data.response.body.items.item);
+          console.log(response.data);
+        } catch (error) {
+          console.error(
+            '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
+            error,
+          );
+        }
+      };
+
+      fetchData();
+    }
+  }, [locationReady, latitude, longitude]);
+
+  console.log(locationData);
 
   return (
     <div className="container mx-auto p-4">
@@ -46,11 +59,6 @@ function Location() {
             <img
               src={item.firstimage}
               alt="이미지1"
-              className="w-full h-auto mb-2"
-            />
-            <img
-              src={item.firstimage2}
-              alt="이미지2"
               className="w-full h-auto mb-2"
             />
             <p className="mb-2">위도: {item.mapx}</p>
