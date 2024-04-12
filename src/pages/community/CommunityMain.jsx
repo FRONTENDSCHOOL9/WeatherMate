@@ -2,13 +2,20 @@ import { Link } from "react-router-dom"
 import {useNavigate} from 'react-router-dom';
 import CommunityHeader from "./CommunityHeader";
 import Search from "./image/Search";
+import { useRecoilValue } from "recoil";
+import { memberState } from "@recoil/atom.mjs";
 
 
 function CommunityMain() {
   const navigate = useNavigate();
-
+  const user = useRecoilValue(memberState);
   const handleWrite = () => {
-    navigate('/community/new')
+    if(!user){
+      const gotologin = confirm('로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?');
+      gotologin && navigate('/user/login');
+    }else{
+      navigate('/community/new')
+    }
   }
   return (
     <>
