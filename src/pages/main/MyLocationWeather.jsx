@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { userWeatherState } from '../../recoil/atom.mjs';
@@ -7,7 +6,6 @@ import { userWeatherState } from '../../recoil/atom.mjs';
 function MyLocationWeather() {
   const [myPlace, setMyPlace] = useState(''); // 현재 내 위치를 UI에 보여줄 state
   const [userWeather, setUserWeather] = useRecoilState(userWeatherState); // Recoil 상태 및 setter 가져오기
-
   /** 사용자가 웹 페이지에 접속한 현재 위치를 기반으로 날씨를 불러오는 함수 */
   const getUserWeather = async () => {
     if (navigator.geolocation) {
@@ -36,34 +34,27 @@ function MyLocationWeather() {
     getUserWeather();
   }, []); // 최초의 마운트 될 시 getUserWeather 호출
 
+  console.log('weather', userWeather);
+
+  // 로딩화면
   if (!userWeather) {
-    // 로딩화면
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="container mx-auto p-4 bg-primary text-white">
+    <div className="text-white w-full pl-9 bg-primary h-[250px]">
       <h2 className="text-2xl font-bold mb-4">날씨 정보</h2>
-      <Link
-        to="/allcities"
-        className="text-blue-500 hover:underline mb-4 block"
-      >
-        전국 날씨 보기
-      </Link>
-      <h2 className="text-2xl font-bold mb-4">{myPlace}</h2>
-
+      {/* <img src="/public/02.svg" alt="My Happy SVG" /> */}
+      <h2 className="text-2xl font-bold mb-4">{myPlace.toLocaleUpperCase()}</h2>
       {userWeather && (
-        <div className="bg-gray-100 p-4 rounded-md">
-          <h3 className="text-xl font-semibold mb-2">현재 내 위치 날씨</h3>
-          <div className="flex flex-col">
-            <p className="text-lg">
-              온도: {(userWeather.main.temp - 273.15).toFixed(1)}°C
-            </p>
-            <p className="text-lg">
-              소개: {userWeather.weather[0].description}
-            </p>
-          </div>
-        </div>
+        <>
+          <p className="text-lg">
+            온도: {(userWeather.main.temp - 273.15).toFixed(1)}°C
+          </p>
+          <p className="text-lg font-bold">
+            {userWeather.weather[0].description}
+          </p>
+        </>
       )}
     </div>
   );

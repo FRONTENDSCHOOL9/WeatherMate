@@ -15,7 +15,7 @@ function WeatherByTimeZone() {
         const { latitude, longitude } = position.coords;
         axios
           .get(
-            `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&cnt=15`,
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&cnt=9`,
           )
           .then(response => {
             setWeatherData(response.data);
@@ -42,7 +42,7 @@ function WeatherByTimeZone() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
+    <div className="max-w-3xl mx-auto p-4 h-full">
       <h2 className="text-2xl font-bold mb-4">시간대별 기상예보</h2>
       <p className="mb-2">Location: {weatherData.city.name}</p>
       <Swiper
