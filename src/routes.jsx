@@ -11,6 +11,7 @@ import CommunityNew from '@pages/community/CommunityNew';
 import CommunityDetail from './pages/community/CommunityDetail';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import Question from './pages/Mbti/Question';
+import Result from './pages/Mbti/Result';
 
 const router = createBrowserRouter([
   {
@@ -31,12 +32,12 @@ const router = createBrowserRouter([
         element: <Community />,
       },
       {
-        path: "community/new",
-        element: <CommunityNew />
+        path: 'community/new',
+        element: <CommunityNew />,
       },
       {
-        path: "community/detail",
-        element: <CommunityDetail />
+        path: 'community/detail',
+        element: <CommunityDetail />,
       },
       {
         path: 'loaction/:_id',
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: 'mbti/question',
         element: <Question />,
+      },
+      {
+        path: 'mbti/result',
+        element: <Result />,
       },
       {
         path: 'user',
