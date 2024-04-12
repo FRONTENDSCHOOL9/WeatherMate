@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import Camera from "./image/Camera";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import CommunityHeader from "./CommunityHeader";
 // import useCustomAxios from "@hooks/useCustomAxios.mjs";
 
 function CommunityNew() {
@@ -45,14 +46,9 @@ function CommunityNew() {
   }
   
   return (
-    <div className="p-5 box-border flex flex-col">
-
-      <div className="text-center border-b-4 pb-3">
-        <h1 className="text-xl font-bold pt-3">글 작성하기</h1>
-      </div>
-
+    <div className="px-5 box-border">
+      <CommunityHeader title={'글 작성하기'}/>
       <br />
-
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <div className="flex">
