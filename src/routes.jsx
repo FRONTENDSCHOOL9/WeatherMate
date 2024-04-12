@@ -12,6 +12,7 @@ import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import Question from './pages/Mbti/Question';
 import Result from './pages/Mbti/Result';
 import CommunityMain from './pages/community/CommunityMain';
+import LocationDetailPage from './pages/location/LocationDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
         path: 'location',
         element: <Location />,
       },
+      {
+        path: 'location/:id',
+        element: <LocationDetailPage />,
+      },
+
       {
         path: 'mbti',
         element: <MbtiTest />,
