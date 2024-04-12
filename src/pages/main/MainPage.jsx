@@ -5,11 +5,15 @@ import WeatherByTimeZone from './WeatherByTimeZone';
 
 function MainWeather() {
   return (
-    <div>
-      <TodaysComent />
+    <div className="bg-primary">
+      {/* AllCitiesWeather :  지역선택 */}
       {/* <AllCitiesWeather /> */}
+      <TodaysComent />
+      {/* 오늘의 한마디 */}
       <MyLocationWeather />
+      {/* 현재 내위치 날씨 */}
       <WeatherByTimeZone />
+      {/* 시간대 별 날씨 */}
     </div>
   );
 }

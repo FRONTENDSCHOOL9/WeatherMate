@@ -31,15 +31,15 @@ const router = createBrowserRouter([
         element: <Community />,
       },
       {
-        path: "community/new",
-        element: <CommunityNew />
+        path: 'community/new',
+        element: <CommunityNew />,
       },
       {
-        path: "community/detail",
-        element: <CommunityDetail />
+        path: 'community/detail',
+        element: <CommunityDetail />,
       },
       {
-        path: 'loaction/:_id',
+        path: 'location',
         element: <Location />,
       },
       {
