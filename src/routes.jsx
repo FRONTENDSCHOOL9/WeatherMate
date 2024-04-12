@@ -13,6 +13,7 @@ import Result from './pages/Mbti/Result';
 import SignUp from '@pages/user/SignUp';
 import Login from '@pages/user/Login';
 import CommunityMain from './pages/community/CommunityMain';
+import LocationDetailPage from './pages/location/LocationDetailPage';
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
         path: 'location',
         element: <Location />,
       },
+      {
+        path: 'location/:id',
+        element: <LocationDetailPage />,
+      },
+
       {
         path: 'mbti',
         element: <MbtiTest />,
