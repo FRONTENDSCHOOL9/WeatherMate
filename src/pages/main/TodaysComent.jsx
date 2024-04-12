@@ -27,10 +27,11 @@ function TodaysComent() {
     getRecommendedClothes();
   }, [userWeather]); // userWeather가 변경될 때마다 실행
 
-  console.log('img', recommendationImage);
+  const imagePath = recommendationImage;
+  const fileName = imagePath?.split('/').pop(); // 경로에서 파일 이름 추출
 
   return (
-    <div className="bg-primary text-white w-full text-2xl font-bold h-full">
+    <div className="bg-primary text-white w-full text-2xl font-bold h-[300px]">
       <div className="p-5">
         <div className="ml-8 mt-[72px] mr-[103px]">
           <h1>짱구님</h1>
@@ -43,7 +44,7 @@ function TodaysComent() {
           className="w-[160px] h-[160px]"
         />
       </div>
-      <img src="/public/01.svg" alt="My Happy SVG" />
+      <img src={fileName} alt="My Happy SVG" />
     </div>
   );
 }
