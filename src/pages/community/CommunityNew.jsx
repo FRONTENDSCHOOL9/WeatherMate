@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import Camera from "./image/Camera";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import CommunityHeader from "./CommunityHeader";
+import { MdOutlineCameraAlt } from "react-icons/md";
 // import useCustomAxios from "@hooks/useCustomAxios.mjs";
 
 function CommunityNew() {
@@ -39,7 +39,13 @@ function CommunityNew() {
     setCityClick(true)
   }
   const handleFile = (e) => {
-    setImage(e.target.files?.[0].name)
+    // setImage(e.target.files?.[0].name)
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setImage(reader.result);
+    }
   }
   const onSubmit = async () => {
     navigate('/community');
@@ -52,12 +58,17 @@ function CommunityNew() {
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <div className="flex">
-          <label htmlFor="file" className=" w-20 h-20 bg-indigo-200 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white">
-            <Camera />
+          <label htmlFor="file" accept="image/*" className=" w-20 h-20 bg-indigo-200 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white">
+          <MdOutlineCameraAlt className="text-3xl"/>
             사진 추가
             <input onChange={handleFile} type="file" id="file" className="hidden"/>
           </label>
-            {image && <p className="flex items-center ml-5 text-md font-bold px-2">{image}<button onClick={() => setImage()} className="border rounded px-1 ml-2 bg-gray-200 text-white">X</button></p>}
+            {image && 
+            <div className="flex items-center">
+              <img src={image} className=" ml-5 text-md font-bold px-2 w-30 h-16"/>
+              <button onClick={() => setImage()} className="border rounded px-1 ml-2 bg-gray-200 text-white h-8 w-8">X</button>
+            </div>  
+            }
         </div>
 
         <div className="flex justify-start gap-2 mb-2">

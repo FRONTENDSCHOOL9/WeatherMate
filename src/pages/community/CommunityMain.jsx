@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 import {useNavigate} from 'react-router-dom';
 import CommunityHeader from "./CommunityHeader";
-import Search from "./image/Search";
 import { useRecoilValue } from "recoil";
 import { memberState } from "@recoil/atom.mjs";
+import { IoSearch } from "react-icons/io5";
 
 
 function CommunityMain() {
@@ -23,7 +23,7 @@ function CommunityMain() {
         <div className="px-5 box-border border-b-8">
           <div className="flex">
             <CommunityHeader title={'커뮤니티'}/>
-            <button className="absolute right-4 top-10"><Search /></button>
+            <button className="absolute right-4 top-10"><IoSearch className="text-2xl"/></button>
           </div>
 
           <div className="mt-5">
