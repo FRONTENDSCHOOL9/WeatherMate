@@ -21,7 +21,7 @@ function SignUp() {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.profileImage[0]);
         
-        const fileRes = await axios('/files', {
+        const fileRes = await axios('https://market-lion.koyeb.app/api/users', {
           method: 'post',
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -33,7 +33,7 @@ function SignUp() {
       }else{
         delete formData.profileImage;
       }
-      const res = await axios.post('/user', formData);
+      const res = await axios.post('https://market-lion.koyeb.app/api/users', formData);
       alert(res.data.item.name + '님 회원가입이 완료 되었습니다.');
       navigate('/user.login');
 
@@ -80,7 +80,7 @@ function SignUp() {
         }
       })}
       />
-      {/* 에러메세지 띄울 부분 */}
+      {errors.name && <p className='ml-2 mt-1 text-sm text-red-500'>{errors.name.message}</p>}
 
 
       <label>비밀번호</label>
@@ -90,7 +90,7 @@ function SignUp() {
       placeholder='비밀번호를 입력하세요'
       {...register('password', {required:"비밀번호를 입력하세요"})}
       />    
-      {/* 에러메세지 띄울 부분 */}
+      {errors.name && <p className='ml-2 mt-1 text-sm text-red-500'>{errors.name.message}</p>}
 
       <label>프로필 이미지</label>
       <input 
