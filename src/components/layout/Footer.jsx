@@ -30,7 +30,7 @@ function Footer() {
         </Link>
 
         <Link
-          to="/user"
+          to="/user/login"
           className="flex flex-col items-center px-2 text-primary"
         >
           <FaAddressBook className="text-4xl" />

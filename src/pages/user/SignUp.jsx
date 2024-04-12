@@ -35,7 +35,7 @@ function SignUp() {
       }
       const res = await axios.post('https://market-lion.koyeb.app/api/users', formData);
       alert(res.data.item.name + '님 회원가입이 완료 되었습니다.');
-      navigate('/user.login');
+      navigate('/user/login');
 
 
     } catch(err) {

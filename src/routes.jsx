@@ -12,6 +12,7 @@ import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import Question from './pages/Mbti/Question';
 import Result from './pages/Mbti/Result';
 import SignUp from '@pages/user/SignUp';
+import Login from '@pages/user/Login';
 
 const router = createBrowserRouter([
   {
@@ -56,8 +57,12 @@ const router = createBrowserRouter([
         element: <Result />,
       },
       {
-        path: 'user',
+        path: 'user/signup',
         element: <SignUp />,
+      },
+      {
+        path: 'user/login',
+        element: <Login />
       },
     ],
   },
