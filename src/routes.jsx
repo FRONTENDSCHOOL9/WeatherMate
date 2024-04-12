@@ -12,6 +12,7 @@ import Question from './pages/Mbti/Question';
 import Result from './pages/Mbti/Result';
 import SignUp from '@pages/user/SignUp';
 import Login from '@pages/user/Login';
+import UserPage from '@pages/user/UserPage';
 import CommunityMain from './pages/community/CommunityMain';
 import LocationDetailPage from './pages/location/LocationDetailPage';
 
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: 'mbti/result',
         element: <Result />,
+      },
+      {
+        path: 'user',
+        element: <UserPage />,
       },
       {
         path: 'user/signup',
