@@ -36,10 +36,10 @@ function Question() {
   };
 
   return (
-    <wrapper className="grid justify-items-center">
-      <h1></h1>
+    <div className="m-8 flex gap-4 flex-col items-center">
+      <h1 className="text-3xl font-bold">날씨별 성격 테스트</h1>
       <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-        <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full style ={{width: 45%}}">
+        <div className="bg-primary text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full style ={{width: 45%}}">
           {' '}
           45%
         </div>
@@ -48,17 +48,17 @@ function Question() {
       <div>{MbtiQuestionData[questionNo].title}</div>
       <button
         onClick={() => handleClickButton(1, MbtiQuestionData[questionNo].type)}
-        className="border-solid border-2 border-indigo-600"
+        className="rounded bg-primary px-4 py-2 font-bold text-white"
       >
         {MbtiQuestionData[questionNo].answer1}
       </button>
       <button
         onClick={() => handleClickButton(0, MbtiQuestionData[questionNo].type)}
-        className="border-solid border-2 border-indigo-600"
+        className="rounded bg-primary px-4 py-2 font-bold text-white "
       >
         {MbtiQuestionData[questionNo].answer2}
       </button>
-    </wrapper>
+    </div>
   );
 }
 
