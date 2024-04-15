@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom"
 import {useNavigate} from 'react-router-dom';
 import CommunityHeader from "./CommunityHeader";
-import Search from "./image/Search";
+import { useRecoilValue } from "recoil";
+import { memberState } from "@recoil/atom.mjs";
+import { IoSearch } from "react-icons/io5";
 
 
 function CommunityMain() {
   const navigate = useNavigate();
-
+  const user = useRecoilValue(memberState);
   const handleWrite = () => {
-    navigate('/community/new')
+    if(!user){
+      const gotologin = confirm('로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?');
+      gotologin && navigate('/user/login');
+    }else{
+      navigate('/community/new')
+    }
   }
   return (
     <>
@@ -16,7 +23,7 @@ function CommunityMain() {
         <div className="px-5 box-border border-b-8">
           <div className="flex">
             <CommunityHeader title={'커뮤니티'}/>
-            <button className="absolute right-4 top-10"><Search /></button>
+            <button className="absolute right-4 top-10"><IoSearch className="text-2xl"/></button>
           </div>
 
           <div className="mt-5">
