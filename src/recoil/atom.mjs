@@ -13,8 +13,7 @@ export const selectedLocationState = atom({
 });
 
 
-
-const {persistAtom} = recoilPersist({
+const { persistAtom } = recoilPersist({
   key: 'saveUser',
   storage: sessionStorage
 });
