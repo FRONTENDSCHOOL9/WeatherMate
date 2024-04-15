@@ -114,6 +114,7 @@ function SignUp() {
         <label>프로필 이미지</label>
         <input
           type="file"
+          style={{display: 'none'}}
           accept="image/*"
           id="profileImage"
           placeholder="이미지를 선택하세요"
