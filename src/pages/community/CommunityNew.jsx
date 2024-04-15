@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import CommunityHeader from "./CommunityHeader";
 import { MdOutlineCameraAlt } from "react-icons/md";
-// import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import useCustomAxios from "@hooks/useCustomAxios.mjs";
 
 function CommunityNew() {
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit, formState: { errors }} = useForm();
   const navigate = useNavigate();
-  // const axios = useCustomAxios();
+  const axios = useCustomAxios();
 
   const [image, setImage] = useState(null)
+  const [fileName, setFileName] = useState(null);
   const [weatherClick, setWeatherClick] = useState(false);
   const [cityClick, setCityClick] = useState(false);
   const [weather, setWeather] = useState(null);
@@ -39,7 +39,7 @@ function CommunityNew() {
     setCityClick(true)
   }
   const handleFile = (e) => {
-    // setImage(e.target.files?.[0].name)
+    setFileName(e.target.files?.[0].name);
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -47,8 +47,9 @@ function CommunityNew() {
       setImage(reader.result);
     }
   }
-  const onSubmit = async () => {
-    navigate('/community');
+  const onSubmit = async (formData) => {
+    const res = await axios.post('/posts',formData)
+    navigate(`/community/${res.data.item._id}`);
   }
   
   return (
@@ -65,7 +66,10 @@ function CommunityNew() {
           </label>
             {image && 
             <div className="flex items-center">
-              <img src={image} className=" ml-5 text-md font-bold px-2 w-30 h-16"/>
+              <div className="flex flex-col items-center">
+                <img src={image} className=" ml-5 text-md font-bold px-2 w-30 h-16"/>
+                <p>{fileName}</p>
+              </div>
               <button onClick={() => setImage()} className="border rounded px-1 ml-2 bg-gray-200 text-white h-8 w-8">X</button>
             </div>  
             }
@@ -81,6 +85,7 @@ function CommunityNew() {
 
         <textarea id="content" className="w-full p-4 text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200" 
         autoFocus cols="50" rows="15" placeholder="웨더메이트에게 공유하고 싶은 날씨 이야기를 해주세요!" {...register('content',{required: '내용을 입력하세요.'})}/>
+        {errors.content && <p className="ml-1 mb-2 text-bold text-red-500">{errors.content.message}</p>}
 
         <div className="flex gap-2">
           <button className="border rounded-lg px-4 py-2 bg-indigo-200 text-indigo-600" onClick={handleWeatherClick}>날씨 추가하기</button>
@@ -88,7 +93,7 @@ function CommunityNew() {
         </div>
 
         <div className="flex gap-2 float-right">
-          <Link to="/community" className="p-1 box-border bg-indigo-200 text-indigo-600 rounded-lg">취소</Link>
+          <button onClick={() => navigate('/community')} className="p-1 box-border bg-indigo-200 text-indigo-600 rounded-lg">취소</button>
           <button type="submit" className="p-1 box-border bg-indigo-200 text-indigo-600 rounded-lg">완료</button>
         </div>
 

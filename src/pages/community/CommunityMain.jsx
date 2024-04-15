@@ -1,14 +1,19 @@
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import {useNavigate} from 'react-router-dom';
 import CommunityHeader from "./CommunityHeader";
 import { useRecoilValue } from "recoil";
 import { memberState } from "@recoil/atom.mjs";
-import { IoSearch } from "react-icons/io5";
-
+import CommunityItem from "./CommunityItem";
+import { useQuery } from "@tanstack/react-query";
+import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import { useEffect } from "react";
+import Search from "../../components/layout/Search";
 
 function CommunityMain() {
   const navigate = useNavigate();
   const user = useRecoilValue(memberState);
+  const axios = useCustomAxios();
+
   const handleWrite = () => {
     if(!user){
       const gotologin = confirm('로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?');
@@ -17,13 +22,44 @@ function CommunityMain() {
       navigate('/community/new')
     }
   }
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const page = searchParams.get('page');
+
+  const { isLoading, data, isError, refetch } = useQuery({
+    queryKey: ['posts', page],
+    queryFn: () =>
+      axios.get('/posts', {
+        params: {
+          page,
+          limit: import.meta.env.VITE_POST_LIMIT,
+          keyword: searchParams.get('keyword'),
+        },
+      }),
+    select: (response) => response.data,
+    suspense: true,
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [searchParams.toString()]);
+
+  const handleSearch = (keyword) => {
+    searchParams.set('keyword', keyword);
+    searchParams.set('page', 1);
+    setSearchParams(searchParams);
+  };
+
+  const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
+  
   return (
     <>
       <div>
         <div className="px-5 box-border border-b-8">
-          <div className="flex">
+          <div className="flex items-center justify-center">
             <CommunityHeader title={'커뮤니티'}/>
-            <button className="absolute right-4 top-10"><IoSearch className="text-2xl"/></button>
+            <Search onClick={handleSearch}></Search>
           </div>
 
           <div className="mt-5">
@@ -43,9 +79,13 @@ function CommunityMain() {
         </div>
       </div>
       <div className="flex flex-col p-5 gap-3 mt-4">
-        <Link to="/community/detail" className="bg-indigo-300 min-h-40">CommunityMain</Link>
-        <Link to="/community/detail" className="bg-indigo-300 min-h-40">CommunityMain</Link>
-        <Link to="/community/detail" className="bg-indigo-300 min-h-40">CommunityMain</Link>
+        {isLoading && (
+          <p colSpan="5">로딩중...</p>
+        )}
+        {isError && (
+          <p colSpan="5">{isError.message}</p>
+        )}
+        {itemList}
       </div>
     
     </>
