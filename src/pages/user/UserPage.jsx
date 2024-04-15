@@ -1,20 +1,19 @@
 /* eslint-disable */
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { memberState } from '@recoil/atom.mjs';
 
-function UserPage() {
+function ProfilePage() {
+  // Recoil을 사용하여 사용자 정보를 가져옴
+  const userData = useRecoilValue(memberState);
+
   return (
-    <>
-    <div>마이페이지</div>
-
-    <Link
-    to="/user/login"
-    className="flex flex-col items-center px-2 text-primary"
-  >
-    <p className="text-nowrap">로그인</p>
-  </Link>
-  </>
-  )
+    <div>
+      <h2>안녕하세요 {userData.name}님</h2>
+      <p>이메일: {userData.email}</p>
+      <img src={userData.profile} alt="프로필 이미지" style={{ width: '100px', height: '100px' }} />
+    </div>
+  );
 }
 
-export default UserPage;
+export default ProfilePage;

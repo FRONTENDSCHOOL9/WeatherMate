@@ -15,10 +15,12 @@ function Login() {
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }, setError } = useForm({
     values: {
-      email: 'aa@bb.com',
-      password: '********'
+      email: 'gmltjs6346pk@naver.com',
+      password: '123123123'
     }
   });
+
+
 
   const onSubmit = async (formData)=> {
     try{
@@ -26,6 +28,7 @@ function Login() {
 
       setUser({
         _id: res.data.item._id,
+        email:res.data.item.email,
         name: res.data.item.name,
         profile: res.data.item.profileImage,
         token: res.data.item.token
@@ -33,6 +36,7 @@ function Login() {
 
       alert(res.data.item.name + '님 반갑습니다');
       navigate(location.state?.from ? location.state?.from : '/');
+      console.log(res.data.item);
 
 
     } catch(err) {
@@ -81,6 +85,8 @@ function Login() {
       <Submit>로그인</Submit>
       <Link className="ml-8 text-blue-500 hover:underline" to="/user/signup">회원가입</Link>
     </form>
+
+
 
     </></>
   )
