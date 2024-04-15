@@ -48,7 +48,6 @@ function RecommendationPreview() {
           지금 날씨에는 이 장소 추천해요
           <Link to="/location">➡️</Link>
         </h1>
-  console.log('x', locationData);
 
         <div>
           {locationData && (
