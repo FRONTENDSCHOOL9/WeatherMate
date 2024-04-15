@@ -37,8 +37,8 @@ function userpage(){
 
               <ul>
                 <li><Link to="/mbti">MBTI 테스트 하러가기</Link></li>
-                <li><Link to="/boards">자유게시판</Link></li>
-                <li><Link to="/boards">질문게시판</Link></li>
+                <li><Link to="/">저장한 장소</Link></li>{/* 내가 좋아요 누른 게시물 */}
+                <li><Link to="/">나의 활동</Link></li>{/* 내가 좋아요 누른 장소 */}
               </ul>
             </div>
             
