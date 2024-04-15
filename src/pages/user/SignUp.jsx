@@ -15,6 +15,14 @@ function SignUp() {
     setError,
   } = useForm();
 
+
+  const Rest_api_key='2fd33ea8cc22119f8666788667295bed' //REST API KEY
+    const redirect_uri = 'http://localhost:5173/oauth' //Redirect URI
+    // oauth 요청 URL
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`
+    const handleLogin = ()=>{
+        window.location.href = kakaoURL}
+
   const onSubmit = async formData => {
     try {
       formData.type = 'user';
@@ -119,11 +127,14 @@ function SignUp() {
           placeholder="이미지를 선택하세요"
           {...register('profileImage')}
         />
+        
 
 
 
         <Submit>회원가입</Submit>
       </form>
+
+      <Button onClick={handleLogin}>카카오 회원가입</Button>
     </>
   );
 }
