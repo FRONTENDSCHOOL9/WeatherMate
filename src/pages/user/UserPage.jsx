@@ -1,19 +1,58 @@
 /* eslint-disable */
-import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { memberState } from '@recoil/atom.mjs';
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import { memberState } from "@recoil/atom.mjs";
+import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import Button from '@components/layout/Button';
 
-function ProfilePage() {
-  // Recoil을 사용하여 사용자 정보를 가져옴
-  const userData = useRecoilValue(memberState);
+function userpage(){
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setUser(null);
+    navigate('/');
+  };
+
+  const [user, setUser] = useRecoilState(memberState);
 
   return (
-    <div>
-      <p>이름: {userData.name}</p>
-      <p>이메일: {userData.email}</p>
-      <img src={userData.profile} alt="프로필 이미지" style={{ width: '100px', height: '100px' }} />
-    </div>
+
+      <nav>
+        <div>
+          <a href="/">
+            {/* 로고 이미지 넣을 자리 */}
+            <span>로고(홈으로)</span>
+          </a>
+        </div>
+
+        <div>
+          { user ? (
+            <div>
+              <p>
+                <img src={`https://market-lion.koyeb.app/api/files/${ user.profile }`}></img>
+                { user.name }님 오늘 날씨 어때요?
+                <Button onClick={ handleLogout }>로그아웃</Button>
+              </p>
+
+              <ul>
+                <li><Link to="/mbti">MBTI 테스트 하러가기</Link></li>
+                <li><Link to="/boards">자유게시판</Link></li>
+                <li><Link to="/boards">질문게시판</Link></li>
+              </ul>
+            </div>
+            
+          ) : (
+            <div>
+              <Button onClick={ () => navigate('/user/Login') }>로그인</Button>
+              <Button onClick={ () => navigate('/user/SignUp') }>회원가입</Button>
+            </div>
+          ) }
+        </div>
+      </nav>
+
   );
 }
 
-export default ProfilePage; 
+export default userpage;
+
