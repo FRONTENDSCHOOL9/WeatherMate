@@ -1,9 +1,16 @@
+// Location.js
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useCurrentLocation from '../../hooks/useCurrentLocation';
 
+
 /* eslint-disable */
+
+const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
+
+//관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점) ID
+
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -12,11 +19,16 @@ const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 function Location({ keyword }) {
   const [locationData, setLocationData] = useState([]);
   const [locationReady, setLocationReady] = useState(false);
+
   const [searchKeyword, setSearchKeyword] = useState(''); // 검색내용
   const [selectedOption, setSelectedOption] = useState(''); // 옵션 드랍다운 선택 상태
   const [currentPage, setCurrentPage] = useState(1);
   const [contentID, setContentID] = useState('12'); // 초기값으로 contentID 설정
   const radius = '100000'; // 거리반경(단위:m) , Max값 20000m=20Km
+
+
+
+
 
   const { latitude, longitude } = useCurrentLocation();
 
@@ -158,6 +170,10 @@ function Location({ keyword }) {
     };
   }, [locationData]); // locationData가 업데이트 될 때마다 이벤트 리스너를 추가/제거
 
+  function formatDistance(distance) {
+    return `${(distance / 1000).toFixed(1)} km`;
+  }
+
   return (
     <div className="container mx-auto p-4">
       {/* 관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠,
@@ -179,15 +195,20 @@ function Location({ keyword }) {
       </select>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
         {locationData?.map((item, index) => (
           <Link key={index} to={`/location/${item.contentid}`}>
             <div className="bg-gray-100 p-4 rounded-md shadow-md min-h-[500px] max-h-[500px]">
+
+
+
               <h2 className="text-xl font-bold mb-2">{item.title}</h2>
               <p className="mb-2">
                 카테고리: {item.cat1}, {item.cat2}, {item.cat3}
               </p>
               <p className="mb-2">거리: {formatDistance(item.dist)}</p>
               <img
+
                 src={item.firstimage ? item.firstimage : recoDefaultImg}
                 alt="이미지1"
                 className="w-full h-auto mb-2"

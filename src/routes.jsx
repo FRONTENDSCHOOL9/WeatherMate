@@ -12,6 +12,7 @@ import SignUp from '@pages/user/SignUp';
 import Login from '@pages/user/Login';
 import CommunityMain from './pages/community/CommunityMain';
 import LocationDetailPage from './pages/location/LocationDetailPage';
+
 import LocationMainPage from './pages/location/LocationMainPage';
 
 const router = createBrowserRouter([
