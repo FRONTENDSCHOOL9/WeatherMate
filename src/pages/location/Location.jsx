@@ -1,3 +1,4 @@
+// Location.js
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -8,11 +9,14 @@ import { FaRegHeart } from 'react-icons/fa6';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
+//관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점) ID
+
 //about ContentID = 관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점) ID
 
 function Location({ keyword }) {
   const [locationData, setLocationData] = useState([]);
   const [locationReady, setLocationReady] = useState(false); // 받아오는 location 상태
+
   const [searchKeyword, setSearchKeyword] = useState(''); // 검색내용
   const [selectedOption, setSelectedOption] = useState(''); // 옵션 드랍다운 선택 상태
   const [currentPage, setCurrentPage] = useState(1);
@@ -161,6 +165,10 @@ function Location({ keyword }) {
     };
   }, [locationData]); // locationData가 업데이트 될 때마다 이벤트 리스너를 추가/제거
 
+  function formatDistance(distance) {
+    return `${(distance / 1000).toFixed(1)} km`;
+  }
+
   return (
     <div className="container mx-auto p-4">
       <select
@@ -187,6 +195,7 @@ function Location({ keyword }) {
           >
             <FaRegHeart className="text-sub_sal w-[35px] h-[35px]" />
             <Link key={index} to={`/location/${item.contentid}`}>
+              <div className="bg-gray-100 p-4 rounded-md shadow-md min-h-[500px] max-h-[500px]" />
               <h2 className="text-xl font-bold mb-2">{item.title}</h2>
               <p className="mb-2 text-gray_04">{item.addr1}</p>
               <p className="mb-2 text-gray_04">

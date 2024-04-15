@@ -48,6 +48,8 @@ function RecommendationPreview() {
           지금 날씨에는 이 장소 추천해요
           <Link to="/location">➡️</Link>
         </h1>
+  console.log('x', locationData);
+
         <div>
           {locationData && (
             <div className="flex gap-4 p-4 overflow-x-scroll">
