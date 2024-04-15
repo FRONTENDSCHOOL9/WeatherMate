@@ -1,20 +1,57 @@
 /* eslint-disable */
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { memberState } from "@recoil/atom.mjs";
+import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import Button from '@components/layout/Button';
 
-function UserPage() {
+function userpage(){
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setUser(null);
+    navigate('/');
+  };
+
+  const [user, setUser] = useRecoilState(memberState);
+
   return (
-    <>
-    <div>마이페이지</div>
 
-    <Link
-    to="/user/login"
-    className="flex flex-col items-center px-2 text-primary"
-  >
-    <p className="text-nowrap">로그인</p>
-  </Link>
-  </>
-  )
+      <nav>
+        <div>
+          <a href="/">
+            {/* 로고 이미지 넣을 자리 */}
+            <span>로고(홈으로)</span>
+          </a>
+        </div>
+
+        <div>
+          { user ? (
+            <div>
+              <p>
+                <img src={`https://market-lion.koyeb.app/api/files/${ user.profile }`}></img>
+                { user.name }님 오늘 날씨 어때요?
+                <Button onClick={ handleLogout }>로그아웃</Button>
+              </p>
+
+              <ul>
+                <li><Link to="/mbti">MBTI 테스트 하러가기</Link></li>
+                <li><Link to="/boards">자유게시판</Link></li>
+                <li><Link to="/boards">질문게시판</Link></li>
+              </ul>
+            </div>
+            
+          ) : (
+            <div>
+              <Button onClick={ () => navigate('/user/Login') }>로그인</Button>
+              <Button onClick={ () => navigate('/user/SignUp') }>회원가입</Button>
+            </div>
+          ) }
+        </div>
+      </nav>
+
+  );
 }
 
-export default UserPage;
+export default userpage;
