@@ -13,7 +13,7 @@ function WeatherByTimeZone() {
         const { latitude, longitude } = position.coords;
         axios
           .get(
-            `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&cnt=15`,
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&cnt=10`,
           )
           .then(response => {
             setWeatherData(response.data);

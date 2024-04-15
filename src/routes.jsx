@@ -2,19 +2,17 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import Layout from '@components/layout';
 import MainPage from '@pages/main/MainPage';
-import Location from '@pages/location/Location';
 import MbtiTest from '@pages/Mbti/MbtiTest';
 import ErrorPage from '@pages/ErrorPage';
 import CommunityNew from '@pages/community/CommunityNew';
 import CommunityDetail from './pages/community/CommunityDetail';
-import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import Question from './pages/Mbti/Question';
 import Result from './pages/Mbti/Result';
 import SignUp from '@pages/user/SignUp';
 import Login from '@pages/user/Login';
 import CommunityMain from './pages/community/CommunityMain';
 import LocationDetailPage from './pages/location/LocationDetailPage';
-
+import LocationMainPage from './pages/location/LocationMainPage';
 
 const router = createBrowserRouter([
   {
@@ -25,10 +23,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <MainPage />,
-      },
-      {
-        path: 'allcities',
-        element: <AllCitiesWeather />,
       },
       {
         path: 'community',
@@ -44,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'location',
-        element: <Location />,
+        element: <LocationMainPage />,
       },
       {
         path: 'location/:id',
@@ -69,7 +63,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'user/login',
-        element: <Login />
+        element: <Login />,
       },
     ],
   },

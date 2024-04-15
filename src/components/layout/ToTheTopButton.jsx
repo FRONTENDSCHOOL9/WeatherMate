@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { FaArrowUp } from 'react-icons/fa';
 
 function ToTheTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,16 +27,12 @@ function ToTheTopButton() {
 
   return (
     <button
-      className={`fixed bottom-24 right-5 bg-white rounded-full w-12 h-12 z-30 shadow-md transition-opacity flex justify-center items-center ${
+      className={`fixed bottom-24 right-5 text-primary bg-white rounded-full w-14 h-14 z-30 shadow-md transition-opacity flex justify-center items-center ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       onClick={handleClick}
     >
-      <img
-        src="/public/01.svg"
-        alt="To the top"
-        className="w-6 h-6 text-primary"
-      />
+      <FaArrowUp className="font-bold text-2xl" />
     </button>
   );
 }
