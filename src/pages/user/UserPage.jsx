@@ -9,11 +9,11 @@ function ProfilePage() {
 
   return (
     <div>
-      <h2>안녕하세요 {userData.name}님</h2>
+      <p>이름: {userData.name}</p>
       <p>이메일: {userData.email}</p>
       <img src={userData.profile} alt="프로필 이미지" style={{ width: '100px', height: '100px' }} />
     </div>
   );
 }
 
-export default ProfilePage;
+export default ProfilePage; 
