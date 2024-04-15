@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useCurrentLocation from '../../hooks/useCurrentLocation';
+import { FaRegHeart } from 'react-icons/fa6';
 
 /* eslint-disable */
 
@@ -14,7 +15,7 @@ const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
 function Location({ keyword }) {
   const [locationData, setLocationData] = useState([]);
-  const [locationReady, setLocationReady] = useState(false);
+  const [locationReady, setLocationReady] = useState(false); // 받아오는 location 상태
 
   const [searchKeyword, setSearchKeyword] = useState(''); // 검색내용
   const [selectedOption, setSelectedOption] = useState(''); // 옵션 드랍다운 선택 상태
@@ -30,10 +31,12 @@ function Location({ keyword }) {
     }
   }, [latitude, longitude]);
 
+  // 검색창이 아닐 때 비어있을 때
+
   console.log('cID', contentID);
   // 현재 위치 기반으로 장소를 우선적으로 추천해주는 함수
   useEffect(() => {
-    if (locationReady) {
+    if (locationReady && !searchKeyword.trim().length) {
       const fetchData = async () => {
         try {
           const response = await axios.get(
@@ -78,7 +81,7 @@ function Location({ keyword }) {
 
       fetchData();
     }
-  }, [searchKeyword]);
+  }, [searchKeyword, contentID]);
 
   //km로 변경함수
   function formatDistance(distance) {
@@ -143,7 +146,7 @@ function Location({ keyword }) {
       );
     }
   };
-  // 현재 페이지의 높이를 보기 위한 함수
+
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     if (
@@ -154,7 +157,7 @@ function Location({ keyword }) {
     }
   };
 
-  //사용자 화면 높이 측정
+  //스크롤 이벤트
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -168,8 +171,6 @@ function Location({ keyword }) {
 
   return (
     <div className="container mx-auto p-4">
-      {/* 관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠,
-      32:숙박, 38:쇼핑, 39:음식점) ID */}
       <select
         value={selectedOption}
         onChange={handleDropdownChange}
@@ -188,20 +189,25 @@ function Location({ keyword }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {locationData?.map((item, index) => (
-          <Link key={index} to={`/location/${item.contentid}`}>
-            <div className="bg-gray-100 p-4 rounded-md shadow-md min-h-[500px] max-h-[500px]">
+          <div
+            className="p-4 rounded-md shadow-md min-h-[500px] max-h-[500px]"
+            key={index}
+          >
+            <FaRegHeart className="text-sub_sal w-[35px] h-[35px]" />
+            <Link key={index} to={`/location/${item.contentid}`}>
+              <div className="bg-gray-100 p-4 rounded-md shadow-md min-h-[500px] max-h-[500px]" />
               <h2 className="text-xl font-bold mb-2">{item.title}</h2>
-              <p className="mb-2">
-                카테고리: {item.cat1}, {item.cat2}, {item.cat3}
+              <p className="mb-2 text-gray_04">{item.addr1}</p>
+              <p className="mb-2 text-gray_04">
+                거리: {formatDistance(item.dist)}
               </p>
-              <p className="mb-2">거리: {formatDistance(item.dist)}</p>
               <img
                 src={item.firstimage ? item.firstimage : recoDefaultImg}
                 alt="이미지1"
-                className="w-full h-auto mb-2"
+                className="w-full h-auto mb-2 rounded-md"
               />
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
       </div>
     </div>

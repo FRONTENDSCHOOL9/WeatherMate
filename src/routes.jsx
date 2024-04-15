@@ -15,6 +15,7 @@ import CommunityMain from './pages/community/CommunityMain';
 import LocationDetailPage from './pages/location/LocationDetailPage';
 
 import LocationMainPage from './pages/location/LocationMainPage';
+import Setting from './pages/user/Setting';
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
         element: <CommunityNew />,
       },
       {
-        path: 'community/detail',
+        path: 'community/:_id',
         element: <CommunityDetail />,
       },
       {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: 'user/login',
         element: <Login />,
+      },
+      {
+        path: 'user/setting',
+        element: <Setting />,
       },
     ],
   },
