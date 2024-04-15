@@ -41,15 +41,14 @@ function RecommendationPreview() {
     }
   }, [locationReady, latitude, longitude]);
 
-  console.log('x', locationData);
-
   return (
-    <div className="flex items-center justify-center">
-      <div className="h-[500px] mt-10 p-4">
-        <h1 className="text-xl">
+    <div className="flex items-center justify-center w-full">
+      <div className="mt-10">
+        <h1 className="text-xl mx-7">
           지금 날씨에는 이 장소 추천해요
           <Link to="/location">➡️</Link>
         </h1>
+  console.log('x', locationData);
 
         <div>
           {locationData && (
