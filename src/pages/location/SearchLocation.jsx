@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Location from './Location';
 import { useDebounce } from '../../hooks/useDebounce';
+import { FaSearch } from 'react-icons/fa';
 
 // 장소추천 자식 컴포넌트 (검색 | 보여주기)
 function SearchLocation() {
@@ -19,18 +20,20 @@ function SearchLocation() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          className="border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
-            w-64 h-8"
-          type="text"
-          value={keyword}
-          onChange={handleChange}
-        />
-        <button type="submit" className="bg-primary px-3">
-          검색
-        </button>
-      </form>
+      <div className="flex justify-center items-center mt-5">
+        <form onSubmit={handleSubmit}>
+          <input
+            className="border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
+            w-80 h-10"
+            type="text"
+            value={keyword}
+            onChange={handleChange}
+          />
+          <button type="submit" className="px-3 relative right-10">
+            <FaSearch />
+          </button>
+        </form>
+      </div>
       <Location keyword={debouncedKeyword} />{' '}
     </>
   );

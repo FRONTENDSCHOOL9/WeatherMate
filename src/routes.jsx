@@ -43,9 +43,9 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <ReplyList />
-          }
-        ]
+            element: <ReplyList />,
+          },
+        ],
       },
       {
         path: 'location',
