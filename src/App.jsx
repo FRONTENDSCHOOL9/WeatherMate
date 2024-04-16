@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useEffect } from 'react';
 const { Kakao } = window;
 
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
         <RecoilRoot>
           <RouterProvider router={router} />
         </RecoilRoot>
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </>
   );

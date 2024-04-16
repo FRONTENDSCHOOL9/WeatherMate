@@ -10,10 +10,12 @@ import Question from './pages/Mbti/Question';
 import Result from './pages/Mbti/Result';
 import SignUp from '@pages/user/SignUp';
 import Login from '@pages/user/Login';
+import UserPage from '@pages/user/UserPage';
 import CommunityMain from './pages/community/CommunityMain';
 import LocationDetailPage from './pages/location/LocationDetailPage';
 
 import LocationMainPage from './pages/location/LocationMainPage';
+import Setting from './pages/user/Setting';
 import FoodMainPage from './pages/food/FoodMainPage';
 
 const router = createBrowserRouter([
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
         element: <CommunityNew />,
       },
       {
-        path: 'community/detail',
+        path: 'community/:_id',
         element: <CommunityDetail />,
       },
       {
@@ -60,6 +62,10 @@ const router = createBrowserRouter([
         element: <Result />,
       },
       {
+        path: 'user/mypage',
+        element: <UserPage />,
+      },
+      {
         path: 'food',
         element: <FoodMainPage />,
       },
@@ -70,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: 'user/login',
         element: <Login />,
+      },
+      {
+        path: 'user/setting',
+        element: <Setting />,
       },
     ],
   },
