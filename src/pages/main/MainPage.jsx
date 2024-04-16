@@ -11,9 +11,9 @@ import WeatherByTimeZone from './WeatherByTimeZone';
 function MainWeather() {
   return (
     <div className="min-h-[1500px]">
-      <div className="bg-primary w-full border-b border-primary rounded-bl-3xl  rounded-br-3xl">
+      <div className="w-full border-b border-primary rounded-bl-3xl  rounded-br-3xl">
         <div>
-          <div className="bg-primary w-full min-h-[800px] border-b border-primary rounded-bl-3xl  rounded-br-3xl">
+          <div className="w-full min-h-[800px] border-b border-primary rounded-bl-3xl  rounded-br-3xl">
             <TodaysComent />
             {/* 오늘의 한마디 */}
             <MyLocationWeather />
