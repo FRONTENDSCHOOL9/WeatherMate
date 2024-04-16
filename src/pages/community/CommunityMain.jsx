@@ -8,11 +8,12 @@ import { useQuery } from "@tanstack/react-query";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect } from "react";
 import Search from "../../components/layout/Search";
+import ToTheTopButton from "../../components/layout/ToTheTopButton";
 
 function CommunityMain() {
   const navigate = useNavigate();
-  const user = useRecoilValue(memberState);
   const axios = useCustomAxios();
+  const user = useRecoilValue(memberState);
 
   const handleWrite = () => {
     if(!user){
@@ -33,7 +34,6 @@ function CommunityMain() {
       axios.get('/posts', {
         params: {
           page,
-          limit: import.meta.env.VITE_POST_LIMIT,
           keyword: searchParams.get('keyword'),
         },
       }),
@@ -50,8 +50,8 @@ function CommunityMain() {
     searchParams.set('page', 1);
     setSearchParams(searchParams);
   };
-
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
+  console.log(data.item);
   
   return (
     <>
@@ -61,21 +61,17 @@ function CommunityMain() {
             <CommunityHeader title={'커뮤니티'}/>
             <Search onClick={handleSearch}></Search>
           </div>
-
           <div className="mt-5">
             <div className="flex justify-between mb-3">
               <h2 className="font-bold">인기 포스팅</h2>
               <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-2 py-1 text-sm text-indigo-400 font-bold">글쓰기</button>
             </div>
-
             <div className="flex justify-between items-center gap-1 mb-4">
               <Link to="/community/detail" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">1</Link>
               <Link to="/community/detail" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">2</Link>
               <Link to="/community/detail" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">3</Link>
             </div>
-
           </div>
-
         </div>
       </div>
       <div className="flex flex-col p-5 gap-3 mt-4">
@@ -87,7 +83,7 @@ function CommunityMain() {
         )}
         {itemList}
       </div>
-    
+      <ToTheTopButton />
     </>
   )
 }
