@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <>
-      <footer className="w-full flex text-white min-h-28 rounded-t-3xl items-center justify-center gap-8 bg-white fixed bottom-0 shadow-inner lg:bottom-auto lg:top-0 lg:mt-10 lg:px-8 lg:py-4">
+      <footer className="w-full flex text-white min-h-28 rounded-t-3xl items-center justify-center gap-8 bg-white fixed bottom-0 shadow-inner">
         <Link to="/" className="flex flex-col items-center text-primary px-2">
           <GoHomeFill className="text-4xl mb-3" />
           <p className="text-nowrap">홈</p>

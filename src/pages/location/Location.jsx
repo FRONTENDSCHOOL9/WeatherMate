@@ -163,21 +163,20 @@ function Location({ keyword }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {locationData?.map((item, index) => (
           <div
-            className="p-4 rounded-md shadow-md min-h-[500px] max-h-[500px]"
+            className="p-4 rounded-md shadow-md min-h-[500px] max-h-[500px] overflow-y-hidden"
             key={index}
           >
             <FaRegHeart className="text-sub_sal w-[35px] h-[35px]" />
             <Link key={index} to={`/location/${item.contentid}`}>
               <h2 className="text-xl font-bold mb-2">{item.title}</h2>
-              <p className="mb-2 text-gray_04">{item.addr1}</p>
-              <p className="mb-2 text-gray_04">
+              <p className="mb-2 text-gray-400">{item.addr1}</p>
+              <p className="mb-2 text-gray-400">
                 거리: {formatDistance(item.dist)}
               </p>
               <img
                 src={item.firstimage ? item.firstimage : recoDefaultImg}
                 alt="이미지1"
-                className=""
-                me="w-full h-auto mb-2 rounded-md"
+                className="w-full   mb-2 rounded-md overflow-hidden"
               />
             </Link>
           </div>

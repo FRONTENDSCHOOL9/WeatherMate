@@ -62,7 +62,7 @@ function MyLocationWeather() {
     if (!loading) getRecommendedImagePath();
   }, [userWeather, loading]);
 
-  const defaultImgPath = 'public/01.svg';
+  const defaultImgPath = '/01.svg';
 
   const imagePath = recommendationImage
     ? recommendationImage.split('/').pop()
@@ -76,7 +76,7 @@ function MyLocationWeather() {
   };
 
   return (
-    <div className="text-white w-full pl-9 bg-primary mb-20 mt-20">
+    <div className=" w-full pl-9  mb-20 mt-20 ">
       <div className="absolute top-12 right-5">
         {/* 자식 요소에 absolute 클래스 추가하여 절대 위치 지정 */}
         <IoIosRefresh className="text-4xl" onClick={handleRefresh} />
