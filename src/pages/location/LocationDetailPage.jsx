@@ -48,11 +48,6 @@ function LocationDetailPage() {
     getOldReply();
   }, [id]);
 
-  useEffect(() => {
-    console.log(oldReply);
-    console.log(oldReply.item);
-  }, [oldReply]);
-
   if (!detailData) {
     return <div>Loading...</div>;
   }
