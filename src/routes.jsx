@@ -16,6 +16,7 @@ import LocationDetailPage from './pages/location/LocationDetailPage';
 
 import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
+import FoodMainPage from './pages/food/FoodMainPage';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: 'user/mypage',
         element: <UserPage />,
+      },
+      {
+        path: 'food',
+        element: <FoodMainPage />,
       },
       {
         path: 'user/signup',
