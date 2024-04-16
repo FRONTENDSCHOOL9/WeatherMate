@@ -32,7 +32,7 @@ function RecommendationPreview() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=4&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentTypeId}&_type=json`,
+            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=4&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentTypeId}&_type=json&arrange=A`,
           );
           setLocationData(response.data.response.body.items.item);
           console.log(response.data);
@@ -68,7 +68,11 @@ function RecommendationPreview() {
                       alt="recommendation"
                     />
                   </Link>
-                  <p className="text-center  font-bold mt-2">{item.title}</p>
+                  <p className="text-center  font-bold mt-2">
+                    {item.title.length > 5
+                      ? `${item.title.slice(0, 5)}...`
+                      : item.title}
+                  </p>
                 </div>
               ))}
             </div>
