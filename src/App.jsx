@@ -3,6 +3,7 @@ import router from '@/routes';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Suspense, useEffect } from 'react';
+import Loading from './components/layout/Loading';
 const { Kakao } = window;
 
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -19,7 +20,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
-          <Suspense fallback="Loading..">
+          <Suspense fallback={<Loading />}>
             <RouterProvider router={router} />
           </Suspense>
         </RecoilRoot>
