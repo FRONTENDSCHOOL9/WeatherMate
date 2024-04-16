@@ -1,7 +1,8 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import MbtiResultData from '@assets/mbti/MbtiResultData';
 import { useEffect, useState } from 'react';
-import KakaoShareButton from '../../components/KakaoShareButton';
+import KakaoShareButton from '@components/KakaoShareButton';
+// const { Kakao } = window;
 
 function Result() {
   const navigate = useNavigate();
@@ -11,10 +12,16 @@ function Result() {
 
   useEffect(() => {
     const result = MbtiResultData.find(s => s.type === mbti);
+    console.log(result);
     setResultData(result);
   }, [mbti]);
 
-  console.log(resultData);
+  // useEffect(() => {
+  //   if (!Kakao.isInitialized()) {
+  //     Kakao.init('44ca17bb4cb74c64db42d774cc78f8af');
+  //   }
+  // }, []);
+
   return (
     <div className="m-8 flex gap-4 flex-col items-center">
       <h1 className="text-3xl font-bold">날씨별 성격 테스트</h1>
@@ -27,7 +34,7 @@ function Result() {
       >
         테스트 다시하기
       </button>
-      <KakaoShareButton data={MbtiResultData} />
+      <KakaoShareButton data={resultData} />
     </div>
   );
 }
