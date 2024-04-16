@@ -14,6 +14,7 @@ import CommunityMain from './pages/community/CommunityMain';
 import LocationDetailPage from './pages/location/LocationDetailPage';
 
 import LocationMainPage from './pages/location/LocationMainPage';
+import FoodMainPage from './pages/food/FoodMainPage';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: 'mbti/result',
         element: <Result />,
+      },
+      {
+        path: 'food',
+        element: <FoodMainPage />,
       },
       {
         path: 'user/signup',
