@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import LocationAddReply from './LocationAddReply';
-import LocationReplyList from './LocationReplyList';
+// import LocationAddReply from './LocationAddReply';
+// import LocationReplyList from './LocationReplyList';
 import Loading from '../../components/layout/Loading';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
-
+/* eslint-disable */
 function LocationDetailPage() {
   const { id } = useParams();
   const [detailData, setDetailData] = useState(null);
@@ -30,24 +30,24 @@ function LocationDetailPage() {
     fetchData();
   }, [id]);
 
-  const getOldReply = async () => {
-    try {
-      const response = await axios.get(
-        `https://market-lion.koyeb.app/api/posts/1/replies`,
-      );
-      setOldReply(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.error(
-        '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
-        error,
-      );
-    }
-  };
+  // const getOldReply = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `https://market-lion.koyeb.app/api/posts/1/replies`,
+  //     );
+  //     setOldReply(response.data);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(
+  //       '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
+  //       error,
+  //     );
+  //   }
+  // };
 
-  useEffect(() => {
-    getOldReply();
-  }, [id]);
+  // useEffect(() => {
+  //   getOldReply();
+  // }, [id]);
 
   if (!detailData) {
     return <Loading />;
@@ -67,8 +67,8 @@ function LocationDetailPage() {
       <p>수정 시간: {detailData.modifiedtime}</p>
       <p>시군구 코드: {detailData.sigungucode}</p>
       <p>전화번호: {detailData.tel}</p>
-      <LocationReplyList id={id} oldReply={oldReply} />
-      <LocationAddReply id={id} />
+      {/* <LocationReplyList id={id} oldReply={oldReply} /> */}
+      {/* <LocationAddReply id={id} /> */}
     </div>
   );
 }
