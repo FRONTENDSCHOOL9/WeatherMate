@@ -2,6 +2,17 @@
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
+const { persistAtom } = recoilPersist(
+  {
+    key: 'saveUser',
+    storage: sessionStorage,
+  },
+  {
+    key: 'saveLike',
+    storage: localStorage
+  }
+);
+
 export const userWeatherState = atom({
   key: 'userWeatherState',
   default: null,
@@ -12,11 +23,11 @@ export const selectedLocationState = atom({
   default: { lat: null, lon: null },
 });
 
-
-const { persistAtom } = recoilPersist({
-  key: 'saveUser',
-  storage: sessionStorage
-});
+export const likeState = atom({
+  key: 'likeState',
+  default: 0,
+  effects: [persistAtom],
+})
 
 export const memberState = atom({
   key: 'useState',
