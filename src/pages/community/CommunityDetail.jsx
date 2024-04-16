@@ -4,17 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { memberState,likeState } from '@recoil/atom.mjs';
 import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import { FaArrowLeft } from 'react-icons/fa';
 import useCustomAxios from '../../hooks/useCustomAxios.mjs';
 import { useQuery } from '@tanstack/react-query';
+import Button from '../../components/layout/Button';
 
-CommunityDetail.propTypes = {
-  like: PropTypes.string,
-};
 
 function CommunityDetail() {
   const navigate = useNavigate();
@@ -66,12 +63,12 @@ function CommunityDetail() {
   return (
     <div>
       <div>
-        <button
+        <Button
           onClick={() => navigate('/community')}
           className="absolute left-6 top-10"
         >
           <FaArrowLeft className="text-2xl" />
-        </button>
+        </Button>
         <div className="px-5 box-border flex flex-col">
           <CommunityHeader title={'상세보기'} />
         </div>
@@ -105,19 +102,19 @@ function CommunityDetail() {
               </div>
 
               <div className="flex justify-end mt-3 gap-1">
-                <button
+                <Button
                   className="bg-indigo-400 p-1 rounded-md"
                   onClick={() => navigate('/community')}
                 >
                   목록
-                </button>
+                </Button>
                 {user?._id === item.user._id && (
-                  <button
+                  <Button
                     className="bg-red-500 p-1 rounded-md"
                     onClick={handleDelete}
                   >
                     삭제
-                  </button>
+                  </Button>
                 )}
               </div>
             </section>
