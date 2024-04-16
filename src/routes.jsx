@@ -17,6 +17,7 @@ import LocationDetailPage from './pages/location/LocationDetailPage';
 import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
 import FoodMainPage from './pages/food/FoodMainPage';
+import ReplyList from './pages/community/ReplyList';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,12 @@ const router = createBrowserRouter([
       {
         path: 'community/:_id',
         element: <CommunityDetail />,
+        children: [
+          {
+            index: true,
+            element: <ReplyList />
+          }
+        ]
       },
       {
         path: 'location',

@@ -5,7 +5,6 @@ import {useNavigate} from 'react-router-dom';
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import PropTypes from 'prop-types'
 
 CommunityItem.propTypes = {
@@ -15,29 +14,27 @@ CommunityItem.propTypes = {
 function CommunityItem({item}) {
   const [like, setLike] = useState(0);
   const [clicked, setClicked] = useState(false);
+
   const user = useRecoilValue(memberState);
   const navigate = useNavigate();
 
-  const handleLike = () => {
-    if(!user){
-      const gotologin = confirm('로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?');
-      gotologin && navigate('/user/login');
-    }else if(like === 0){
-      setLike(1)
-    }else if(like === 1){
-      setLike(0)
-    }
-  }
+  localStorage.setItem("likeState",like)
 
-  const handleClick = () => {
-    setClicked(true);
-  }
+  const handleLikeBTN = () => {
+    if (!user) {
+      const gotologin = confirm(
+        '로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?',
+      );
+      gotologin && navigate('/user/login');
+    } else {
+      clicked ? (setClicked(false), setLike(like !== 0 && like-1)) : (setClicked(true),setLike(like+1));
+      localStorage.setItem("likeState",like)
+    }
+  };
 
   return (
     <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border" >
-
       <div className="flex flex-col gap-3" onClick={() => navigate(`/community/${item._id}`)}>
-        
         <div className="flex gap-3">
           <p className="rounded-full bg-indigo-200 border w-12 h-12"></p>
           <div >
@@ -49,13 +46,11 @@ function CommunityItem({item}) {
           <div className="bg-gray-800 text-white rounded-md p-2 box-border">{item.content}</div>
           <div>{item.image}</div>
         </div>
-
       </div>
-
       <div className="flex gap-2">
-        <button onClick={handleLike} className="flex gap-2 items-center">{like === 1 ? <FaHeart className="text-orange-300 text-2xl"/> : <FaRegHeart className="text-orange-300 text-2xl"/>}</button>
+        <button onClick={handleLikeBTN} className="flex gap-2 items-center">{like === 1 ? <FaHeart className="text-orange-300 text-2xl"/> : <FaRegHeart className="text-orange-300 text-2xl"/>}</button>
         <p className="text-orange-300">좋아요 {like}</p>
-        <button onClick={handleClick} className="flex gap-2 items-center">{clicked ? <IoChatbubbleEllipsesSharp className="text-orange-300 text-2xl"/> : <IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl"/>}</button>
+        <p className="flex gap-2 items-center"><IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl"/></p>
         <p className="text-orange-300">댓글</p>
       </div>
     </div>
