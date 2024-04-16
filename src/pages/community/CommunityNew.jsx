@@ -49,6 +49,7 @@ function CommunityNew() {
   }
   const onSubmit = async (formData) => {
     const res = await axios.post('/posts',formData)
+    console.log(res);
     navigate(`/community/${res.data.item._id}`);
   }
   
