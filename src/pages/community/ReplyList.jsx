@@ -26,13 +26,13 @@ function ReplyList() {
     }
   }
   
-  const replyList = data?.item?.replies.map((e) => <ReplyItem key={e._id} item={e} handleDelete={handleDelete}/>)
-  console.log(replyList);
+  const replyList = data?.item?.replies
+  console.log(data);
 
   return (
     <div className="px-5">
       <ReplyNew />
-      {replyList}
+      {replyList && replyList.map((e) => <ReplyItem key={e._id} item={e} handleDelete={handleDelete}/>)} 
     </div>
   )
 }

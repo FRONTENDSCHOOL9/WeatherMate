@@ -55,7 +55,7 @@ function WeatherByTimeZone() {
   };
 
   return (
-    <div className="rounded-l-[36px] bg-white bg-opacity-80 h-[130px] flex items-center justify-center gap-5 overflow-x-scroll ml-8">
+    <div className="rounded-l-[36px] bg-primary bg-opacity-80 h-[130px] flex items-center justify-center gap-5 overflow-x-scroll ml-8 scrollbar-hide">
       {memoizedWeatherData.list.map(item => (
         <div key={item.dt} className="flex items-center justify-center">
           <div className="w-16 bg-white h-28 rounded-[32.5px] flex justify-center items-center">
@@ -64,7 +64,7 @@ function WeatherByTimeZone() {
                 {unixToHumanTime(item.dt)}
               </div>
               <div className="">
-                <img src="/public/03.svg" alt="My Happy SVG" />
+                <img src="/03.svg" alt="My Happy SVG" />
               </div>
               <div className="text-center font-semibold">
                 {(item.main.temp - 273.15).toFixed(0)}°C
