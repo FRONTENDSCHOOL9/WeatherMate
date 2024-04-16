@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import useCurrentLocation from '../../hooks/useCurrentLocation';
 import { FaRegHeart } from 'react-icons/fa6';
+import LocationKeywords from './LocationKeyword';
 
 /* eslint-disable */
 
@@ -14,7 +15,6 @@ const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 function Location({ keyword }) {
   const [locationData, setLocationData] = useState([]);
   const [locationReady, setLocationReady] = useState(false); // 받아오는 location 상태
-
   const [searchKeyword, setSearchKeyword] = useState(''); // 검색내용
   const [selectedOption, setSelectedOption] = useState(''); // 옵션 드랍다운 선택 상태
   const [currentPage, setCurrentPage] = useState(1);
@@ -86,43 +86,7 @@ function Location({ keyword }) {
     return `${(distance / 1000).toFixed(1)} km`;
   }
   // 이미지가 없는 경우 default 이미지 보여주기
-  const recoDefaultImg = 'public/01.svg';
-
-  // 페이지 초기속도를 올리기 위한 페이지네이션 기능
-  const handleDropdownChange = event => {
-    const selectedOption = event.target.value;
-    setSelectedOption(selectedOption); // 선택된 옵션 설정
-
-    switch (selectedOption) {
-      case 'option1':
-        setContentID('12');
-        break;
-      case 'option2':
-        setContentID('14');
-        break;
-      case 'option3':
-        setContentID('15');
-        break;
-      case 'option4':
-        setContentID('25');
-        break;
-      case 'option5':
-        setContentID('28');
-        break;
-      case 'option6':
-        setContentID('32');
-        break;
-      case 'option7':
-        setContentID('38');
-        break;
-      case 'option8':
-        setContentID('39');
-        break;
-      default:
-        setContentID('12'); // 기본값 설정
-        break;
-    }
-  };
+  const recoDefaultImg = '/loading.gif';
 
   //다음 페이지 호출 함수
   const fetchNextPage = async () => {
@@ -167,23 +131,34 @@ function Location({ keyword }) {
     return `${(distance / 1000).toFixed(1)} km`;
   }
 
+  const handleOptionClick = contentID => {
+    setContentID(contentID);
+  };
+
+  const options = [
+    { id: '12', label: '관광지' },
+    { id: '14', label: '문화시설' },
+    { id: '15', label: '축제공연행사' },
+    { id: '25', label: '여행지' },
+    { id: '28', label: '레포츠' },
+    { id: '32', label: '숙박' },
+    { id: '38', label: '비오는 날 쇼핑어때요?' },
+    { id: '39', label: '음식점' },
+  ];
+
   return (
     <div className="container mx-auto p-4">
-      <select
-        value={selectedOption}
-        onChange={handleDropdownChange}
-        className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 mb-5"
-      >
-        <option value="">추천 옵션</option>
-        <option value="option1">관광지</option>
-        <option value="option2">문화시설</option>
-        <option value="option3">축제공연행사</option>
-        <option value="option4">여행코스</option>
-        <option value="option5">레포츠</option>
-        <option value="option6">숙박</option>
-        <option value="option7">쇼핑</option>
-        <option value="option8">음식점</option>
-      </select>
+      <h1 className="text-3xl mb-2">키워드 별 검색</h1>
+      <div className="flex flex-wrap justify-center items-center gap-5 mb-5">
+        {options.map(option => (
+          <LocationKeywords
+            key={option.id}
+            id={option.id}
+            label={option.label}
+            onClick={handleOptionClick}
+          />
+        ))}
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {locationData?.map((item, index) => (
@@ -201,7 +176,8 @@ function Location({ keyword }) {
               <img
                 src={item.firstimage ? item.firstimage : recoDefaultImg}
                 alt="이미지1"
-                className="w-full h-auto mb-2 rounded-md"
+                className=""
+                me="w-full h-auto mb-2 rounded-md"
               />
             </Link>
           </div>
