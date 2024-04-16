@@ -1,0 +1,20 @@
+meta {
+  name: 필수-회원 가입
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "123@123.com",
+    "password": "12312312",
+    "name": "123",
+    "type": "user"
+  }
+}
