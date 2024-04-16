@@ -6,16 +6,20 @@ function KakaoShareButton(data) {
   const resultUrl = window.location.href;
 
   useEffect(() => {
-    Kakao.init('44ca17bb4cb74c64db42d774cc78f8af');
-  }, []);
+    // if (!Kakao.isInitialized()) {
+    //   Kakao.init('44ca17bb4cb74c64db42d774cc78f8af');
+    // }
+    console.log(Kakao.isInitialized());
+    console.log(data);
+  }, [data]);
 
   const shareKakao = () => {
     Kakao.Link.sendDefault({
       objectType: 'feed',
       content: {
         title: '🌤️날씨 성격 테스트🌤️',
-        description: `나는 ${data.id}입니다.`,
-        imageUrl: url + data.image,
+        description: `나는 ${data.data.id}입니다.`,
+        imageUrl: url + data.data.image,
         link: {
           mobileWebUrl: resultUrl,
           webUrl: resultUrl,
@@ -33,7 +37,7 @@ function KakaoShareButton(data) {
       ],
     });
   };
-
+  console.log(data.data.image);
   return (
     <button
       onClick={shareKakao}

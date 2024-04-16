@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import LocationAddReply from './LocationAddReply';
 import LocationReplyList from './LocationReplyList';
+import Loading from '../../components/layout/Loading';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -49,16 +50,15 @@ function LocationDetailPage() {
   }, [id]);
 
   if (!detailData) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
     <div className="p-4">
       <h1 className="text-xl font-semibold mb-2">{detailData.title}</h1>
       <p>콘텐츠 ID: {detailData.contentid}</p>
-      <p>콘텐츠 타입 ID: {detailData.contenttypeid}</p>
-      <p>저작권 구분 코드: {detailData.cpyrhtDivCd}</p>
-      <p>생성 시간: {detailData.createdtime}</p>
+      {/* <p>콘텐츠 타입 ID: {detailData.contenttypeid}</p>
+      <p>생성 시간: {detailData.createdtime}</p> */}
       <p>거리: {detailData.dist}</p>
       <img src={detailData.firstimage} alt="이미지1" className="my-4 w-full" />
       <p>위도: {detailData.mapx}</p>

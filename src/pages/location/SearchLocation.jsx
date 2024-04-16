@@ -15,7 +15,6 @@ function SearchLocation() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // 여기에서 실제 검색을 수행할 수도 있습니다.
   };
 
   return (
@@ -32,7 +31,7 @@ function SearchLocation() {
           검색
         </button>
       </form>
-      <Location keyword={debouncedKeyword} /> {/* 디바운스된 키워드를 전달 */}
+      <Location keyword={debouncedKeyword} />{' '}
     </>
   );
 }
