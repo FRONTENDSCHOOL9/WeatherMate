@@ -67,9 +67,9 @@ function CommunityMain() {
               <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-2 py-1 text-sm text-indigo-400 font-bold">글쓰기</button>
             </div>
             <div className="flex justify-between items-center gap-1 mb-4">
-              <Link to="/community/detail" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">1</Link>
-              <Link to="/community/detail" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">2</Link>
-              <Link to="/community/detail" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">3</Link>
+              <Link to="/community/15" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">1</Link>
+              <Link to="/community/17" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">2</Link>
+              <Link to="/community/18" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">3</Link>
             </div>
           </div>
         </div>

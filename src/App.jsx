@@ -2,7 +2,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from '@/routes';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 const { Kakao } = window;
 
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -19,7 +19,9 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
-          <RouterProvider router={router} />
+          <Suspense fallback="Loading..">
+            <RouterProvider router={router} />
+          </Suspense>
         </RecoilRoot>
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
