@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import useCurrentLocation from '../../hooks/useCurrentLocation';
+import useCurrentLocation from '@hooks/useCurrentLocation';
 import { FaRegHeart } from 'react-icons/fa6';
 import LocationKeywords from './LocationKeyword';
 

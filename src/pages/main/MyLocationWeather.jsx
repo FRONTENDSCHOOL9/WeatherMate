@@ -5,6 +5,7 @@ import { userWeatherState } from '../../recoil/atom.mjs';
 import dummyData from '../../assets/WeatherData';
 import { IoIosRefresh } from 'react-icons/io';
 import Loading from '../../components/layout/Loading';
+import WeatherByTimeZone from './WeatherByTimeZone';
 
 function MyLocationWeather() {
   const [myPlace, setMyPlace] = useState('');
@@ -97,6 +98,7 @@ function MyLocationWeather() {
               <h2 className="text-2xl font-bold mb-4">{myPlace}</h2>
             </>
           )}
+          <WeatherByTimeZone />
         </>
       )}
     </div>

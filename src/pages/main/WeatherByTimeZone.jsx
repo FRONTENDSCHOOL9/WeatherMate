@@ -22,7 +22,7 @@ function WeatherByTimeZone() {
       sessionStorage.setItem('longitude', longitude);
 
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&cnt=10`,
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude + 10}&lon=${longitude}&appid=${apiKey}&cnt=10`,
       );
       setWeatherData(response.data);
     } catch (error) {
@@ -55,25 +55,27 @@ function WeatherByTimeZone() {
   };
 
   return (
-    <div className="rounded-l-[36px] bg-primary bg-opacity-80 h-[130px] flex items-center justify-center gap-5 overflow-x-scroll ml-8 scrollbar-hide">
-      {memoizedWeatherData.list.map(item => (
-        <div key={item.dt} className="flex items-center justify-center">
-          <div className="w-16 bg-white h-28 rounded-[32.5px] flex justify-center items-center">
-            <div className="flex-col justify-center items-center">
-              <div className="text-primary text-xs text-center">
-                {unixToHumanTime(item.dt)}
-              </div>
-              <div className="">
-                <img src="/03.svg" alt="My Happy SVG" />
-              </div>
-              <div className="text-center font-semibold">
-                {(item.main.temp - 273.15).toFixed(0)}°C
+    <>
+      <div className="rounded-l-[36px] bg-primary bg-opacity-80 h-[130px] flex items-center justify-center gap-5 overflow-x-scroll ml-8 scrollbar-hide mt-20">
+        {memoizedWeatherData.list.map(item => (
+          <div key={item.dt} className="flex items-center justify-center">
+            <div className="w-16 bg-white h-28 rounded-[32.5px] flex justify-center items-center">
+              <div className="flex-col justify-center items-center">
+                <div className="text-primary text-xs text-center">
+                  {unixToHumanTime(item.dt)}
+                </div>
+                <div className="">
+                  <img src="/03.svg" alt="My Happy SVG" />
+                </div>
+                <div className="text-center font-semibold">
+                  {(item.main.temp - 273.15).toFixed(0)}°C
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
 

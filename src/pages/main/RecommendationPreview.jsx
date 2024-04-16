@@ -17,7 +17,7 @@ function RecommendationPreview() {
 
   console.log('user', userWeather);
 
-  const radius = '100000';
+  const radius = '8000';
 
   const { latitude, longitude } = useCurrentLocation();
 
