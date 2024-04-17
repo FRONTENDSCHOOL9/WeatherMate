@@ -42,7 +42,7 @@ function CommunityDetail() {
     firstRender.current = false;
   }, []);
 
-  const { data, } = useQuery({
+  const { data } = useQuery({
     queryKey: ['posts', _id],
     queryFn: () =>
       axios.get(`/posts/${_id}`, {
@@ -51,6 +51,7 @@ function CommunityDetail() {
     select: response => response.data,
     suspense: true,
   });
+  
 
   const handleDelete = async () => {
     await axios.delete(`/posts/${_id}`);
@@ -59,7 +60,25 @@ function CommunityDetail() {
   };
 
   const item = data?.item;
+  console.log(data);
   console.log(item);
+
+
+  const [image, setImage] = useState();
+  useEffect(() => {
+    async function getFiles() {
+      try{
+        const res = await axios.get(`/files/07-WeatherMate/${data.item.image}`,{
+          responseType: 'blob'
+        })
+        const url = URL.createObjectURL(res.data)
+        setImage(url)
+      }catch(error){
+        console.error(error)
+      }
+    }
+    getFiles();
+  },[])
 
   return (
     <div>
@@ -97,7 +116,7 @@ function CommunityDetail() {
                     {item.content}
                   </div>
                   <div>
-                    <p className="bg-indigo-300">image</p>
+                    <img src={image} alt="image" className=""/>
                   </div>
                 </div>
               </div>

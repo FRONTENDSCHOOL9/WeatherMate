@@ -36,6 +36,7 @@ function CommunityNew() {
       })
       console.log('files : ' , files)
       formData.image = files.data.item[0].name;
+      console.log(formData.image);
     }else{
       delete formData.image
     }

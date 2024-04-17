@@ -35,6 +35,7 @@ function CommunityMain() {
         params: {
           page,
           keyword: searchParams.get('keyword'),
+          refetchOnMount: "always"
         },
       }),
     select: (response) => response.data,
@@ -50,6 +51,7 @@ function CommunityMain() {
     searchParams.set('page', 1);
     setSearchParams(searchParams);
   };
+
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
   console.log(data.item);
   
