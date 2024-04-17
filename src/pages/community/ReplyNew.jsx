@@ -3,13 +3,12 @@ import { memberState } from '@recoil/atom.mjs';
 import { useRecoilValue } from "recoil";
 import PropTypes from 'prop-types'
 import { useForm } from "react-hook-form";
-// import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
+import Submit from "@components/layout/Submit";
 
 ReplyNew.propTypes = {
   item: PropTypes.object
 }
-
 
 function ReplyNew({item}) {
   const navigate = useNavigate();
@@ -30,28 +29,19 @@ function ReplyNew({item}) {
     }
   };
 
-  // const queryClient = useQueryClient();
-  // const addReply = useMutation({
-  //   mutationFn: (formData) => axios.post(`/posts/${_id}/replies`, formData),
-  //   onSuccess() {
-  //     queryClient.invalidateQueries(['posts', _id, 'replies']);
-  //     reset();
-  //   },
-  // });
-
-  // const onSubmit = (formData) => {
-  //   addReply.mutate(formData);
-  //   const reply = formData.comment
-  //   console.log(reply);
-  // };
-
   const onSubmit = async (formData) => {
-    const reply = await axios.post(`/posts/${_id}/replies`,formData)
-    console.log(reply);
+    try{
+      const reply = await axios.post(`/posts/${_id}/replies`,formData)
+      navigate(`/community/${_id}`)
+      console.log(reply);
+    }catch(error){
+      console.error(error)
+    }
   }
+
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}className="flex gap-1 border bg-gray-200 p-3 rounded-md">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex gap-1 border bg-gray-200 p-3 rounded-md">
         <div className="flex flex-col grow">
           <textarea
             {...register('comment', {required: '내용을 입력하세요',minLength: {value: 2,message: '2글자 이상 입력하세요'}})}
@@ -62,13 +52,12 @@ function ReplyNew({item}) {
           ></textarea>
           {errors.comment && <p className="ml-2 mt-1 text-sm text-red-500">{errors.comment.message}</p>}
         </div>
-        <button
+        <Submit
           onClick={handleReply}
-          type="submit"
           className="text-nowrap bg-orange-300 border rounded-lg p-1 text-white grow-0"
         >
           입력
-        </button>
+        </Submit>
       </form>
     </div>
   );
