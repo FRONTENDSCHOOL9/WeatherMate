@@ -4,6 +4,7 @@ import axios from 'axios';
 import LocationAddReply from './LocationAddReply';
 // import LocationReplyList from './LocationReplyList';
 import Loading from '../../components/layout/Loading';
+import LocationBookMark from './LocationBookmark';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -70,6 +71,7 @@ function LocationDetailPage() {
       <p>전화번호: {detailData.tel}</p>
       {/* <LocationReplyList id={id} oldReply={oldReply} /> */}
       <LocationAddReply id={id} />
+      <LocationBookMark />
     </div>
   );
 }

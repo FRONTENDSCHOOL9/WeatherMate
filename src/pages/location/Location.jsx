@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useCurrentLocation from '@hooks/useCurrentLocation';
 import { CiBookmarkPlus } from 'react-icons/ci';
-
 import LocationKeywords from './LocationKeyword';
 import { useRecoilValue } from 'recoil';
 import { memberState } from '@recoil/atom.mjs';
@@ -144,8 +143,36 @@ function Location({ keyword }) {
   };
 
   // 북마크 추가 기능
+  // post 방식
+  // const handleBookMark = async contentId => {
+  //   if (!user) {
+  //     const confirmed = confirm('로그인 부터 해주세요');
+  //     if (confirmed) {
+  //       navigate('/user/login');
+  //     }
+  //   } else {
+  //     try {
+  //       // 사용자가 로그인한 상태에서 북마크 추가를 위한 포스트 요청 보내기
+  //       const response = await axios.post(
+  //         `${SEVER_KEY}/bookmarks/product/${contentId}`,
+  //         {
+  //           memo: 'test',
+  //         }, // 요청 본문
+  //         {
+  //           headers: {
+  //             Authorization: 'Bearer ' + user.token.accessToken,
+  //           },
+  //         }, // 옵션 객체
+  //       );
+  //       console.log('북마크 추가 성공:', response.data);
+  //     } catch (error) {
+  //       console.error('북마크 추가 실패:', error);
+  //     }
+  //   }
+  // };
 
-  const handleBookMark = async contentId => {
+  // 로컬 방식
+  const handleBookMark = contentId => {
     if (!user) {
       const confirmed = confirm('로그인 부터 해주세요');
       if (confirmed) {
@@ -153,15 +180,22 @@ function Location({ keyword }) {
       }
     } else {
       try {
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || []; // 기존 북마크 목록 가져오기
         // 사용자가 로그인한 상태에서 북마크 추가를 위한 포스트 요청 보내기
-        const response = await axios.post(
-          `${SEVER_KEY}/bookmarks/product/${contentId}`,
-          {
-            userId: user.id,
-            contentId: contentId,
-          },
-        );
-        console.log('북마크 추가 성공:', response.data);
+        // axios.post(
+        //   `${SEVER_KEY}/bookmarks/product/${contentId}`,
+        //   {},
+        //   {
+        //     headers: {
+        //       Authorization: 'Bearer ' + user.token.accessToken,
+        //     },
+        //   },
+        // );
+        // 북마크 목록에 contentId 추가
+        bookmarks.push(contentId);
+        // 로컬 스토리지에 업데이트된 북마크 목록 저장
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        console.log('북마크 추가 성공:', contentId);
       } catch (error) {
         console.error('북마크 추가 실패:', error);
       }
