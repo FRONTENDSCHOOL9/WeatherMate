@@ -116,7 +116,7 @@ function CommunityDetail() {
                     {item.content}
                   </div>
                   <div>
-                    <img src={image} alt="image" className=""/>
+                    <img src={image?.image} alt="" className=""/>
                   </div>
                 </div>
               </div>
