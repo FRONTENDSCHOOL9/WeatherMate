@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
+import gsap from 'gsap';
 
 const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 
@@ -34,6 +35,17 @@ function WeatherByTimeZone() {
     fetchWeatherData();
   }, []);
 
+  useEffect(() => {
+    if (weatherData) {
+      gsap.from('.weather-container', {
+        duration: 1,
+        opacity: 0,
+        x: '100%',
+        ease: 'power3.out',
+      });
+    }
+  }, [weatherData]);
+
   const memoizedWeatherData = useMemo(() => weatherData, [weatherData]);
 
   if (error) {
@@ -55,27 +67,25 @@ function WeatherByTimeZone() {
   };
 
   return (
-    <>
-      <div className="rounded-l-[36px] bg-primary bg-opacity-80 h-[130px] flex items-center justify-center gap-5 overflow-x-scroll ml-8 scrollbar-hide mt-20">
-        {memoizedWeatherData.list.map(item => (
-          <div key={item.dt} className="flex items-center justify-center">
-            <div className="w-16 bg-white h-28 rounded-[32.5px] flex justify-center items-center">
-              <div className="flex-col justify-center items-center">
-                <div className="text-primary text-xs text-center">
-                  {unixToHumanTime(item.dt)}
-                </div>
-                <div className="">
-                  <img src="/03.svg" alt="My Happy SVG" />
-                </div>
-                <div className="text-center font-semibold">
-                  {(item.main.temp - 273.15).toFixed(0)}°C
-                </div>
+    <div className="rounded-l-[36px] bg-primary bg-opacity-80 h-[130px] flex items-center justify-center gap-5 overflow-x-scroll ml-8 scrollbar-hide mt-20 weather-container">
+      {memoizedWeatherData.list.map(item => (
+        <div key={item.dt} className="flex items-center justify-center">
+          <div className="w-16 bg-white h-28 rounded-[32.5px] flex justify-center items-center">
+            <div className="flex-col justify-center items-center">
+              <div className="text-primary text-xs text-center">
+                {unixToHumanTime(item.dt)}
+              </div>
+              <div className="">
+                <img src="/03.svg" alt="My Happy SVG" />
+              </div>
+              <div className="text-center font-semibold">
+                {(item.main.temp - 273.15).toFixed(0)}°C
               </div>
             </div>
           </div>
-        ))}
-      </div>
-    </>
+        </div>
+      ))}
+    </div>
   );
 }
 
