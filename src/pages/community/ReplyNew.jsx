@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import PropTypes from 'prop-types'
 import { useForm } from "react-hook-form";
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useCustomAxios from "../../hooks/useCustomAxios.mjs";
+import useCustomAxios from "@hooks/useCustomAxios.mjs";
 
 ReplyNew.propTypes = {
   item: PropTypes.object

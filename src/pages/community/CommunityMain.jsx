@@ -7,8 +7,8 @@ import CommunityItem from "./CommunityItem";
 import { useQuery } from "@tanstack/react-query";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect } from "react";
-import Search from "../../components/layout/Search";
-import ToTheTopButton from "../../components/layout/ToTheTopButton";
+import Search from "@components/layout/Search";
+import ToTheTopButton from "@components/layout/ToTheTopButton";
 
 function CommunityMain() {
   const navigate = useNavigate();

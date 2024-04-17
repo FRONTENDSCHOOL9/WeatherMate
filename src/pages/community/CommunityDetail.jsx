@@ -8,9 +8,9 @@ import { FaRegHeart } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import { FaArrowLeft } from 'react-icons/fa';
-import useCustomAxios from '../../hooks/useCustomAxios.mjs';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useQuery } from '@tanstack/react-query';
-import Button from '../../components/layout/Button';
+import Button from '@components/layout/Button';
 
 
 function CommunityDetail() {

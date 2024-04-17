@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import useCustomAxios from "../../hooks/useCustomAxios.mjs";
+import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import ReplyItem from "./ReplyItem"
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import ReplyNew from "./ReplyNew"
