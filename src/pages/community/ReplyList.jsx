@@ -27,7 +27,7 @@ function ReplyList() {
   }
   
   const replyList = data?.item?.replies
-  console.log(data);
+  console.log(replyList);
 
   return (
     <div className="px-5">

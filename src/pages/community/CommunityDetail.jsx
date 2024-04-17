@@ -42,7 +42,7 @@ function CommunityDetail() {
     firstRender.current = false;
   }, []);
 
-  const { data } = useQuery({
+  const { data, } = useQuery({
     queryKey: ['posts', _id],
     queryFn: () =>
       axios.get(`/posts/${_id}`, {
@@ -59,6 +59,7 @@ function CommunityDetail() {
   };
 
   const item = data?.item;
+  console.log(item);
 
   return (
     <div>
@@ -77,13 +78,13 @@ function CommunityDetail() {
       <div className="px-5">
         <div className="pb-3">
           {item && (
-            <section className=" p-4">
+            <section className="p-4">
               <div
                 className="flex flex-col gap-3"
                 onClick={() => navigate(`/community/${item._id}`)}
               >
                 <div className="flex gap-3">
-                  <p className="rounded-full bg-indigo-200 border w-12 h-12"></p>
+                  <p className="rounded-full border w-12 h-12">{item.user.profile}</p>
                   <div className="grow">
                     <h1 className="text-lg font-bold">{item.user.name}</h1>
                     <p className="text-blue-300">place</p>
@@ -96,7 +97,7 @@ function CommunityDetail() {
                     {item.content}
                   </div>
                   <div>
-                    <p className="bg-indigo-300">{item.image}</p>
+                    <p className="bg-indigo-300">image</p>
                   </div>
                 </div>
               </div>
