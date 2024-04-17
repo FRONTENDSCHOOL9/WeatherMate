@@ -22,15 +22,15 @@ function LocationReplyList({ oldReply, id }) {
   // console.log(oldReply);
   // console.log(oldReply.item);
 
-  // useEffect(() => {
-  //   getOldReply();
-  // }, []);
+  // // useEffect(() => {
+  // //   getOldReply();
+  // // }, []);
 
-  const test = oldReply?.item;
+  // const test = oldReply?.item;
 
   return (
     <div>
-      <section className="mb-8">
+      {/* <section className="mb-8">
         <h4 className="mt-8 mb-4 ml-2">댓글 개</h4>
         {test &&
           test.map((item, index) => {
@@ -40,7 +40,7 @@ function LocationReplyList({ oldReply, id }) {
               </div>
             );
           })}
-      </section>
+      </section> */}
     </div>
   );
 }
