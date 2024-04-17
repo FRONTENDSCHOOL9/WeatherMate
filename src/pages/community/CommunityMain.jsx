@@ -57,7 +57,7 @@ function CommunityMain() {
   console.log(data.item);
 
   const itemViews = data.item.sort((a,b) => a.views-b.views).reverse().slice(0,3).map(item => 
-    <div key={item._id} className="bg-blue-400 rounded-md w-full h-32 p-2">
+    <div key={item._id} className="bg-blue-400 rounded-md w-full h-32 p-2" onClick={() => navigate(`/community/${item._id}`)}>
       <p>닉네임 : {item.user.name}</p>
       <p>내용 : {item.content}</p>
       <p>조회수 : {item.views}</p>
