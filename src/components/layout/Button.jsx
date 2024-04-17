@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 
 Button.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
   bgColor: PropTypes.string,
   size: PropTypes.string,
   type: PropTypes.string,

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-// import LocationAddReply from './LocationAddReply';
+import LocationAddReply from './LocationAddReply';
 // import LocationReplyList from './LocationReplyList';
 import Loading from '../../components/layout/Loading';
+import LocationBookMark from './LocationBookmark';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
-/* eslint-disable */
+
+/* eslint-disable  */
 function LocationDetailPage() {
   const { id } = useParams();
   const [detailData, setDetailData] = useState(null);
@@ -68,7 +70,8 @@ function LocationDetailPage() {
       <p>시군구 코드: {detailData.sigungucode}</p>
       <p>전화번호: {detailData.tel}</p>
       {/* <LocationReplyList id={id} oldReply={oldReply} /> */}
-      {/* <LocationAddReply id={id} /> */}
+      <LocationAddReply id={id} />
+      <LocationBookMark />
     </div>
   );
 }
