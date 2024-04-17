@@ -7,8 +7,8 @@ import CommunityItem from "./CommunityItem";
 import { useQuery } from "@tanstack/react-query";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect } from "react";
-import Search from "../../components/layout/Search";
-import ToTheTopButton from "../../components/layout/ToTheTopButton";
+import Search from "@components/layout/Search";
+import ToTheTopButton from "@components/layout/ToTheTopButton";
 
 function CommunityMain() {
   const navigate = useNavigate();
@@ -35,10 +35,12 @@ function CommunityMain() {
         params: {
           page,
           keyword: searchParams.get('keyword'),
+          type: "community"
         },
       }),
-    select: (response) => response.data,
-    suspense: true,
+      select: (response) => response.data,
+      suspense: true,
+      refetchOnMount: "always"
   });
 
   useEffect(() => {
@@ -50,6 +52,7 @@ function CommunityMain() {
     searchParams.set('page', 1);
     setSearchParams(searchParams);
   };
+
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
   console.log(data.item);
   
