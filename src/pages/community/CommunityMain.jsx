@@ -56,8 +56,13 @@ function CommunityMain() {
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
   console.log(data.item);
 
-  const itemViews = data.item.sort((a,b) => b.views - a.views).map(item => 
-      <p className="bg-blue-400 rounded-md w-full h-16 p-2" key={item._id}>{item.user.name}</p>
+  const itemViews = data.item.sort((a,b) => a.views-b.views).reverse().slice(0,3).map(item => 
+    <div key={item._id} className="bg-blue-400 rounded-md w-full h-32 p-2">
+      <p>닉네임 : {item.user.name}</p>
+      <p>내용 : {item.content}</p>
+      <p>조회수 : {item.views}</p>
+      <p>댓글수 : {item.repliesCount}</p>
+    </div>  
   );
   console.log(itemViews);
   
@@ -77,7 +82,7 @@ function CommunityMain() {
               <h2 className="font-bold">인기 포스팅</h2>
               <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-2 py-1 text-sm text-indigo-400 font-bold">글쓰기</button>
             </div>
-            <div className="flex justify-between items-center gap-1 mb-4">
+            <div className="w-full flex gap-2 mb-2">
               {itemViews}
             </div>
           </div>
