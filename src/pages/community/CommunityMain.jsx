@@ -35,11 +35,12 @@ function CommunityMain() {
         params: {
           page,
           keyword: searchParams.get('keyword'),
-          refetchOnMount: "always"
+          type: "community"
         },
       }),
-    select: (response) => response.data,
-    suspense: true,
+      select: (response) => response.data,
+      suspense: true,
+      refetchOnMount: "always"
   });
 
   useEffect(() => {
