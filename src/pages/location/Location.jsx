@@ -1,16 +1,20 @@
 // Location.js
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useCurrentLocation from '@hooks/useCurrentLocation';
-import { FaRegHeart } from 'react-icons/fa6';
+import { CiBookmarkPlus } from 'react-icons/ci';
+
 import LocationKeywords from './LocationKeyword';
+import { useRecoilValue } from 'recoil';
+import { memberState } from '@recoil/atom.mjs';
 
 /* eslint-disable */
 
 //관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점) ID
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
+const SEVER_KEY = import.meta.env.VITE_API_SERVER;
 
 function Location({ keyword }) {
   const [locationData, setLocationData] = useState([]);
@@ -19,9 +23,13 @@ function Location({ keyword }) {
   const [selectedOption, setSelectedOption] = useState(''); // 옵션 드랍다운 선택 상태
   const [currentPage, setCurrentPage] = useState(1);
   const [contentID, setContentID] = useState('12'); // 초기값으로 contentID 설정
+  const navigate = useNavigate();
+  const user = useRecoilValue(memberState); // 사용자 로그인 여부 확인을 위한 전역상태 불러오기
   const radius = '100000'; // 거리반경(단위:m) , Max값 20000m=20Km
 
   const { latitude, longitude } = useCurrentLocation();
+
+  console.log('userdata', user);
 
   useEffect(() => {
     if (latitude !== null && longitude !== null) {
@@ -65,7 +73,7 @@ function Location({ keyword }) {
         try {
           const response = await axios.get(
             `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${apiKey}&keyword=${keyword}&_type=json&contentTypeId=${contentID}
-`,
+  `,
           );
           setLocationData(response.data.response.body.items.item);
           console.log('newdata', response.data);
@@ -135,6 +143,33 @@ function Location({ keyword }) {
     setContentID(contentID);
   };
 
+  // 북마크 추가 기능
+
+  const handleBookMark = async contentId => {
+    if (!user) {
+      const confirmed = confirm('로그인 부터 해주세요');
+      if (confirmed) {
+        navigate('/user/login');
+      }
+    } else {
+      try {
+        // 사용자가 로그인한 상태에서 북마크 추가를 위한 포스트 요청 보내기
+        const response = await axios.post(
+          `${SEVER_KEY}/bookmarks/product/${contentId}`,
+          {
+            userId: user.id,
+            contentId: contentId,
+          },
+        );
+        console.log('북마크 추가 성공:', response.data);
+      } catch (error) {
+        console.error('북마크 추가 실패:', error);
+      }
+    }
+  };
+
+  // 키워드 별 옵션
+
   const options = [
     { id: '12', label: '관광지' },
     { id: '14', label: '문화시설' },
@@ -166,7 +201,10 @@ function Location({ keyword }) {
             className="p-4 rounded-md shadow-md min-h-[500px] max-h-[500px] overflow-y-hidden"
             key={index}
           >
-            <FaRegHeart className="text-sub_sal w-[35px] h-[35px]" />
+            <CiBookmarkPlus
+              className="text-sub_sal w-[35px] h-[35px]"
+              onClick={() => handleBookMark(item.contentid)}
+            />
             <Link key={index} to={`/location/${item.contentid}`}>
               <h2 className="text-xl font-bold mb-2">{item.title}</h2>
               <p className="mb-2 text-gray-400">{item.addr1}</p>
