@@ -2,6 +2,8 @@ import React from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import MbtiQuestionData from '@assets/MbtiQuestionData';
 
+import DetailPageHeader from '@components/layout/DetailPageHeader';
+
 function Question() {
   const [questionNo, setQuestionNo] = React.useState(0);
   const [totalScore, setTotalScore] = React.useState([
@@ -41,36 +43,55 @@ function Question() {
       });
     }
   };
+  const handleback = () => {
+    //  이전 문제로 이동
+    if (questionNo > 0) {
+      setQuestionNo(questionNo - 1);
+    }
+  };
 
   return (
-    <div className="my-10 mx-10 flex gap-10 flex-col items-center">
-      <h1 className="text-3xl font-bold">날씨 성격 테스트</h1>
-      <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-        <div
-          className="bg-primary text-xs font-medium text-blue-100 text-center py-0.5 rounded-full"
-          style={{ width: `${progress * 100}%` }}
-        >
-          {`${questionNo + 1}/${MbtiQuestionData.length}`}
+    <>
+      <DetailPageHeader title={'날씨 테스트'} />
+      <div className="my-10 mx-10 flex gap-10 flex-col items-center">
+        <h1 className="text-3xl font-bold">날씨 성격 테스트</h1>
+        <div className="w-full bg-gray-200 min-w-96 rounded-full dark:bg-gray-700">
+          <div
+            className="bg-primary text-xs font-medium text-white text-center py-0.5 rounded-full"
+            style={{ width: `${progress * 100}%` }}
+          >
+            {`${questionNo + 1}/${MbtiQuestionData.length}`}
+          </div>
         </div>
-      </div>
 
-      <div className="border-4 rounded-lg p-10 border-sub_sal">
-        당신의 선택은? <br />
-        {MbtiQuestionData[questionNo].title}
+        <div className=" min-w-96 border-4 font-bold rounded-lg p-10 border-sub_sal">
+          당신의 선택은? <br />
+          {MbtiQuestionData[questionNo].title}
+        </div>
+        <button
+          onClick={() =>
+            handleClickButton(1, MbtiQuestionData[questionNo].type)
+          }
+          className="min-w-96 rounded bg-primary p-5 font-bold active:bg-sub_sal text-black"
+        >
+          {MbtiQuestionData[questionNo].answer1}
+        </button>
+        <button
+          onClick={() =>
+            handleClickButton(0, MbtiQuestionData[questionNo].type)
+          }
+          className="min-w-96 rounded bg-primary p-5 font-bold active:bg-sub_sal text-black "
+        >
+          {MbtiQuestionData[questionNo].answer2}
+        </button>
+        <button
+          onClick={handleback}
+          className="min-w-96 rounded bg-primary p-5 font-bold active:bg-sub_sal text-black "
+        >
+          이전 문제로 돌아가기
+        </button>
       </div>
-      <button
-        onClick={() => handleClickButton(1, MbtiQuestionData[questionNo].type)}
-        className="rounded bg-primary p-5 font-bold active:bg-sub_sal text-white"
-      >
-        {MbtiQuestionData[questionNo].answer1}
-      </button>
-      <button
-        onClick={() => handleClickButton(0, MbtiQuestionData[questionNo].type)}
-        className="rounded bg-primary p-5 font-bold active:bg-sub_sal text-white "
-      >
-        {MbtiQuestionData[questionNo].answer2}
-      </button>
-    </div>
+    </>
   );
 }
 
