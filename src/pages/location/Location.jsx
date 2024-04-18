@@ -1,16 +1,20 @@
 // Location.js
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import useCurrentLocation from '../../hooks/useCurrentLocation';
-import { FaRegHeart } from 'react-icons/fa6';
+import useCurrentLocation from '@hooks/useCurrentLocation';
+import { IoIosBookmark } from 'react-icons/io';
 import LocationKeywords from './LocationKeyword';
-
+import { useRecoilValue } from 'recoil';
+import { memberState } from '@recoil/atom.mjs';
+import { Rating } from '@mui/material';
+import { Typography } from '@mui/material';
 /* eslint-disable */
 
 //관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점) ID
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
+const SEVER_KEY = import.meta.env.VITE_API_SERVER;
 
 function Location({ keyword }) {
   const [locationData, setLocationData] = useState([]);
@@ -19,9 +23,14 @@ function Location({ keyword }) {
   const [selectedOption, setSelectedOption] = useState(''); // 옵션 드랍다운 선택 상태
   const [currentPage, setCurrentPage] = useState(1);
   const [contentID, setContentID] = useState('12'); // 초기값으로 contentID 설정
+  const [value, setValue] = useState(1);
+  const navigate = useNavigate();
+  const user = useRecoilValue(memberState); // 사용자 로그인 여부 확인을 위한 전역상태 불러오기
   const radius = '100000'; // 거리반경(단위:m) , Max값 20000m=20Km
 
   const { latitude, longitude } = useCurrentLocation();
+
+  console.log('로그인여부', user);
 
   useEffect(() => {
     if (latitude !== null && longitude !== null) {
@@ -41,7 +50,8 @@ function Location({ keyword }) {
             `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=6&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json`,
           );
           setLocationData(response.data.response.body.items.item);
-          console.log(response.data);
+          setValue(Number(response.data.response.body.items.item[0].mlevel));
+          console.log('추천장소', locationData);
         } catch (error) {
           console.error(
             '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
@@ -49,7 +59,6 @@ function Location({ keyword }) {
           );
         }
       };
-
       fetchData();
     }
   }, [locationReady, latitude, longitude, contentID]);
@@ -65,9 +74,10 @@ function Location({ keyword }) {
         try {
           const response = await axios.get(
             `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${apiKey}&keyword=${keyword}&_type=json&contentTypeId=${contentID}
-`,
+  `,
           );
           setLocationData(response.data.response.body.items.item);
+
           console.log('newdata', response.data);
         } catch (error) {
           console.error(
@@ -81,12 +91,14 @@ function Location({ keyword }) {
     }
   }, [searchKeyword, contentID]);
 
+  console.log('val', value);
+
   //km로 변경함수
   function formatDistance(distance) {
     return `${(distance / 1000).toFixed(1)} km`;
   }
   // 이미지가 없는 경우 default 이미지 보여주기
-  const recoDefaultImg = '/loading.gif';
+  const recoDefaultImg = '/defaultImg.svg';
 
   //다음 페이지 호출 함수
   const fetchNextPage = async () => {
@@ -135,6 +147,68 @@ function Location({ keyword }) {
     setContentID(contentID);
   };
 
+  // 북마크 추가 기능
+  // post 방식
+  // const handleBookMark = async contentId => {
+  //   if (!user) {
+  //     const confirmed = confirm('로그인 부터 해주세요');
+  //     if (confirmed) {
+  //       navigate('/user/login');
+  //     }
+  //   } else {
+  //     try {
+  //       // 사용자가 로그인한 상태에서 북마크 추가를 위한 포스트 요청 보내기
+  //       const response = await axios.post(
+  //         `${SEVER_KEY}/bookmarks/product/${contentId}`,
+  //         {
+  //           memo: 'test',
+  //         }, // 요청 본문
+  //         {
+  //           headers: {
+  //             Authorization: 'Bearer ' + user.token.accessToken,
+  //           },
+  //         }, // 옵션 객체
+  //       );
+  //       console.log('북마크 추가 성공:', response.data);
+  //     } catch (error) {
+  //       console.error('북마크 추가 실패:', error);
+  //     }
+  //   }
+  // };
+
+  // 로컬 방식
+  const handleBookMark = contentId => {
+    if (!user) {
+      const confirmed = confirm('로그인 부터 해주세요');
+      if (confirmed) {
+        navigate('/user/login');
+      }
+    } else {
+      try {
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || []; // 기존 북마크 목록 가져오기
+        // 사용자가 로그인한 상태에서 북마크 추가를 위한 포스트 요청 보내기
+        // axios.post(
+        //   `${SEVER_KEY}/bookmarks/product/${contentId}`,
+        //   {},
+        //   {
+        //     headers: {
+        //       Authorization: 'Bearer ' + user.token.accessToken,
+        //     },
+        //   },
+        // );
+        // 북마크 목록에 contentId 추가
+        bookmarks.push(contentId);
+        // 로컬 스토리지에 업데이트된 북마크 목록 저장
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        console.log('북마크 추가 성공:', contentId);
+      } catch (error) {
+        console.error('북마크 추가 실패:', error);
+      }
+    }
+  };
+
+  // 키워드 별 옵션
+
   const options = [
     { id: '12', label: '관광지' },
     { id: '14', label: '문화시설' },
@@ -146,9 +220,32 @@ function Location({ keyword }) {
     { id: '39', label: '음식점' },
   ];
 
+  function getCategoryText(cat2) {
+    switch (cat2) {
+      case 'A0101':
+        return '자연 관광지';
+      case 'A0102':
+        return '관광자원';
+      case 'A0201':
+        return '역사 관광지';
+      case 'A0202':
+        return '휴양&쉼터';
+      case 'A0203':
+        return '체험관광지';
+      case 'A0401':
+        return '쇼핑';
+      case 'A0502':
+        return '음식점';
+      case 'B0201':
+        return '숙박시설';
+      // 필요에 따라 추가적인 중분류에 대한 처리를 여기에 추가할 수 있습니다
+      default:
+        return '문화';
+    }
+  }
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl mb-2">키워드 별 검색</h1>
+      <h1 className="text-3xl mb-2">추천 키워드</h1>
       <div className="flex flex-wrap justify-center items-center gap-5 mb-5">
         {options.map(option => (
           <LocationKeywords
@@ -163,21 +260,45 @@ function Location({ keyword }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {locationData?.map((item, index) => (
           <div
-            className="p-4 rounded-md shadow-md min-h-[500px] max-h-[500px] overflow-y-hidden"
+            className="p-4 rounded-md shadow-md min-h-[600px] max-h-[500px] overflow-y-hidden"
             key={index}
           >
-            <FaRegHeart className="text-sub_sal w-[35px] h-[35px]" />
+            <IoIosBookmark
+              className="text-sub_sal w-[35px] h-[35px] ml-auto"
+              onClick={() => handleBookMark(item.contentid)}
+            />
             <Link key={index} to={`/location/${item.contentid}`}>
               <h2 className="text-xl font-bold mb-2">{item.title}</h2>
-              <p className="mb-2 text-gray-400">{item.addr1}</p>
-              <p className="mb-2 text-gray-400">
-                거리: {formatDistance(item.dist)}
-              </p>
+              <p className="text-xㄴ">{item.addr1}</p>
+
               <img
                 src={item.firstimage ? item.firstimage : recoDefaultImg}
                 alt="이미지1"
-                className="w-full   mb-2 rounded-md overflow-hidden"
+                className="w-full max-h-[350px] mb-2 rounded-md overflow-hidden"
               />
+
+              <div className="flex w-[200px] box-border gap-3 mt-8">
+                <div className="flex justify-center items-center ml-auto gap-3">
+                  <div className="bg-white w-[112px] h-[95px] flex flex-col gap-5">
+                    <p className="text-center">
+                      <Typography component="legend">별점</Typography>
+                      <Rating name="read-only" value={value} readOnly />
+                    </p>
+                  </div>
+                  <div className="bg-[#FFF387] w-[112px] h-[95px] flex flex-col gap-5">
+                    <p className="text-center">거리</p>
+                    <p className="text-xs text-center">
+                      {formatDistance(item.dist)}
+                    </p>
+                  </div>
+                  <div className="bg-primary w-[112px] h-[95px] flex flex-col gap-5">
+                    <p className="text-center">분류</p>
+                    <p className="text-xs text-center">
+                      {getCategoryText(item.cat2)}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </Link>
           </div>
         ))}

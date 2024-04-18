@@ -1,0 +1,17 @@
+meta {
+  name: 게시물 목록 조회
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/posts?type=community
+  body: none
+  auth: none
+}
+
+query {
+  type: community
+  ~type: qna
+  ~type: notice
+}

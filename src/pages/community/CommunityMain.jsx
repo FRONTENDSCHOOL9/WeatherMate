@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 import {useNavigate} from 'react-router-dom';
 import CommunityHeader from "./CommunityHeader";
 import { useRecoilValue } from "recoil";
@@ -7,8 +7,9 @@ import CommunityItem from "./CommunityItem";
 import { useQuery } from "@tanstack/react-query";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect } from "react";
-import Search from "../../components/layout/Search";
-import ToTheTopButton from "../../components/layout/ToTheTopButton";
+import Search from "@components/layout/Search";
+import ToTheTopButton from "@components/layout/ToTheTopButton";
+import CommunityPopularItem from "@pages/community/CommunityPopularItem";
 
 function CommunityMain() {
   const navigate = useNavigate();
@@ -35,10 +36,12 @@ function CommunityMain() {
         params: {
           page,
           keyword: searchParams.get('keyword'),
+          type: "community"
         },
       }),
-    select: (response) => response.data,
-    suspense: true,
+      select: (response) => response.data,
+      suspense: true,
+      refetchOnMount: "always"
   });
 
   useEffect(() => {
@@ -50,31 +53,48 @@ function CommunityMain() {
     searchParams.set('page', 1);
     setSearchParams(searchParams);
   };
+
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
-  console.log(data.item);
   
+  // const itemViews = data.item.sort((a,b) => a.views-b.views).reverse().slice(0,3).map(item => 
+  //   <div key={item._id} className="bg-blue-400 rounded-md w-full h-32 p-2" onClick={() => navigate(`/community/${item._id}`)}>
+  //     <p>닉네임 : {item.user.name}</p>
+  //     <p>내용 : {item.content}</p>
+  //     <p>조회수 : {item.views}</p>
+  //     <p>댓글수 : {item.repliesCount}</p>
+  //   </div>  
+  // );
+
+  // console.log(data.item);
+  // console.log(itemViews);
+  
+
   return (
-    <>
+    <div className="min-h screen">
       <div>
         <div className="px-5 box-border border-b-8">
+
           <div className="flex items-center justify-center">
             <CommunityHeader title={'커뮤니티'}/>
-            <Search onClick={handleSearch}></Search>
+            <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold absolute right-5 top-7">새 글쓰기</button>
           </div>
-          <div className="mt-5">
-            <div className="flex justify-between mb-3">
-              <h2 className="font-bold">인기 포스팅</h2>
-              <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-2 py-1 text-sm text-indigo-400 font-bold">글쓰기</button>
+
+          <CommunityPopularItem />
+          {/* <div className="my-2">
+            <div className="flex justify-between mb-2">
+              <h2 className="font-bold text-lg text-gray-700">인기 포스팅</h2>
             </div>
-            <div className="flex justify-between items-center gap-1 mb-4">
-              <Link to="/community/15" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">1</Link>
-              <Link to="/community/17" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">2</Link>
-              <Link to="/community/18" className="bg-indigo-200 p-3 w-28 h-28 flex items-center justify-center rounded-md">3</Link>
+            <div className="w-full flex gap-2">
+              {itemViews}
             </div>
-          </div>
+          </div> */}
+
         </div>
       </div>
-      <div className="flex flex-col p-5 gap-3 mt-4">
+
+
+      <Search onClick={handleSearch}></Search>
+      <div className="flex flex-col px-5 gap-3 mt-3">
         {isLoading && (
           <p colSpan="5">로딩중...</p>
         )}
@@ -84,7 +104,7 @@ function CommunityMain() {
         {itemList}
       </div>
       <ToTheTopButton />
-    </>
+    </div>
   )
 }
 

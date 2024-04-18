@@ -8,7 +8,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        custom: ['milkyway', 'sans-serif'], // 사용자 정의 폰트 추가
+        'sans': ['Noto Sans', 'sans-serif'],
+        'Ainmom': ['Ainmom', 'sans-serif'],
+        'UhBeeKang-Ja': ['UhBeeKang-Ja', 'sans-serif'],
       },
       colors: {
         'my-color': '#00FF7F',

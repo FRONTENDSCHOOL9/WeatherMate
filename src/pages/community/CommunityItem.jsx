@@ -32,18 +32,19 @@ function CommunityItem({item}) {
     }
   };
 
+  // console.log(item);
   return (
-    <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border" >
+    <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border rounded-lg " >
       <div className="flex flex-col gap-3" onClick={() => navigate(`/community/${item._id}`)}>
         <div className="flex gap-3">
-          <p className="rounded-full bg-indigo-200 border w-12 h-12"></p>
+          <p className="rounded-full border-gray-400 border-2 w-12 h-12"></p>
           <div >
             <h1 className="text-lg font-bold">{item.user.name}</h1>
-            <p className="text-blue-300">place</p>
+            <p className="text-blue-500">조회수 {item.views}</p>
           </div>
         </div>
         <div>
-          <div className="bg-gray-800 text-white rounded-md p-2 box-border">{item.content}</div>
+          <div className="bg-gray-500 text-white rounded-md p-2 box-border">{item.content}</div>
           <div>{item.image}</div>
         </div>
       </div>
@@ -51,7 +52,7 @@ function CommunityItem({item}) {
         <button onClick={handleLikeBTN} className="flex gap-2 items-center">{like === 1 ? <FaHeart className="text-orange-300 text-2xl"/> : <FaRegHeart className="text-orange-300 text-2xl"/>}</button>
         <p className="text-orange-300">좋아요 {like}</p>
         <p className="flex gap-2 items-center"><IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl"/></p>
-        <p className="text-orange-300">댓글</p>
+        <p className="text-orange-300">댓글 {item.repliesCount}개</p>
       </div>
     </div>
   )
