@@ -74,13 +74,12 @@ function CommunityMain() {
 
           <div className="flex items-center justify-center">
             <CommunityHeader title={'커뮤니티'}/>
-            <Search onClick={handleSearch}></Search>
+            <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold absolute right-5 top-7">새 글쓰기</button>
           </div>
 
           <div className="mt-5">
             <div className="flex justify-between mb-3">
               <h2 className="font-bold">인기 포스팅</h2>
-              <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-2 py-1 text-sm text-indigo-400 font-bold">글쓰기</button>
             </div>
             <div className="w-full flex gap-2 mb-2">
               {itemViews}
@@ -91,7 +90,8 @@ function CommunityMain() {
       </div>
 
 
-      <div className="flex flex-col p-5 gap-3 mt-4">
+      <Search onClick={handleSearch}></Search>
+      <div className="flex flex-col px-5 gap-3 mt-3">
         {isLoading && (
           <p colSpan="5">로딩중...</p>
         )}

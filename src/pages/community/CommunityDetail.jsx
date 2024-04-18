@@ -129,12 +129,10 @@ function CommunityDetail() {
                   목록
                 </Button>
                 {user?._id === item.user._id && (
-                  <Button
-                    className="bg-red-500 p-1 rounded-md"
-                    onClick={handleDelete}
-                  >
-                    삭제
-                  </Button>
+                  <div className='flex gap-1'>
+                    {/* <Button className="bg-gray-500 p-1 rounded-md" onClick={handleDelete}>수정</Button> */}
+                    <Button className="bg-red-500 p-1 rounded-md" onClick={handleDelete}>삭제</Button>
+                  </div>
                 )}
               </div>
             </section>
