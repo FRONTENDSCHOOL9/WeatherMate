@@ -20,7 +20,6 @@ function MainWeather() {
             <MyLocationWeather />
             <ToTheTopButton />
             <WeatherDetail />
-            {/* <weatherDetail /> */}
           </div>
           <RecommendationPreview />
           {/* 장소추천 프리뷰  */}
