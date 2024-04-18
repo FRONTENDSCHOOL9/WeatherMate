@@ -91,52 +91,52 @@ function CommunityNew() {
         <div className="my-4 flex flex-col">
           <p className="text-lg font-bold">오늘의 날씨 선택</p>
           <div className="border mt-2 py-2 rounded-xl">
-            <div className="flex justify-between px-5">
-              <button type="button" onClick={handleClick} >
+            <div onClick={handleClick} className="flex justify-between px-5">
+              <button type="button"  >
                 <img
                   src="/Sun.svg"
-                  alt="sun"
-                  data-weather="sunny"
+                  alt="Sun"
+                  data-weather="Sun"
                   className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
                 />
               </button>
-              <button type="button" onClick={handleClick}>
+              <button type="button">
                 <img
                   src="/Cloudy.svg"
-                  alt="cloudy"
-                  data-weather="cloudy"
+                  alt="Cloudy"
+                  data-weather="Cloudy"
                   className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
                 />
               </button>
-              <button type="button" onClick={handleClick}>
+              <button type="button">
                 <img
                   src="/Rainy.svg"
-                  alt="rainy"
-                  data-weather="rainy"
+                  alt="Rainy"
+                  data-weather="Rainy"
                   className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
                 />
               </button>
-              <button type="button" onClick={handleClick}>
+              <button type="button">
                 <img
                   src="/Foggy.svg"
-                  alt="foggy"
-                  data-weather="foggy"
+                  alt="Foggy"
+                  data-weather="Foggy"
                   className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
                 />
               </button>
-              <button type="button" onClick={handleClick}>
+              <button type="button">
                 <img
                   src="/Snow.svg"
-                  alt="snow"
-                  data-weather="snowy"
+                  alt="Snow"
+                  data-weather="Snow"
                   className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
                 />
               </button>
-              <button type="button" onClick={handleClick}>
+              <button type="button">
                 <img
                   src="/Wind.svg"
-                  alt="wind"
-                  data-weather="windy"
+                  alt="Wind"
+                  data-weather="Wind"
                   className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
                 />
               </button>
