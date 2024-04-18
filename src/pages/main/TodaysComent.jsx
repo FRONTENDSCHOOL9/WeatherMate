@@ -12,7 +12,7 @@ function TodaysComent() {
   // const [mainImgUrl, setMainImgUrl] = useState(null);
   useEffect(() => {
     const getRecommendedClothes = () => {
-      const userTemperature = userWeather?.main.temp - 298.15;
+      const userTemperature = userWeather?.main.temp - 273.15;
       // test할 때 여기 온도 바꿔서 테스 디폴트는 273.15
       // 4도 이하일 땐 298.15
       // 8도 이하일 땐 291.15
