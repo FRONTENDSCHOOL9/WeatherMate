@@ -81,6 +81,7 @@ function CommunityDetail() {
   },[])
 
   return (
+    <div className="min-h-screen">
     <div>
       <div>
         <Button
@@ -106,9 +107,12 @@ function CommunityDetail() {
                   <p className="rounded-full border w-12 h-12">{item.user.profile}</p>
                   <div className="grow">
                     <h1 className="text-lg font-bold">{item.user.name}</h1>
-                    <p className="text-blue-300">place</p>
+                    <p className="grow text-sm">조회수 {item.views}</p>
                   </div>
-                  <p>조회수 {item.views}</p>
+                  <div className="flex flex-col items-center justify-center">
+                    <img className="w-12 h-12 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="" />
+                    {/* <p className="text-blue-300">{item.title}</p> */}
+                  </div>
                 </div>
 
                 <div>
@@ -121,21 +125,22 @@ function CommunityDetail() {
                 </div>
               </div>
 
-              <div className="flex justify-end mt-3 gap-1">
-                <Button
-                  className="bg-indigo-400 p-1 rounded-md"
-                  onClick={() => navigate('/community')}
-                >
-                  목록
-                </Button>
-                {user?._id === item.user._id && (
+              <div className="flex justify-center items-end mt-3 gap-1">
+                <p className="grow text-gray-400">작성일시 {item.createdAt}</p>
+                <div className="flex grow-0 gap-1">
                   <Button
-                    className="bg-red-500 p-1 rounded-md"
-                    onClick={handleDelete}
+                    className="bg-indigo-400 p-1 rounded-md"
+                    onClick={() => navigate('/community')}
                   >
-                    삭제
+                    목록
                   </Button>
-                )}
+                  {user?._id === item.user._id && (
+                    <div className='flex gap-1'>
+                      {/* <Button className="bg-gray-500 p-1 rounded-md" onClick={handleDelete}>수정</Button> */}
+                      <Button className="bg-red-500 p-1 rounded-md" onClick={handleDelete}>삭제</Button>
+                    </div>
+                  )}
+                </div>
               </div>
             </section>
           )}
@@ -162,6 +167,7 @@ function CommunityDetail() {
 
       </div>
       <Outlet context={item} />
+    </div>
     </div>
   );
 }
