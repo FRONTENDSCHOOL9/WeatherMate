@@ -63,7 +63,7 @@ function CommunityMain() {
       <p>댓글수 : {item.repliesCount}</p>
     </div>  
   );
-  
+
   // console.log(data.item);
   // console.log(itemViews);
   
@@ -78,11 +78,11 @@ function CommunityMain() {
             <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold absolute right-5 top-7">새 글쓰기</button>
           </div>
 
-          <div className="mt-5">
-            <div className="flex justify-between mb-3">
-              <h2 className="font-bold">인기 포스팅</h2>
+          <div className="my-2">
+            <div className="flex justify-between mb-2">
+              <h2 className="font-bold text-lg text-gray-700">인기 포스팅</h2>
             </div>
-            <div className="w-full flex gap-2 mb-2">
+            <div className="w-full flex gap-2">
               {itemViews}
             </div>
           </div>

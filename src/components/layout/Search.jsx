@@ -17,14 +17,15 @@ function Search({ onClick }) {
   return (
     <form className="pt-3 px-5 box-border">
       <div className='flex justify-end gap-2'>
+        <p className='text-nowrap font-bold text-lg '>검색하기</p>
         <input
-          className="w-32 h-8 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+          className="w-full h-8 border rounded-md border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
           type="text"
           value={keyword}
           onChange={handleChange}
         />
         <Button 
-          className="bg-gray-500 w-8 h-8 border rounded flex justify-center items-center"
+          className="bg-gray-500 p-1 border rounded flex justify-center items-center"
           onClick={(e) => {
             e.preventDefault();
             onClick(keyword);
