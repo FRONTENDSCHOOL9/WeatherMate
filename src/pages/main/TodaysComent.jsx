@@ -56,7 +56,7 @@ function TodaysComent() {
           <img src="/06.svg" className="w-[250px] ml-32 comment-text2" />
         </div>
       </div>
-      <img src={fileName} className="" style={{ display: 'none' }} />
+      <img src={fileName} style={{ display: 'none' }} />
     </div>
   );
 }
