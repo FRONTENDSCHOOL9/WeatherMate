@@ -54,8 +54,7 @@ function CommunityMain() {
   };
 
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
-  console.log(data.item);
-
+  
   const itemViews = data.item.sort((a,b) => a.views-b.views).reverse().slice(0,3).map(item => 
     <div key={item._id} className="bg-blue-400 rounded-md w-full h-32 p-2" onClick={() => navigate(`/community/${item._id}`)}>
       <p>닉네임 : {item.user.name}</p>
@@ -64,25 +63,26 @@ function CommunityMain() {
       <p>댓글수 : {item.repliesCount}</p>
     </div>  
   );
-  console.log(itemViews);
+
+  // console.log(data.item);
+  // console.log(itemViews);
   
 
   return (
-    <>
+    <div className="min-h screen">
       <div>
         <div className="px-5 box-border border-b-8">
 
           <div className="flex items-center justify-center">
             <CommunityHeader title={'커뮤니티'}/>
-            <Search onClick={handleSearch}></Search>
+            <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold absolute right-5 top-7">새 글쓰기</button>
           </div>
 
-          <div className="mt-5">
-            <div className="flex justify-between mb-3">
-              <h2 className="font-bold">인기 포스팅</h2>
-              <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-2 py-1 text-sm text-indigo-400 font-bold">글쓰기</button>
+          <div className="my-2">
+            <div className="flex justify-between mb-2">
+              <h2 className="font-bold text-lg text-gray-700">인기 포스팅</h2>
             </div>
-            <div className="w-full flex gap-2 mb-2">
+            <div className="w-full flex gap-2">
               {itemViews}
             </div>
           </div>
@@ -91,7 +91,8 @@ function CommunityMain() {
       </div>
 
 
-      <div className="flex flex-col p-5 gap-3 mt-4">
+      <Search onClick={handleSearch}></Search>
+      <div className="flex flex-col px-5 gap-3 mt-3">
         {isLoading && (
           <p colSpan="5">로딩중...</p>
         )}
@@ -101,7 +102,7 @@ function CommunityMain() {
         {itemList}
       </div>
       <ToTheTopButton />
-    </>
+    </div>
   )
 }
 
