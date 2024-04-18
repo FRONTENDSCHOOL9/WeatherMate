@@ -31,9 +31,10 @@ function CommunityItem({item}) {
       localStorage.setItem("likeState",like)
     }
   };
-  console.log(item);
+
+  // console.log(item);
   return (
-    <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border" >
+    <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border rounded-lg " >
       <div className="flex flex-col gap-3" onClick={() => navigate(`/community/${item._id}`)}>
         <div className="flex gap-3">
           <p className="rounded-full border-gray-400 border-2 w-12 h-12"></p>
