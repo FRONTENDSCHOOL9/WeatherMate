@@ -28,7 +28,7 @@ function Location({ keyword }) {
 
   const { latitude, longitude } = useCurrentLocation();
 
-  console.log('userdata', user);
+  console.log('로그인여부', user);
 
   useEffect(() => {
     if (latitude !== null && longitude !== null) {

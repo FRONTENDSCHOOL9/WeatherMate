@@ -1,7 +1,16 @@
 const dummyData = [
-  { temperature: 21, recommendation: '적당한 날씨입니다. 가벼운 옷을 입으세요.', IMG_URL: "/01.svg" },
-  { temperature: 10, recommendation: '따뜻한 날씨입니다. 가볍게 입으세요.', IMG_URL: "/02.svg" },
-  { temperature: 23.0, recommendation: '무무야야', IMG_URL: "/03.svg" },
+  {
+    temperature: 4, recommendation: '패딩 안 입으면 눈사람 되는거야!☃️', CLOTHES_IMG: "/clothes-m-1.svg"
+  },
+  { temperature: 8, recommendation: '추워요! 보온성 있는 옷 필수!', CLOTHES_IMG: "/02.svg" },
+  { temperature: 12, recommendation: '방한을 위해 얇게 껴 입자!', CLOTHES_IMG: "/clothes-m-1.svg" },
+  { temperature: 16, recommendation: '멋 부리기 딱 좋은 날씨', CLOTHES_IMG: "/clothes-m-1.svg" },
+  { temperature: 19, recommendation: '너무 얇게 입으면 곤란해요 :(', CLOTHES_IMG: "/clothes-m-1.svg" },
+  { temperature: 22, recommendation: '도시락 만들어서 소풍 갈래요? :)', CLOTHES_IMG: "/clothes-m-1.svg" },
+  { temperature: 27, recommendation: '땀이 삐질삐질 날 수도 있어요!', CLOTHES_IMG: "/clothes-m-1.svg" },
+  { temperature: 30, recommendation: '녹아내린다;; 시원한 얼음이 필요해', CLOTHES_IMG: "/clothes-m-1.svg" },
 ];
 
 export default dummyData;
+
+// 희선님 그려야 할 것 : 두개...

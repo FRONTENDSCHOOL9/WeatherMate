@@ -9,6 +9,8 @@ export default {
     extend: {
       fontFamily: {
         'sans': ['Noto Sans', 'sans-serif'],
+        'Ainmom': ['Ainmom', 'sans-serif'],
+        'UhBeeKang-Ja': ['UhBeeKang-Ja', 'sans-serif'],
       },
       colors: {
         'my-color': '#00FF7F',

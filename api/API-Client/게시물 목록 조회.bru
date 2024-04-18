@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: {{url}}/posts?type=qna
+  url: {{url}}/posts?type=community
   body: none
   auth: none
 }
 
 query {
-  type: qna
+  type: community
+  ~type: qna
   ~type: notice
-  ~type: community
 }
