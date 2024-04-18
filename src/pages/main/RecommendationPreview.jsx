@@ -15,7 +15,7 @@ function RecommendationPreview() {
   const [contentTypeId, setContentTypeId] = useState('28');
   const [userWeather, setUserWeather] = useRecoilState(userWeatherState);
 
-  console.log('user', userWeather);
+  console.log('사용자 받아온 날씨', userWeather);
 
   const radius = '8000';
 
@@ -32,7 +32,9 @@ function RecommendationPreview() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=4&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentTypeId}&_type=json&arrange=A`,
+            `https://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=4&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentTypeId}&_type=json&arrange=A`,
+
+            // http => https
           );
           setLocationData(response.data.response.body.items.item);
           console.log(response.data);
@@ -49,16 +51,19 @@ function RecommendationPreview() {
   }, [locationReady, latitude, longitude]);
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full ">
       <div className="mt-10">
         <h1 className="text-xl mx-4 mb-7 font-bold">
           지금 날씨에는 이 장소 추천해요
-          <Link to="/location">➡️</Link>
+          <Link to="/location" className="ml-5">
+            {' '}
+            더보기
+          </Link>
         </h1>
 
         <div>
           {locationData && (
-            <div className="flex gap-4 ">
+            <div className="flex gap-4 font-UhBeeKang-Ja">
               {locationData.map(item => (
                 <div key={item.contentid}>
                   <Link to={`/location/${item.contentid}`}>
