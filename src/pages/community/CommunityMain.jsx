@@ -69,7 +69,7 @@ function CommunityMain() {
   
 
   return (
-    <>
+    <div className="min-h screen">
       <div>
         <div className="px-5 box-border border-b-8">
 
@@ -102,7 +102,7 @@ function CommunityMain() {
         {itemList}
       </div>
       <ToTheTopButton />
-    </>
+    </div>
   )
 }
 

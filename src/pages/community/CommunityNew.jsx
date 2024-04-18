@@ -12,6 +12,7 @@ import { WiCloudy } from "react-icons/wi";
 import { WiCloudyGusts } from "react-icons/wi";
 import { BsCloudSnow } from "react-icons/bs";
 import { WiCloudyWindy } from "react-icons/wi";
+import { FaArrowLeft } from "react-icons/fa";
 
 function CommunityNew() {
   const {register, handleSubmit, formState: { errors }} = useForm();
@@ -46,7 +47,13 @@ function CommunityNew() {
   }
   
   return (
-    <div className="px-5 box-border">
+    <div className="px-5 box-border min-h-screen">
+      <Button
+          onClick={() => navigate('/community')}
+          className="absolute left-6 top-10"
+        >
+          <FaArrowLeft className="text-2xl" />
+        </Button>
       <CommunityHeader title={'글 작성하기'}/>
       <br />
       <form onSubmit={handleSubmit(onSubmit)}>

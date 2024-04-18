@@ -81,6 +81,7 @@ function CommunityDetail() {
   },[])
 
   return (
+    <div className="min-h-screen">
     <div>
       <div>
         <Button
@@ -160,6 +161,7 @@ function CommunityDetail() {
 
       </div>
       <Outlet context={item} />
+    </div>
     </div>
   );
 }
