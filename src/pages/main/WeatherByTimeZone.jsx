@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
+import gsap from 'gsap';
 
 const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 
@@ -22,7 +23,7 @@ function WeatherByTimeZone() {
       sessionStorage.setItem('longitude', longitude);
 
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude + 10}&lon=${longitude}&appid=${apiKey}&cnt=10`,
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&cnt=14`,
       );
       setWeatherData(response.data);
     } catch (error) {
@@ -33,6 +34,17 @@ function WeatherByTimeZone() {
   useEffect(() => {
     fetchWeatherData();
   }, []);
+
+  useEffect(() => {
+    if (weatherData) {
+      gsap.from('.weather-container', {
+        duration: 1,
+        opacity: 0,
+        x: '100%',
+        ease: 'power3.out',
+      });
+    }
+  }, [weatherData]);
 
   const memoizedWeatherData = useMemo(() => weatherData, [weatherData]);
 
@@ -54,28 +66,34 @@ function WeatherByTimeZone() {
     return `${hour}${minutes} ${ampm}`;
   };
 
+  // 날씨에 따른 아이콘 이미지 변경
+  function getIconUrl(iconName) {
+    return `https://openweathermap.org/img/wn/${iconName}.png`;
+  }
+
   return (
-    <>
-      <div className="rounded-l-[36px] bg-primary bg-opacity-80 h-[130px] flex items-center justify-center gap-5 overflow-x-scroll ml-8 scrollbar-hide mt-20">
-        {memoizedWeatherData.list.map(item => (
-          <div key={item.dt} className="flex items-center justify-center">
-            <div className="w-16 bg-white h-28 rounded-[32.5px] flex justify-center items-center">
-              <div className="flex-col justify-center items-center">
-                <div className="text-primary text-xs text-center">
-                  {unixToHumanTime(item.dt)}
-                </div>
-                <div className="">
-                  <img src="/03.svg" alt="My Happy SVG" />
-                </div>
-                <div className="text-center font-semibold">
-                  {(item.main.temp - 273.15).toFixed(0)}°C
-                </div>
+    <div className="w-full  bg-opacity-80 h-[130px]  flex items-center justify-center gap-5 overflow-x-scroll scrollbar-hide mt-20 weather-container ">
+      {memoizedWeatherData.list.map(item => (
+        <div key={item.dt} className="flex items-center justify-center">
+          <div className="w-16 bg-slate-300 h-28 rounded-[32.5px] flex justify-center items-center">
+            <div className="flex-col justify-center items-center">
+              <div className="text-xs text-center">
+                {unixToHumanTime(item.dt)}
+              </div>
+              <div className="">
+                <img
+                  src={getIconUrl(item.weather[0].icon)}
+                  alt="Weather Icon"
+                />
+              </div>
+              <div className="text-center font-semibold">
+                {(item.main.temp - 273.15).toFixed(0)}°C
               </div>
             </div>
           </div>
-        ))}
-      </div>
-    </>
+        </div>
+      ))}
+    </div>
   );
 }
 
