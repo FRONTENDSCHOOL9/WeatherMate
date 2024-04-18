@@ -50,7 +50,6 @@ function Location({ keyword }) {
             `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=6&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json`,
           );
           setLocationData(response.data.response.body.items.item);
-          setValue(Number(response.data.response.body.items.item[0].mlevel));
           console.log('추천장소', locationData);
         } catch (error) {
           console.error(
