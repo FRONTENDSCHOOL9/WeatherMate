@@ -54,8 +54,7 @@ function CommunityMain() {
   };
 
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
-  console.log(data.item);
-
+  
   const itemViews = data.item.sort((a,b) => a.views-b.views).reverse().slice(0,3).map(item => 
     <div key={item._id} className="bg-blue-400 rounded-md w-full h-32 p-2" onClick={() => navigate(`/community/${item._id}`)}>
       <p>닉네임 : {item.user.name}</p>
@@ -64,7 +63,9 @@ function CommunityMain() {
       <p>댓글수 : {item.repliesCount}</p>
     </div>  
   );
-  console.log(itemViews);
+  
+  // console.log(data.item);
+  // console.log(itemViews);
   
 
   return (

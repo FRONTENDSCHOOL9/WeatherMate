@@ -31,7 +31,8 @@ function CommunityItem({item}) {
       localStorage.setItem("likeState",like)
     }
   };
-  console.log(item);
+
+  // console.log(item);
   return (
     <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border" >
       <div className="flex flex-col gap-3" onClick={() => navigate(`/community/${item._id}`)}>
