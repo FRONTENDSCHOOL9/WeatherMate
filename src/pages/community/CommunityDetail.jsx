@@ -107,7 +107,7 @@ function CommunityDetail() {
                   <p className="rounded-full border w-12 h-12">{item.user.profile}</p>
                   <div className="grow">
                     <h1 className="text-lg font-bold">{item.user.name}</h1>
-                    <p className="text-blue-300">place</p>
+                    <p className="text-blue-300">{item.title}</p>
                   </div>
                   <p>조회수 {item.views}</p>
                 </div>

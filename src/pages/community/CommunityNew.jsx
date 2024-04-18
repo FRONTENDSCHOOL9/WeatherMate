@@ -7,6 +7,7 @@ import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import Button from '@components/layout/Button';
 import Submit from '@components/layout/Submit';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useState } from 'react';
 
 function CommunityNew() {
   const {
@@ -20,6 +21,7 @@ function CommunityNew() {
   const onSubmit = async formData => {
     console.log(formData.image);
     formData.type = 'community';
+    formData.title = dataWeater
     if (formData.image.length > 0) {
       console.log('formData : ', formData);
       const imageFormData = new FormData();
@@ -44,11 +46,19 @@ function CommunityNew() {
   };
 
   const iconColors = ['bg-gray-300', 'bg-blue-300'];
+  const [weatherArr, setWeatherArr] = useState([]);
+  const [dataWeater, setDataWeather] = useState('')
+
   const handleClick = e => {
-    e.target.classList.remove(iconColors[0]);
-    e.target.classList.add(iconColors[1]);
-    console.log(e.target);
+    if(weatherArr.length === 0){
+      e.target.classList.remove(iconColors[0]);
+      e.target.classList.add(iconColors[1]);
+      setWeatherArr(weatherArr.push(e.target.alt))
+      console.log(weatherArr[0]);
+      setDataWeather(weatherArr[0])
+    }
   };
+
   return (
     <div className="px-5 box-border min-h-screen">
       <Button
@@ -82,45 +92,51 @@ function CommunityNew() {
           <p className="text-lg font-bold">오늘의 날씨 선택</p>
           <div className="border mt-2 py-2 rounded-xl">
             <div className="flex justify-between px-5">
-              <button type="button" onClick={handleClick}>
+              <button type="button" onClick={handleClick} >
                 <img
                   src="/Sun.svg"
-                  value="sun"
+                  alt="sun"
+                  data-weather="sunny"
                   className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
                 />
               </button>
               <button type="button" onClick={handleClick}>
                 <img
                   src="/Cloudy.svg"
-                  value="cloudy"
+                  alt="cloudy"
+                  data-weather="cloudy"
                   className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
                 />
               </button>
               <button type="button" onClick={handleClick}>
                 <img
                   src="/Rainy.svg"
-                  value="rainy"
+                  alt="rainy"
+                  data-weather="rainy"
                   className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
                 />
               </button>
               <button type="button" onClick={handleClick}>
                 <img
                   src="/Foggy.svg"
-                  value="foggy"
+                  alt="foggy"
+                  data-weather="foggy"
                   className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
                 />
               </button>
               <button type="button" onClick={handleClick}>
                 <img
                   src="/Snow.svg"
-                  value="snow"
+                  alt="snow"
+                  data-weather="snowy"
                   className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
                 />
               </button>
               <button type="button" onClick={handleClick}>
                 <img
                   src="/Wind.svg"
-                  value="wind"
+                  alt="wind"
+                  data-weather="windy"
                   className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
                 />
               </button>
