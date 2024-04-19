@@ -27,7 +27,6 @@ function AllCitiesWeather() {
     setData(res.data.list);
   };
 
-  console.log('x', data);
   useEffect(() => {
     getWeather();
   }, []);
@@ -48,6 +47,7 @@ function AllCitiesWeather() {
 
   return (
     <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <h1 className="font-bold text-2xl">전국날씨 한눈에 보기 😊 </h1>
       {data?.map(item => {
         const cityName = citiesMappingData[item.name] || item.name; // 도시 이름을 매핑하거나 원래 이름을 사용합니다.
         const iconURL = `http://openweathermap.org/img/wn/${item.weather[0].icon}.png`;

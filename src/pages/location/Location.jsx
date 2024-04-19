@@ -189,7 +189,7 @@ function Location({ keyword }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {locationData?.map((item, index) => (
             <div
-              className="p-4 rounded-md shadow-md min-h-[600px] max-h-[500px] overflow-y-hidden"
+              className="p-4 rounded-md shadow-md overflow-y-hidden"
               key={index}
             >
               <IoIosBookmark
@@ -203,7 +203,7 @@ function Location({ keyword }) {
                 <img
                   src={item.firstimage ? item.firstimage : recoDefaultImg}
                   alt="이미지1"
-                  className="w-full max-h-[450px] mb-2 rounded-md overflow-hidden"
+                  className="w-full  mb-2 rounded-md overflow-hidden aspect-square object-cover"
                 />
 
                 <div className="flex w-[200px] box-border gap-3 mt-8">
