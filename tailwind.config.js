@@ -24,7 +24,8 @@ export default {
         'gray_03': '#A6A6A6',
         'gray_04': '#666',
         'black': '#000',
-        'white': '#fff'
+        'white': '#fff',
+        'kakao': '#FEE500'
       },
     },
   },

@@ -15,6 +15,7 @@ function Button({ children, type="button", bgColor='black', size='md', ...rest }
     gray: `bg-gray-500`,
     black: 'bg-black',
     red: 'bg-red-500',
+    kakao: '#FEE500'
   };
   let btnSize = {
     sm: 'py-1 px-2 text-sm',
@@ -26,3 +27,4 @@ function Button({ children, type="button", bgColor='black', size='md', ...rest }
 }
 
 export default Button;
+
