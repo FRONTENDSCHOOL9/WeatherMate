@@ -18,6 +18,7 @@ import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
 import FoodMainPage from './pages/food/FoodMainPage';
 import ReplyList from './pages/community/ReplyList';
+import MainLogin from '@pages/user/MainLogin';
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
         element: <Setting />,
       },
     ],
+  },
+  {
+    path: 'main/login',
+    element: <MainLogin />,
   },
 ]);
 
