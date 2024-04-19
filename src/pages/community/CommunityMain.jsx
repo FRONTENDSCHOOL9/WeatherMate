@@ -9,6 +9,7 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import { useEffect } from "react";
 import Search from "@components/layout/Search";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
+import CommunityPopularItem from "@pages/community/CommunityPopularItem";
 
 function CommunityMain() {
   const navigate = useNavigate();
@@ -55,14 +56,14 @@ function CommunityMain() {
 
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
   
-  const itemViews = data.item.sort((a,b) => a.views-b.views).reverse().slice(0,3).map(item => 
-    <div key={item._id} className="bg-blue-400 rounded-md w-full h-32 p-2" onClick={() => navigate(`/community/${item._id}`)}>
-      <p>닉네임 : {item.user.name}</p>
-      <p>내용 : {item.content}</p>
-      <p>조회수 : {item.views}</p>
-      <p>댓글수 : {item.repliesCount}</p>
-    </div>  
-  );
+  // const itemViews = data.item.sort((a,b) => a.views-b.views).reverse().slice(0,3).map(item => 
+  //   <div key={item._id} className="bg-blue-400 rounded-md w-full h-32 p-2" onClick={() => navigate(`/community/${item._id}`)}>
+  //     <p>닉네임 : {item.user.name}</p>
+  //     <p>내용 : {item.content}</p>
+  //     <p>조회수 : {item.views}</p>
+  //     <p>댓글수 : {item.repliesCount}</p>
+  //   </div>  
+  // );
 
   // console.log(data.item);
   // console.log(itemViews);
@@ -78,14 +79,15 @@ function CommunityMain() {
             <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold absolute right-5 top-7">새 글쓰기</button>
           </div>
 
-          <div className="my-2">
+          <CommunityPopularItem />
+          {/* <div className="my-2">
             <div className="flex justify-between mb-2">
               <h2 className="font-bold text-lg text-gray-700">인기 포스팅</h2>
             </div>
             <div className="w-full flex gap-2">
               {itemViews}
             </div>
-          </div>
+          </div> */}
 
         </div>
       </div>
