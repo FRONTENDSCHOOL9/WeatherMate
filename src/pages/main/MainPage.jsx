@@ -1,5 +1,4 @@
 // import AllCitiesWeather from './ChoiceWeather';
-import CommunityPopularItem from '@pages/community/CommunityPopularItem';
 import ToTheTopButton from '../../components/layout/ToTheTopButton';
 // import AllCitiesWeather from './AllCitiesWeather';
 import MyLocationWeather from './MyLocationWeather';
@@ -30,7 +29,6 @@ function MainWeather() {
 
           {/* <AllCitiesWeather /> */}
 
-          <CommunityPopularItem />
 
         </div>
       </div>
