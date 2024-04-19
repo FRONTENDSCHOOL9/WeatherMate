@@ -3,6 +3,7 @@ import { userWeatherState } from '../../recoil/atom.mjs';
 import dummyData from '../../assets/WeatherData';
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
+import { Link } from 'react-router-dom';
 
 /** 날씨에 따른 의상 추천 & 이미지 보여주기 */
 function TodaysComent() {
@@ -69,6 +70,9 @@ function TodaysComent() {
             <p className="text-primary mb-3">짱구님 안녕하세요?</p>
             <p className="comment-text whitespace-normal truncate ">
               {recomendClothes}
+            </p>
+            <p className="font-sans text-xs mt-3">
+              <Link to="/allcity">전국 날씨 한번에보기 → </Link>
             </p>
           </div>
         </div>
