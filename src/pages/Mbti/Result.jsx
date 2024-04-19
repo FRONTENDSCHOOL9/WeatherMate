@@ -2,6 +2,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import MbtiResultData from '@assets/mbti/MbtiResultData';
 import { useEffect, useState } from 'react';
 import KakaoShareButton from '@components/KakaoShareButton';
+import DetailPageHeader from '@components/layout/DetailPageHeader';
 // const { Kakao } = window;
 
 function Result() {
@@ -23,19 +24,40 @@ function Result() {
   // }, []);
 
   return (
-    <div className="m-8 flex gap-4 flex-col items-center">
-      <h1 className="text-3xl font-bold">날씨별 성격 테스트</h1>
-      <h2>결과 보기</h2>
-
-      <img src={resultData.image} alt="result image" className="md:w-1/2" />
-      <button
-        onClick={() => navigate('/mbti')}
-        className="rounded bg-primary px-4 py-2 font-bold hover:bg-sub_sal text-white "
-      >
-        테스트 다시하기
-      </button>
-      <KakaoShareButton data={resultData} />
-    </div>
+    <>
+      <DetailPageHeader title={'날씨별 성격 테스트'} />
+      <div className="m-8 flex gap-4 flex-col items-center">
+        <h1 className="text-3xl font-bold">결과 보기</h1>
+        <section
+          style={{
+            backgroundImage: `url(${resultData.image})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            width: '80vw',
+            height: '50vh',
+          }}
+        >
+          <div className="font-bold ">
+            {/* <p>{resultData.type}</p> */}
+            <p>{resultData.title}</p>
+            <p>{resultData.desc}</p>
+          </div>
+        </section>
+        <button
+          onClick={() => navigate('/mbti')}
+          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+        >
+          테스트 다시하기
+        </button>
+        <KakaoShareButton data={resultData} />
+        <button
+          onClick={() => navigate('/user/login')}
+          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+        >
+          WeatherMate 둘러보기
+        </button>
+      </div>
+    </>
   );
 }
 
