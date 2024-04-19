@@ -10,7 +10,22 @@ function TodaysComent() {
   const userWeather = useRecoilValue(userWeatherState); // Recoil 상태만 가져오기
   const [recomendClothes, setRecomendClothes] = useState(null);
   const [recommendationImage, setRecommendationImage] = useState(null);
+  const [sessionData, setSessionData] = useState(null);
+
+  useEffect(() => {
+    // 세션에서 데이터 가져오기
+    const sessionString = sessionStorage.getItem('saveUser');
+    if (sessionString) {
+      const sessionObj = JSON.parse(sessionString); // JSON 문자열 파싱
+      setSessionData(sessionObj);
+    }
+  }, []); // 컴포넌트가 마운트될 때만 실행되도록 빈 배열을 두 번째 매개변수로 전달
+
   // const [mainImgUrl, setMainImgUrl] = useState(null);
+
+  console.log('session', sessionData);
+
+  // 온도 비즈니스 로직
   useEffect(() => {
     const getRecommendedClothes = () => {
       const userTemperature = userWeather?.main.temp - 273.15;
@@ -59,15 +74,18 @@ function TodaysComent() {
   const imagePath = recommendationImage;
   const fileName = imagePath; // 경로에서 파일 이름 추출
 
-  console.log(fileName, 'xxxx');
-
   return (
     <div className=" w-full text-[1.775rem] font-bold h-[300px] font-UhBeeKang-Ja">
       <div className="p-5">
         <div className=" w-full ml-8 mt-[72px] ">
           {/* user name 받아와 저장해야합니다 */}
           <div className=" w-[350px] flex flex-wrap">
-            <p className="text-primary mb-3">짱구님 안녕하세요?</p>
+            <p className="text-primary mb-3">
+              {sessionData && sessionData.useState && sessionData.useState.name
+                ? `${sessionData.useState.name} 님 안녕하세요?`
+                : '반갑습니다'}
+            </p>
+
             <p className="comment-text whitespace-normal truncate ">
               {recomendClothes}
             </p>

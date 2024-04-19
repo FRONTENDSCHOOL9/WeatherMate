@@ -1,5 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { userWeatherState } from '../../recoil/atom.mjs';
+// import { useEffect, useState } from 'react';
 
 /*eslint-disable */
 function WeatherDetail() {
