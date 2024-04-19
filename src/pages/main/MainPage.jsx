@@ -1,6 +1,7 @@
 // import AllCitiesWeather from './ChoiceWeather';
 import CommunityPopularItem from '@pages/community/CommunityPopularItem';
 import ToTheTopButton from '../../components/layout/ToTheTopButton';
+// import AllCitiesWeather from './AllCitiesWeather';
 import MyLocationWeather from './MyLocationWeather';
 
 import PreviewMbti from './PreviewMbti';
@@ -26,7 +27,11 @@ function MainWeather() {
           {/* 장소추천 프리뷰  */}
           <PreviewMbti />
           {/* mbti test 프리뷰 */}
+
+          {/* <AllCitiesWeather /> */}
+
           <CommunityPopularItem />
+
         </div>
       </div>
     </div>
