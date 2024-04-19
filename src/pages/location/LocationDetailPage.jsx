@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import LocationAddReply from './LocationAddReply';
 // import LocationReplyList from './LocationReplyList';
-import Loading from '../../components/layout/Loading';
+import Loading from '@components/layout/Loading';
 import LocationBookMark from './LocationBookmark';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;

@@ -53,6 +53,7 @@ function MyLocationWeather() {
     }
   };
 
+  console.log('didii', userWeather);
   const defaultImgPath = '/01.svg'; // 디폴트 이미지 경로
   const getKoreanWeatherDescription = englishDescription => {
     switch (englishDescription) {
@@ -137,7 +138,10 @@ function MyLocationWeather() {
               <p className="text-lg font-bold ">
                 {userWeather.weather[0].description}
               </p>
-              <h2 className="text-2xl font-bold mb-4">{myPlace}</h2>
+              <h2 className="text-2xl font-bold mb-4">
+                {myPlace}, {userWeather.sys.country}
+              </h2>
+
               <p className="mb-3 font-bold">
                 생성된 시간 : {unixToHumanTime(userWeather.dt)}
               </p>
