@@ -61,7 +61,7 @@ function SignUp() {
       <h2>회원가입</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <lebel>이름</lebel>
+        <label>이름</label>
         <input
           type="text"
           id="name"
