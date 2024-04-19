@@ -159,7 +159,7 @@ function CommunityDetail() {
             <div className="flex gap-2 items-center">
               <IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl" />
             </div>
-            <p className="text-orange-300">댓글 {item.replies.length}개</p>
+            <p className="text-orange-300">댓글 {item.replies ? item.replies.length : 0}개</p>
 
           </div>
 

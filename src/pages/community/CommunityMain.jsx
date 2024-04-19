@@ -55,8 +55,7 @@ function CommunityMain() {
 
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
   
-  // console.log(data.item);
-  // console.log(itemViews);
+  console.log(data.item);
   
   return (
     <div className="min-h screen">
