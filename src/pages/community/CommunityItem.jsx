@@ -32,15 +32,18 @@ function CommunityItem({item}) {
     }
   };
 
-  // console.log(item);
+  console.log(item);
   return (
     <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border rounded-lg " >
       <div className="flex flex-col gap-3" onClick={() => navigate(`/community/${item._id}`)}>
         <div className="flex gap-3">
           <p className="rounded-full border-gray-400 border-2 w-12 h-12"></p>
-          <div >
-            <h1 className="text-lg font-bold">{item.user.name}</h1>
-            <p className="text-blue-500">조회수 {item.views}</p>
+          <div className="grow flex items-center">
+            <div className="grow">
+              <h1 className="text-lg font-bold">{item.user.name}</h1>
+              <p className="text-blue-500">조회수 {item.views}</p>
+            </div>
+            <img className="w-10 h-10 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weatherIcon" />
           </div>
         </div>
         <div>
