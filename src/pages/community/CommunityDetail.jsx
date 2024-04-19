@@ -60,10 +60,8 @@ function CommunityDetail() {
   };
 
   const item = data?.item;
-  console.log(data);
-  console.log(item);
-
-
+  
+  
   const [image, setImage] = useState();
   useEffect(() => {
     async function getFiles() {
@@ -79,6 +77,9 @@ function CommunityDetail() {
     }
     getFiles();
   },[])
+  
+  // console.log(data);
+  // console.log(item);
 
   return (
     <div className="min-h-screen">
