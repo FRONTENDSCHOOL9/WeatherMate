@@ -59,7 +59,7 @@ function RecommendationPreview() {
     <div className="flex items-center justify-center w-full px-5">
       <div className="mt-10">
         <h1 className="text-xl mx-4 mb-7 font-bold">
-          지금 날씨에는 이 장소 추천해요
+          <strong className="text-primary">웨더메이트</strong> 의 추천장소
           <Link to="/location" className="ml-5">
             더보기
           </Link>

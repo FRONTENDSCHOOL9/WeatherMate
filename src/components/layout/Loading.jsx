@@ -8,7 +8,7 @@ function Loading() {
           alt="로딩 중"
           className="mx-auto mb-2 w-16 bg-primary"
         />
-        <p className="text-gray-600">로딩 중입니다</p>
+        <p className="text-gray-600 font-Ainmom text-2xl">로딩 중...</p>
       </div>
     </div>
   );

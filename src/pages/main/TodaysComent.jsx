@@ -4,6 +4,7 @@ import dummyData from '../../assets/WeatherData';
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
 /** 날씨에 따른 의상 추천 & 이미지 보여주기 */
 function TodaysComent() {
@@ -80,18 +81,27 @@ function TodaysComent() {
         <div className=" w-full ml-8 mt-[72px] ">
           {/* user name 받아와 저장해야합니다 */}
           <div className=" w-[350px] flex flex-wrap">
-            <p className="text-primary mb-3">
-              {sessionData && sessionData.useState && sessionData.useState.name
-                ? `${sessionData.useState.name} 님 안녕하세요?`
-                : '반갑습니다'}
-            </p>
+            <div className="text-primary text-2xl mb-3">
+              <div>
+                {sessionData &&
+                sessionData.useState &&
+                sessionData.useState.name
+                  ? `${sessionData.useState.name} 님 안녕하세요?`
+                  : '반갑습니다'}
+              </div>
+            </div>
 
             <p className="comment-text whitespace-normal truncate ">
               {recomendClothes}
             </p>
-            <p className="font-sans text-xs mt-3">
-              <Link to="/allcity">전국 날씨 한번에보기 → </Link>
-            </p>
+            <div className="font-sans text-base mt-3 ">
+              <Link to="/allcity">
+                <div className="flex px-3 py-1 items-center rounded border-primary border-2 text-slate-700">
+                  <p>전국날씨</p>
+                  <MdOutlineKeyboardArrowRight />
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
