@@ -15,8 +15,6 @@ function SignUp() {
     setError,
   } = useForm();
 
-
-
   const onSubmit = async formData => {
     try {
       formData.type = 'user';
@@ -113,7 +111,12 @@ function SignUp() {
           </p>
         )}
 
-        <label className="block text-gray-700 dark:text-gray-200 font-bold mb-2" htmlFor="profileImage">프로필 이미지</label>
+        <label
+          className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
+          htmlFor="profileImage"
+        >
+          프로필 이미지
+        </label>
         <input
           type="file"
           accept="image/*"
@@ -121,13 +124,9 @@ function SignUp() {
           placeholder="이미지를 선택하세요"
           {...register('profileImage')}
         />
-        
-
-
 
         <Submit>회원가입</Submit>
       </form>
-
     </>
   );
 }

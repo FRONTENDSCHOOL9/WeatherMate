@@ -80,8 +80,6 @@ function Location({ keyword }) {
     }
   }, [searchKeyword, contentID]);
 
-  console.log('zzzz', locationData);
-
   const formatDistance = distance => `${(distance / 1000).toFixed(1)} km`;
   const recoDefaultImg = '/defaultImg.svg';
 
@@ -201,7 +199,7 @@ function Location({ keyword }) {
               <Link key={index} to={`/location/${item.contentid}`}>
                 <h2 className="text-xl font-bold mb-2">{item.title}</h2>
                 <p className="">주소:{item.addr1}</p>
-                <p className="">동{item.addr2}</p>
+                <p className="">동:{item.addr2}</p>
                 <img
                   src={item.firstimage ? item.firstimage : recoDefaultImg}
                   alt="이미지1"
