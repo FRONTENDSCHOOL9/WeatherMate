@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 const API_SERVER = import.meta.env.VITE_API_SERVER;
-const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const REFRESH_URL = '/auth/refresh';
 
 function useCustomAxios() {
@@ -22,7 +21,7 @@ function useCustomAxios() {
     headers: {
       'content-type': 'application/json', // request 데이터 타입
       'accept': 'application/json',  // response 데이터 타입
-      'client-id': CLIENT_ID, // 프로젝트 식별을 위한 id
+      'client-id': '07-WeatherMate', // 프로젝트 식별을 위한 id
     }
   });
 
