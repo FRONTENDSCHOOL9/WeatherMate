@@ -12,7 +12,7 @@ function ReplyItem({item, handleDelete}) {
   console.log(item);
 
   return (
-    <div className="mt-3 p-5 bg-gray-200 border rounded flex gap-3">
+    <div className="mt-2 p-5 bg-gray-200 border rounded flex gap-3">
       <div className="rounded-full w-10 h-10 bg-indigo-200">
         
       </div>
