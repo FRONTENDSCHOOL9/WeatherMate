@@ -13,7 +13,7 @@ const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 const SEVER_KEY = import.meta.env.VITE_API_SERVER;
 
 function Location({ keyword }) {
-  const [locationData, setLocationData] = useState([]);
+  const [locationData, setLocationData] = useState([]); //
   const [locationReady, setLocationReady] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
@@ -23,7 +23,7 @@ function Location({ keyword }) {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const user = useRecoilValue(memberState);
-  const radius = '100000';
+  const radius = '200000';
   const { latitude, longitude } = useCurrentLocation();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function Location({ keyword }) {
         setIsLoading(true);
         try {
           const response = await axios.get(
-            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=6&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json`,
+            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=6&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `,
           );
           setLocationData(response.data.response.body.items.item);
           setIsLoading(false);
@@ -79,6 +79,8 @@ function Location({ keyword }) {
       fetchData();
     }
   }, [searchKeyword, contentID]);
+
+  console.log('zzzz', locationData);
 
   const formatDistance = distance => `${(distance / 1000).toFixed(1)} km`;
   const recoDefaultImg = '/defaultImg.svg';
@@ -198,8 +200,8 @@ function Location({ keyword }) {
               />
               <Link key={index} to={`/location/${item.contentid}`}>
                 <h2 className="text-xl font-bold mb-2">{item.title}</h2>
-                <p className="">{item.addr1}</p>
-
+                <p className="">주소:{item.addr1}</p>
+                <p className="">동{item.addr2}</p>
                 <img
                   src={item.firstimage ? item.firstimage : recoDefaultImg}
                   alt="이미지1"
@@ -214,7 +216,9 @@ function Location({ keyword }) {
                     <div className="bg-[#FFF387] w-[112px] h-[95px] flex flex-col gap-5">
                       <p className="text-center">거리</p>
                       <p className="text-xs text-center">
-                        {formatDistance(item.dist)}
+                        {isNaN(parseFloat(item.dist))
+                          ? '너무멀어요!'
+                          : formatDistance(parseFloat(item.dist))}
                       </p>
                     </div>
                     <div className="bg-primary w-[112px] h-[95px] flex flex-col gap-5">

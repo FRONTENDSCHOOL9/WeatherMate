@@ -1,4 +1,5 @@
-import KakaoMap from './KakaoMap';
+import LocationMap from '@pages/food/LocationMap';
+// import KakaoMap from './KakaoMap';
 
 function FoodMainPage() {
   return (
@@ -13,7 +14,7 @@ function FoodMainPage() {
         </div>
         <div>
           <p>현재 내 위치로 살펴보기</p>
-          <KakaoMap />
+          <LocationMap />
           <table className="table-auto">
             <thead>
               <tr>
