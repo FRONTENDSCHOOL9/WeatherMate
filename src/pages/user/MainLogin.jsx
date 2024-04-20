@@ -1,12 +1,12 @@
 /* eslint-disable */
 import React, { useEffect } from 'react';
 import { memberState } from '@recoil/atom.mjs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Button from '@components/layout/Button';
 import { gsap } from 'gsap';
 
-function userpage() {
+function MainLogin() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
