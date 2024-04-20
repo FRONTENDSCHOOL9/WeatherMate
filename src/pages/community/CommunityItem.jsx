@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { memberState } from "@recoil/atom.mjs";
 import {useNavigate} from 'react-router-dom';
@@ -6,6 +6,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import PropTypes from 'prop-types'
+import useCustomAxios from "@hooks/useCustomAxios.mjs";
 
 CommunityItem.propTypes = {
   item: PropTypes.object.isRequired
@@ -17,6 +18,7 @@ function CommunityItem({item}) {
 
   const user = useRecoilValue(memberState);
   const navigate = useNavigate();
+  const axios = useCustomAxios();
 
   localStorage.setItem("likeState",like)
 
@@ -32,20 +34,41 @@ function CommunityItem({item}) {
     }
   };
 
+  const [image, setImage] = useState();
+  useEffect(() => {
+    async function getFiles() {
+      try{
+        const res = await axios.get(`/files/07-WeatherMate/${item.image}`,{
+          responseType: 'blob'
+        })
+        const url = URL.createObjectURL(res.data)
+        setImage(url ? url : null)
+      }catch(error){
+        console.error(error)
+      }
+    }
+    getFiles();
+  },[])
+
   // console.log(item);
+
   return (
     <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border rounded-lg " >
       <div className="flex flex-col gap-3" onClick={() => navigate(`/community/${item._id}`)}>
         <div className="flex gap-3">
           <p className="rounded-full border-gray-400 border-2 w-12 h-12"></p>
-          <div >
-            <h1 className="text-lg font-bold">{item.user.name}</h1>
-            <p className="text-blue-500">조회수 {item.views}</p>
+          <div className="grow flex items-center">
+            <div className="grow">
+              <h1 className="text-lg font-bold">{item.user.name}</h1>
+              <p className="text-blue-500">조회수 {item.views}</p>
+            </div>
+            <img className="w-10 h-10 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weatherIcon" />
           </div>
         </div>
         <div>
           <div className="bg-gray-500 text-white rounded-md p-2 box-border">{item.content}</div>
-          <div>{item.image}</div>
+          <img src={image} alt="image" />
+          {/* <div>{item.image}</div> */}
         </div>
       </div>
       <div className="flex gap-2">
