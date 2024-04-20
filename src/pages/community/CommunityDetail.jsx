@@ -60,10 +60,8 @@ function CommunityDetail() {
   };
 
   const item = data?.item;
-  console.log(data);
-  console.log(item);
-
-
+  
+  
   const [image, setImage] = useState();
   useEffect(() => {
     async function getFiles() {
@@ -79,6 +77,9 @@ function CommunityDetail() {
     }
     getFiles();
   },[])
+  
+  // console.log(data);
+  // console.log(item);
 
   return (
     <div className="min-h-screen">
@@ -116,11 +117,11 @@ function CommunityDetail() {
                 </div>
 
                 <div>
-                  <div className="bg-gray-800 text-white rounded-md p-2 box-border">
-                    {item.content}
-                  </div>
                   <div>
-                    <img src={image} alt="" className=""/>
+                    <img src={image} alt="" className="w-full h-60"/>
+                  </div>
+                  <div className="bg-gray-400 text-white rounded-md p-2 box-border">
+                    {item.content}
                   </div>
                 </div>
               </div>
@@ -159,7 +160,7 @@ function CommunityDetail() {
             <div className="flex gap-2 items-center">
               <IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl" />
             </div>
-            <p className="text-orange-300">댓글 {item.replies.length}개</p>
+            <p className="text-orange-300">댓글 {item.replies ? item.replies.length : 0}개</p>
 
           </div>
 
