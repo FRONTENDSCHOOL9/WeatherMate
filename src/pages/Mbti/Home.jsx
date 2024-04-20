@@ -9,7 +9,7 @@ function Home() {
       className="bg-cover bg-center h-screen "
       style={{ backgroundImage: `url(${mbtibg})` }}
     >
-      <div className=" my-20 mx-10 flex gap-8 flex-col items-center  text-white">
+      <div className="mb-20 mx-10 flex gap-8 flex-col items-center  text-white">
         <h1 className="text-3xl font-bold  text-white">날씨 성격 테스트</h1>
         <p className="text-xl font-bold">
           날씨별 상황에 따라 내 행동을 골라보자!

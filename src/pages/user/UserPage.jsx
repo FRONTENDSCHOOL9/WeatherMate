@@ -25,6 +25,7 @@ function userpage() {
 
   const Edit = () => {
     console.log({ user });
+    console.log({ user });
   };
 
   const [user, setUser] = useRecoilState(memberState);
@@ -109,4 +110,5 @@ function userpage() {
   );
 }
 
-export default Userpage;
+export default userpage;
+// 이게 수정
