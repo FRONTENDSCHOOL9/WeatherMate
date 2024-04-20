@@ -18,10 +18,11 @@ function LocationDetailPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=testweb&contentId=${id}&serviceKey=${apiKey}&_type=json&defaultYN=Y&firstImageYN=Y`,
+          `https://apis.data.go.kr/B551011/KorService1/detailCommon1?MobileOS=ETC&MobileApp=testweb&contentId=${id}&serviceKey=${apiKey}&_type=json&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`,
         );
         setDetailData(response.data.response.body.items.item[0]);
-        console.log(response.data);
+        console.log('디테일데이터', response.data);
+        // 경미님 데이터는 여깄고 이걸로 확인하시면 됩니다.=> detailData 가 모든 정보 가지고 있음ㄷ
       } catch (error) {
         console.error(
           '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
