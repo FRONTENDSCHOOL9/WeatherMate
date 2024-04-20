@@ -55,6 +55,7 @@ const router = createBrowserRouter([
         path: 'location/:id',
         element: <LocationDetailPage />,
       },
+
       {
         path: 'mbti',
         element: <MbtiTest />,

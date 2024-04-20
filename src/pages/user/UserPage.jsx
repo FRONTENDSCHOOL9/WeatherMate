@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Button from '@components/layout/Button';
 
-function userpage() {
+function Userpage() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -86,4 +86,4 @@ function userpage() {
   );
 }
 
-export default userpage;
+export default Userpage;
