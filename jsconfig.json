@@ -12,7 +12,8 @@
       "@user/*": ["user/*"],
       "@location/*": ["location/*"],
       "@community/*": ["community/*"],
-      "@food/*": ["food/*"]
+      "@food/*": ["food/*"],
+      "@randing/*":["randing/*"]
     }
   }
 }

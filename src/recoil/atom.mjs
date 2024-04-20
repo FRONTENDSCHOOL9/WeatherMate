@@ -33,10 +33,10 @@ export const likeState = atom({
 export const memberState = atom({
   key: 'useState',
   default: {
-    id:'',
-    name:'',
-    email:'',
-    password:''
+    id: '',
+    name: '',
+    email: '',
+    password: ''
   },
   effects: [persistAtom],
 });

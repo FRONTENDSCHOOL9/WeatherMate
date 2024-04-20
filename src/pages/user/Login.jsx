@@ -41,7 +41,7 @@ function Login() {
       });
 
       alert(res.data.item.name + '님 반갑습니다');
-      navigate(location.state?.from ? location.state?.from : '/');
+      navigate(location.state?.from ? location.state?.from : '/home');
       console.log(res.data.item);
     } catch (err) {
       if (err.response?.data.errors) {

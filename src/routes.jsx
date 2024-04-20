@@ -13,6 +13,7 @@ import Login from '@pages/user/Login';
 import UserPage from '@pages/user/UserPage';
 import CommunityMain from './pages/community/CommunityMain';
 import LocationDetailPage from './pages/location/LocationDetailPage';
+
 import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
 import FoodMainPage from './pages/food/FoodMainPage';
@@ -53,10 +54,6 @@ const router = createBrowserRouter([
       {
         path: 'location',
         element: <LocationMainPage />,
-      },
-      {
-        path: 'allcity',
-        element: <AllCitiesWeather />,
       },
       {
         path: 'location/:id',

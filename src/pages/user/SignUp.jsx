@@ -31,7 +31,7 @@ function SignUp() {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.profileImage[0]);
 
-        const fileRes = await axios('/files', {
+        const fileRes = await axios('https://market-lion.koyeb.app/api/users', {
           method: 'post',
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -39,7 +39,7 @@ function SignUp() {
           data: imageFormData,
         });
 
-        formData.profileImage = fileRes.data.item.name;
+        formData.profileImage = fileRes.data.file.name;
       } else {
         delete formData.profileImage;
       }
@@ -115,6 +115,12 @@ function SignUp() {
           </p>
         )}
 
+        <label
+          className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
+          htmlFor="profileImage"
+        >
+          프로필 이미지
+        </label>
         <label
           className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
           htmlFor="profileImage"
