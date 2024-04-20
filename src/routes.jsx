@@ -13,15 +13,11 @@ import Login from '@pages/user/Login';
 import UserPage from '@pages/user/UserPage';
 import CommunityMain from './pages/community/CommunityMain';
 import LocationDetailPage from './pages/location/LocationDetailPage';
+
 import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
 import FoodMainPage from './pages/food/FoodMainPage';
 import ReplyList from './pages/community/ReplyList';
-import MainLogin from '@pages/user/MainLogin';
-import AllCitiesWeather from '@pages/main/AllCitiesWeather';
-import UserEdit from '@pages/user/UserEdit';
-import Edit from '@pages/user/Edit';
-
 
 const router = createBrowserRouter([
   {
@@ -54,10 +50,6 @@ const router = createBrowserRouter([
       {
         path: 'location',
         element: <LocationMainPage />,
-      },
-      {
-        path: 'allcity',
-        element: <AllCitiesWeather />,
       },
       {
         path: 'location/:id',
@@ -96,19 +88,7 @@ const router = createBrowserRouter([
         path: 'user/setting',
         element: <Setting />,
       },
-      {
-        path: 'user/edit',
-        element: <UserEdit/>,
-      },
-      {
-        path: 'edit',
-        element: <Edit/>,
-      },
     ],
-  },
-  {
-    path: 'main/login',
-    element: <MainLogin />,
   },
 ]);
 
