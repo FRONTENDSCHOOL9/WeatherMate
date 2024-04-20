@@ -25,6 +25,7 @@ function userpage() {
 
   const Edit = () => {
     console.log({ user });
+    console.log({ user });
   };
 
   const [user, setUser] = useRecoilState(memberState);

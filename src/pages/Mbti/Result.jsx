@@ -26,7 +26,7 @@ function Result() {
   return (
     <>
       <DetailPageHeader title={'날씨별 성격 테스트'} />
-      <div className="m-8 flex gap-4 flex-col items-center">
+      <div className="m-6 flex gap-6 flex-col items-center">
         <h1 className="text-3xl font-bold">결과 보기</h1>
         <section
           style={{
@@ -35,14 +35,17 @@ function Result() {
             backgroundRepeat: 'no-repeat',
             width: '80vw',
             height: '50vh',
+            borderRadius: '10px',
           }}
         >
-          <div className="font-bold ">
+          <div className=" font-bold m-5 bg-white/40">
             {/* <p>{resultData.type}</p> */}
-            <p>{resultData.title}</p>
+            <p className="">{resultData.title}</p>
             <p>{resultData.desc}</p>
-          </div>
+          </div>{' '}
+          {/* <img src={resultData.image} className="z-10" /> */}
         </section>
+
         <button
           onClick={() => navigate('/mbti')}
           className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
