@@ -26,6 +26,7 @@ function ReplyList() {
     if (confirm('후기를 삭제하시겠습니까?')) {
       await axios.delete(`/posts/${post._id}/replies/${reply_id}`);
       navigate(`/community/${_id}`)
+      refetch()
     }
   }
 
