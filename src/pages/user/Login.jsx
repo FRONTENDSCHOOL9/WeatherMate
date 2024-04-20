@@ -21,7 +21,7 @@ function Login() {
   } = useForm({
     values: {
       email: 'gmltjs6346pk@naver.com',
-      password: '11111111',
+      password: '123123123',
     },
   });
 
@@ -41,7 +41,7 @@ function Login() {
       });
 
       alert(res.data.item.name + '님 반갑습니다');
-      navigate(location.state?.from ? location.state?.from : '/');
+      navigate(location.state?.from ? location.state?.from : '/home');
       console.log(res.data.item);
     } catch (err) {
       if (err.response?.data.errors) {
@@ -56,7 +56,7 @@ function Login() {
 
   return (
     <>
-      <nav className='h-screen'>
+      <nav className="h-screen">
         <h2>로그인</h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -102,6 +102,7 @@ function Login() {
           </Link>
         </form>
       </nav>
+      <div>충돌발생</div>
     </>
   );
 }
