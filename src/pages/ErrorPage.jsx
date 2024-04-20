@@ -4,7 +4,7 @@ function ErrorPage() {
   return (
     <>
       <div className="container mt-3">
-        <p>요청하신 페이지를 찾을 수 없습니다.</p>
+        <img src="error.png" />
       </div>
       <Footer />
     </>
