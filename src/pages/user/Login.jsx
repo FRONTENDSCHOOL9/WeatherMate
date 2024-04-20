@@ -56,7 +56,7 @@ function Login() {
 
   return (
     <>
-      <>
+      <nav className='h-screen'>
         <h2>로그인</h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -101,7 +101,7 @@ function Login() {
             회원가입
           </Link>
         </form>
-      </>
+      </nav>
     </>
   );
 }
