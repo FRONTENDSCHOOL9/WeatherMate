@@ -17,11 +17,10 @@ import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
 import FoodMainPage from './pages/food/FoodMainPage';
 import ReplyList from './pages/community/ReplyList';
-import MainLogin from '@pages/user/MainLogin';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import UserEdit from '@pages/user/UserEdit';
 import Edit from '@pages/user/Edit';
-
+import RandingPage from '@pages/main/Randing';
 
 const router = createBrowserRouter([
   {
@@ -31,8 +30,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <RandingPage />,
+      },
+      {
+        path: '/home',
         element: <MainPage />,
       },
+
       {
         path: 'community',
         element: <CommunityMain />,
@@ -98,17 +102,13 @@ const router = createBrowserRouter([
       },
       {
         path: 'user/edit',
-        element: <UserEdit/>,
+        element: <UserEdit />,
       },
       {
         path: 'edit',
-        element: <Edit/>,
+        element: <Edit />,
       },
     ],
-  },
-  {
-    path: 'main/login',
-    element: <MainLogin />,
   },
 ]);
 
