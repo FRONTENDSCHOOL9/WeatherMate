@@ -47,7 +47,7 @@ function MainLogin() {
   }, []);
 
   return (
-    <nav className=" flex items-center justify-center h-screen ">
+    <nav className=" flex items-center justify-center h-screen">
       <div className="text-center w-[40%] flex flex-col gap-y-8">
         <div>
           <h2 className="font-TTLaundryGothicB text-xl text-primary">

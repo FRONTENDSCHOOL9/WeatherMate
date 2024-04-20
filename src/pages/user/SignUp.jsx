@@ -13,13 +13,7 @@ function SignUp() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm({
-    values: {
-      name: '전희선',
-      email: 'gmltjs6346pk@naver.com',
-      password: '123123123',
-    },
-  });
+  } = useForm();
 
   const onSubmit = async formData => {
     try {
@@ -31,24 +25,25 @@ function SignUp() {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.profileImage[0]);
 
-        const fileRes = await axios('/files', {
+        const fileRes = await axios('https://market-lion.koyeb.app/api/users', {
           method: 'post',
           headers: {
             'Content-Type': 'multipart/form-data',
-            'client-id': '07-WeatherMate',
           },
           data: imageFormData,
         });
 
-        formData.profileImage = fileRes.data.item.name;
+        formData.profileImage = fileRes.data.file.name;
       } else {
         delete formData.profileImage;
       }
-      const res = await axios.post('/users', formData);
+      const res = await axios.post(
+        'https://market-lion.koyeb.app/api/users',
+        formData,
+      );
       alert(res.data.item.name + '님 회원가입이 완료 되었습니다.');
       navigate('/user/login');
     } catch (err) {
-      console.log(err);
       if (err.response?.data.errors) {
         err.response?.data.errors.forEach(error =>
           setError(error.path, { message: error.msg }),
@@ -60,7 +55,7 @@ function SignUp() {
   };
 
   return (
-    <nav className="h-screen">
+    <>
       <h2>회원가입</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -132,7 +127,7 @@ function SignUp() {
 
         <Submit>회원가입</Submit>
       </form>
-    </nav>
+    </>
   );
 }
 
