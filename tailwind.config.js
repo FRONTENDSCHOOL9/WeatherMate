@@ -11,6 +11,7 @@ export default {
         'sans': ['Noto Sans', 'sans-serif'],
         'Ainmom': ['Ainmom', 'sans-serif'],
         'UhBeeKang-Ja': ['UhBeeKang-Ja', 'sans-serif'],
+        'TTLaundryGothicB': ['TTLaundryGothicB', 'sans-serif']
       },
       colors: {
         'my-color': '#00FF7F',
@@ -25,7 +26,8 @@ export default {
         'gray_04': '#666',
         'black': '#000',
         'white': '#fff',
-        'kakao': '#FEE500'
+        'kakao': '#FEE500',
+        'kakao-lable': '#191919'
       },
     },
   },
