@@ -117,11 +117,11 @@ function CommunityDetail() {
                 </div>
 
                 <div>
-                  <div className="bg-gray-800 text-white rounded-md p-2 box-border">
-                    {item.content}
-                  </div>
                   <div>
-                    <img src={image} alt="" className=""/>
+                    <img src={image} alt="" className="w-full h-60"/>
+                  </div>
+                  <div className="bg-gray-400 text-white rounded-md p-2 box-border">
+                    {item.content}
                   </div>
                 </div>
               </div>
