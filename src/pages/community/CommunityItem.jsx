@@ -34,15 +34,19 @@ function CommunityItem({item}) {
     }
   };
 
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
   useEffect(() => {
     async function getFiles() {
       try{
-        const res = await axios.get(`/files/07-WeatherMate/${item.image}`,{
-          responseType: 'blob'
-        })
-        const url = URL.createObjectURL(res.data)
-        setImage(url ? url : null)
+        if(item.image){
+          const res = await axios.get(`/files/07-WeatherMate/${item.image}`,{
+            responseType: 'blob'
+          })
+          const url = URL.createObjectURL(res.data)
+          setImage(url)
+        }else{
+          setImage(null)
+        }
       }catch(error){
         console.error(error)
       }
