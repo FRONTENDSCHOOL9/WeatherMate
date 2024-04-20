@@ -3,6 +3,7 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import ReplyItem from "./ReplyItem"
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import ReplyNew from "./ReplyNew"
+import { useEffect, useState } from "react";
 
 
 function ReplyList() {
@@ -11,7 +12,9 @@ function ReplyList() {
   const { _id } = useParams();
   const axios = useCustomAxios();
 
-  const { data } = useQuery({
+  const [newReply, setNewReply] = useState([]);
+
+  const { data,refetch } = useQuery({
     queryKey: ['posts'],
     queryFn: () =>
       axios.get(`/posts/${_id}`),
@@ -25,13 +28,19 @@ function ReplyList() {
       navigate(`/community/${_id}`)
     }
   }
+
+  useEffect(() => {
+    console.log('댓글:', newReply)
+    refetch()
+  },[newReply])
+
   
   const replyList = data?.item?.replies
-  console.log(replyList);
+
 
   return (
     <div className="px-5">
-      <ReplyNew />
+      <ReplyNew newReply={newReply} setNewReply={setNewReply}/>
       {replyList && replyList.map((e) => <ReplyItem key={e._id} item={e} handleDelete={handleDelete}/>)} 
     </div>
   )

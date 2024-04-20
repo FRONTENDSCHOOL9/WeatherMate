@@ -18,7 +18,7 @@ function KakaoShareButton(data) {
       objectType: 'feed',
       content: {
         title: '🌤️날씨 성격 테스트🌤️',
-        description: `나는 ${data.data.id}입니다.`,
+        description: ` ${data.data.title}`,
         imageUrl: url + data.data.image,
         link: {
           mobileWebUrl: resultUrl,

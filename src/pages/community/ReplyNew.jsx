@@ -7,15 +7,17 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import Submit from "@components/layout/Submit";
 
 ReplyNew.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
+  newReply: PropTypes.array,
+  setNewReply: PropTypes.func
 }
 
-function ReplyNew({item}) {
+function ReplyNew({newReply, setNewReply}) {
   const navigate = useNavigate();
   const axios = useCustomAxios();
   const {_id} = useParams();
   const user = useRecoilValue(memberState)
-  const {register, handleSubmit, formState: {errors}, } = useForm();
+  const {register, handleSubmit, formState: {errors}, reset} = useForm();
   
   const handleReply = () => {
     if (!user) {
@@ -25,18 +27,15 @@ function ReplyNew({item}) {
       gotologin && navigate('/user/login');
     } else {
       console.log(_id);
-      navigate(`/community/${item._id}`);
+      navigate(`/community/${_id}`);
     }
   };
 
   const onSubmit = async (formData) => {
-    try{
       const reply = await axios.post(`/posts/${_id}/replies`,formData)
+      setNewReply([...newReply, reply.data.item])
       navigate(`/community/${_id}`)
-      console.log(reply);
-    }catch(error){
-      console.error(error)
-    }
+      reset();
   }
 
   return (
