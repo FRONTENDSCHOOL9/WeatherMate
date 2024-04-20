@@ -66,12 +66,12 @@ function CommunityItem({item}) {
               <h1 className="text-lg font-bold">{item.user.name}</h1>
               <p className="text-blue-500">조회수 {item.views}</p>
             </div>
-            <img className="w-10 h-10 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weatherIcon" />
+            {item.title && <img className="w-10 h-10 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weatherIcon" />}
           </div>
         </div>
         <div>
           <div className="bg-gray-500 text-white rounded-md p-2 box-border">{item.content}</div>
-          <img src={image} alt="image" />
+          {image && <img src={image} alt="image" />}
           {/* <div>{item.image}</div> */}
         </div>
       </div>

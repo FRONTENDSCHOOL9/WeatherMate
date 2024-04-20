@@ -62,15 +62,19 @@ function CommunityDetail() {
   const item = data?.item;
   
   
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
   useEffect(() => {
     async function getFiles() {
       try{
-        const res = await axios.get(`/files/07-WeatherMate/${data.item.image}`,{
-          responseType: 'blob'
-        })
-        const url = URL.createObjectURL(res.data)
-        setImage(url)
+        if(item.image){
+          const res = await axios.get(`/files/07-WeatherMate/${data.item.image}`,{
+            responseType: 'blob'
+          })
+          const url = URL.createObjectURL(res.data)
+          setImage(url)
+        }else{
+          setImage(null)
+        }
       }catch(error){
         console.error(error)
       }
@@ -111,14 +115,14 @@ function CommunityDetail() {
                     <p className="grow text-sm">조회수 {item.views}</p>
                   </div>
                   <div className="flex flex-col items-center justify-center">
-                    <img className="w-12 h-12 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="" />
+                    {item.title && <img className="w-12 h-12 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weather" />}
                     {/* <p className="text-blue-300">{item.title}</p> */}
                   </div>
                 </div>
 
                 <div>
                   <div>
-                    <img src={image} alt="" className="w-full h-60"/>
+                    {image && <img src={image} alt="" className="w-full h-60"/>}
                   </div>
                   <div className="bg-gray-400 text-white rounded-md p-2 box-border">
                     {item.content}
