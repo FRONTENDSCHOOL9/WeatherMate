@@ -22,7 +22,6 @@ import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 import UserEdit from '@pages/user/UserEdit';
 import Edit from '@pages/user/Edit';
 
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -69,11 +68,15 @@ const router = createBrowserRouter([
         element: <MbtiTest />,
       },
       {
+        path: 'mbti',
+        element: <MbtiTest />,
+      },
+      {
         path: 'mbti/question',
         element: <Question />,
       },
       {
-        path: 'mbti/result',
+        path: 'mbti/result/',
         element: <Result />,
       },
       {
@@ -98,11 +101,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'user/edit',
-        element: <UserEdit/>,
+        element: <UserEdit />,
       },
       {
         path: 'edit',
-        element: <Edit/>,
+        element: <Edit />,
       },
     ],
   },

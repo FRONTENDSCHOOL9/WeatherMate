@@ -41,7 +41,7 @@ function KakaoShareButton(data) {
   return (
     <button
       onClick={shareKakao}
-      className="rounded bg-primary px-4 py-2 font-bold hover:bg-sub_sal text-white "
+      className="rounded bg-kakao px-4 py-2 font-bold hover:bg-sub_sal text-white "
     >
       카카오톡 공유하기
     </button>
