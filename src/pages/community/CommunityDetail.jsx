@@ -1,12 +1,9 @@
 import { Outlet, useParams } from 'react-router-dom';
 import CommunityHeader from './CommunityHeader';
 import { useEffect, useRef, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { memberState,likeState } from '@recoil/atom.mjs';
+import { useRecoilValue } from 'recoil';
+import { memberState } from '@recoil/atom.mjs';
 import { useNavigate } from 'react-router-dom';
-import { FaRegHeart } from 'react-icons/fa';
-import { FaHeart } from 'react-icons/fa';
-import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import { FaArrowLeft } from 'react-icons/fa';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useQuery } from '@tanstack/react-query';
@@ -16,25 +13,25 @@ import Button from '@components/layout/Button';
 function CommunityDetail() {
   const navigate = useNavigate();
   const user = useRecoilValue(memberState);
-  const [like, setLike] = useRecoilState(likeState);
+  // const [like, setLike] = useRecoilState(likeState);
   const { _id } = useParams();
   const axios = useCustomAxios();
   
-  const [clicked, setClicked] = useState(false);
+  // const [clicked, setClicked] = useState(false);
 
-  localStorage.setItem("likeState",like)
+  // localStorage.setItem("likeState",like)
 
-  const handleLikeBTN = () => {
-    if (!user) {
-      const gotologin = confirm(
-        '로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?',
-      );
-      gotologin && navigate('/user/login');
-    } else {
-      clicked ? (setClicked(false), setLike(like !== 0 && like-1)) : (setClicked(true),setLike(like+1));
-      localStorage.setItem("likeState",like)
-    }
-  };
+  // const handleLikeBTN = () => {
+  //   if (!user) {
+  //     const gotologin = confirm(
+  //       '로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?',
+  //     );
+  //     gotologin && navigate('/user/login');
+  //   } else {
+  //     clicked ? (setClicked(false), setLike(like !== 0 && like-1)) : (setClicked(true),setLike(like+1));
+  //     localStorage.setItem("likeState",like)
+  //   }
+  // };
 
   let firstRender = useRef(true);
 
@@ -134,7 +131,7 @@ function CommunityDetail() {
                 <p className="grow text-gray-400">작성일시 {item.createdAt}</p>
                 <div className="flex grow-0 gap-1">
                   <Button
-                    className="bg-indigo-400 p-1 rounded-md"
+                    className="bg-indigo-400 px-2 py-1 rounded-md"
                     onClick={() => navigate('/community')}
                   >
                     목록
@@ -142,7 +139,7 @@ function CommunityDetail() {
                   {user?._id === item.user._id && (
                     <div className='flex gap-1'>
                       {/* <Button className="bg-gray-500 p-1 rounded-md" onClick={handleDelete}>수정</Button> */}
-                      <Button className="bg-red-500 p-1 rounded-md" onClick={handleDelete}>삭제</Button>
+                      <Button className="bg-red-500 px-2 py-1 rounded-md" onClick={handleDelete}>삭제</Button>
                     </div>
                   )}
                 </div>
@@ -150,23 +147,14 @@ function CommunityDetail() {
             </section>
           )}
 
-          <div className="mt-3 flex gap-2">
-
-            <button onClick={handleLikeBTN} className="flex gap-2 items-center">
+            {/* <button onClick={handleLikeBTN} className="flex gap-2 items-center">
               {clicked ? (
                 <FaHeart className="text-orange-300 text-2xl" />
               ) : (
                 <FaRegHeart className="text-orange-300 text-2xl" />
               )}
             </button>
-            <p className="text-orange-300">좋아요 {like}</p>
-
-            <div className="flex gap-2 items-center">
-              <IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl" />
-            </div>
-            <p className="text-orange-300">댓글 {item.replies ? item.replies.length : 0}개</p>
-
-          </div>
+            <p className="text-orange-300">좋아요 {like}</p> */}
 
         </div>
 
