@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import Button from '@components/layout/Button';
 import {gsap} from 'gsap';
 
-function userpage(){
+function MainLogin(){
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -68,4 +68,4 @@ function userpage(){
   );
 }
 
-export default userpage;
+export default MainLogin;

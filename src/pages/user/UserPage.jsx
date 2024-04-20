@@ -32,13 +32,14 @@ function userpage(){
   const [user, setUser] = useRecoilState(memberState);
 
   return (
-    <div className='min-h-screen'>
-      <nav className=" flex items-center justify-center h-screen">
-        {/* <div>
-          <Link to="/">
+
+      <nav>
+        <div>
+          <a href="/">
+            {/* 로고 이미지 넣을 자리 */}
             <span>로고(홈으로)</span>
-          </Link>
-        </div> */}
+          </a>
+        </div>
 
         <div>
           { user ? (
@@ -60,26 +61,25 @@ function userpage(){
 
 
                 <Button onClick={() => navigate('/user/Setting')}>설정</Button>
-                <Button onClick={ () => navigate('/user/edit') }>수정</Button>
+                <Button onClick={ Edit }>수정</Button>
 
 
             </div>
 
             
           ) : (
-            <div className='text-center flex flex-col gap-y-8'>
+            <div>
               <h2>로그인 후 이용할 수 있어요</h2>
               <p>원활한 서비스 사용을 위해 로그인을 해주세요!</p>
-              <button className='bg-primary py-1 text-base font-medium' onClick={ () => navigate('/user/Login') }>로그인</button>
-              <button className="bg-white border-2 border-primary hover:primary py-1 text-base font-medium" onClick={ () => navigate('/user/SignUp') }>회원가입</button>
-              <button className="bg-kakao py-1 text-base text-kakao-lable font-medium" onClick={handleLogin}>카카오로 시작하기</button>
-              <button className='bg-white text-gray-700 text-sm' onClick={ () => navigate('/') }>웨더메이트 둘러보기</button>
+              <Button onClick={ () => navigate('/user/Login') }>로그인</Button>
+              <Button onClick={ () => navigate('/user/SignUp') }>회원가입</Button>
+              <Button onClick={handleLogin}>카카오로 시작하기</Button>
             </div>
             
           ) }
         </div>
       </nav>
-      </div>
+
 
   );
 }
