@@ -98,7 +98,7 @@ function CommunityDetail() {
       </div>
 
       <div className="px-5">
-        <div className="pb-3">
+        <div>
           {item && (
             <section className="py-4">
               <div
@@ -109,7 +109,7 @@ function CommunityDetail() {
                   <p className="rounded-full border w-12 h-12">{item.user.profile}</p>
                   <div className="grow">
                     <h1 className="text-lg font-bold">{item.user.name}</h1>
-                    <p className="grow text-sm">조회수 {item.views}</p>
+                    <p className="grow text-gray-400">{item.createdAt.substring(5,16)}</p>
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     {item.title && <img className="w-12 h-12 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weather" />}
@@ -128,7 +128,7 @@ function CommunityDetail() {
               </div>
 
               <div className="flex justify-center items-end mt-3 gap-1">
-                <p className="grow text-gray-400">작성일시 {item.createdAt}</p>
+                <p className="grow text-md font-bold text-orange-400">조회수 {item.views}</p>
                 <div className="flex grow-0 gap-1">
                   <Button
                     className="bg-indigo-400 px-2 py-1 rounded-md"

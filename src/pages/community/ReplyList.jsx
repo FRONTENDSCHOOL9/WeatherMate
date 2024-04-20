@@ -39,12 +39,12 @@ function ReplyList() {
 
   
   const replyList = data?.item?.replies
-  console.log(replyList);
+  // console.log(replyList);
 
   return (
     <div className="px-5">
       <ReplyNew newReply={newReply} setNewReply={setNewReply}/>
-      <div className="flex mt-1">
+      <div className="flex mt-2">
         <div className="flex gap-1 items-center">
           <FaHeart className="text-orange-300 text-2xl" />
           <p className="text-orange-300">좋아요</p>
