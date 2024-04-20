@@ -9,7 +9,7 @@ function CommunityPopularItem({data}) {
   const navigate = useNavigate();
 
   const itemViews = data.item.sort((a,b) => b.views-a.views).slice(0,3).map(item => 
-    <div key={item._id} className="bg-blue-400 rounded-md h-32 p-2 text-nowrap w-fit" onClick={() => navigate(`/community/${item._id}`)}>
+    <div key={item._id} className="bg-blue-400 rounded-md h-32 p-2 text-nowrap w-full" onClick={() => navigate(`/community/${item._id}`)}>
       <p>닉네임 : {item.user.name}</p>
       <p>내용 : {item.content}</p>
       <p>조회수 : {item.views}</p>
