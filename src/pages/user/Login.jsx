@@ -21,7 +21,7 @@ function Login() {
   } = useForm({
     values: {
       email: 'gmltjs6346pk@naver.com',
-      password: '11111111',
+      password: '123123123',
     },
   });
 
@@ -56,7 +56,7 @@ function Login() {
 
   return (
     <>
-      <nav className='h-screen'>
+      <nav className="h-screen">
         <h2>로그인</h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -102,8 +102,10 @@ function Login() {
           </Link>
         </form>
       </nav>
+      <div>충돌발생</div>
     </>
   );
 }
 
 export default Login;
+// 이게 수정

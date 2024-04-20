@@ -87,14 +87,14 @@ function TodaysComent() {
                 sessionData.useState &&
                 sessionData.useState.name
                   ? `${sessionData.useState.name} 님 안녕하세요?`
-                  : '반갑습니다'}
+                  : '환영해요!.'}
               </div>
             </div>
 
-            <p className="comment-text whitespace-normal truncate ">
+            <p className="comment-text whitespace-normal truncate w-full py-3 ">
               {recomendClothes}
             </p>
-            <div className="font-sans text-base mt-3 ">
+            <div className="font-sans text-base">
               <Link to="/allcity">
                 <div className="flex px-3 py-1 items-center rounded border-primary border-2 text-slate-700">
                   <p>전국날씨</p>

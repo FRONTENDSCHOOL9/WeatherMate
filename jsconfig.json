@@ -8,6 +8,7 @@
       "@hooks/*": ["hooks/*"],
       "@main/*": ["main/*"],
       "@Mbti/*": ["Mbti/*"],
+      "@Mbti/*": ["Mbti/*"],
       "@user/*": ["user/*"],
       "@location/*": ["location/*"],
       "@community/*": ["community/*"],
@@ -16,3 +17,4 @@
     }
   }
 }
+// 이게 수정 
