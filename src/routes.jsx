@@ -18,6 +18,10 @@ import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
 import FoodMainPage from './pages/food/FoodMainPage';
 import ReplyList from './pages/community/ReplyList';
+import MainLogin from '@pages/user/MainLogin';
+import AllCitiesWeather from '@pages/main/AllCitiesWeather';
+import UserEdit from '@pages/user/UserEdit';
+import Edit from '@pages/user/Edit';
 
 const router = createBrowserRouter([
   {
@@ -61,11 +65,15 @@ const router = createBrowserRouter([
         element: <MbtiTest />,
       },
       {
+        path: 'mbti',
+        element: <MbtiTest />,
+      },
+      {
         path: 'mbti/question',
         element: <Question />,
       },
       {
-        path: 'mbti/result',
+        path: 'mbti/result/',
         element: <Result />,
       },
       {
@@ -88,7 +96,19 @@ const router = createBrowserRouter([
         path: 'user/setting',
         element: <Setting />,
       },
+      {
+        path: 'user/edit',
+        element: <UserEdit />,
+      },
+      {
+        path: 'edit',
+        element: <Edit />,
+      },
     ],
+  },
+  {
+    path: 'main/login',
+    element: <MainLogin />,
   },
 ]);
 

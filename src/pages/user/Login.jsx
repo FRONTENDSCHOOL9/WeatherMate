@@ -102,6 +102,7 @@ function Login() {
           </Link>
         </form>
       </nav>
+      <div>충돌발생</div>
     </>
   );
 }

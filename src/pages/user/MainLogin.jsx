@@ -1,13 +1,18 @@
 /* eslint-disable */
 import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { memberState } from '@recoil/atom.mjs';
+import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { memberState } from '@recoil/atom.mjs';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Button from '@components/layout/Button';
 import { gsap } from 'gsap';
+import { gsap } from 'gsap';
 
-function MainLogin() {
+function userpage() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -23,13 +28,28 @@ function MainLogin() {
   const handleLogin = () => {
     window.location.href = kakaoURL;
   };
+  const Rest_api_key = '2fd33ea8cc22119f8666788667295bed'; //REST API KEY
+  const redirect_uri = 'http://localhost:5173/oauth'; //Redirect URI
+  // oauth 요청 URL
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+
+  const handleLogin = () => {
+    window.location.href = kakaoURL;
+  };
 
   const Edit = () => {
+    console.log({ user });
     console.log({ user });
   };
 
   const [user, setUser] = useRecoilState(memberState);
   useEffect(() => {
+    const floatTl = gsap.to('.comment-float', {
+      y: 10,
+      duration: 1,
+      repeat: -1,
+      yoyo: true,
+    });
     const floatTl = gsap.to('.comment-float', {
       y: 10,
       duration: 1,
@@ -85,6 +105,7 @@ function MainLogin() {
           </button>
         </div>
       </div>
+      <div>충돌발생</div>
     </nav>
   );
 }
