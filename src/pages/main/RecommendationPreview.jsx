@@ -67,7 +67,7 @@ function RecommendationPreview() {
 
         <div>
           {locationData && (
-            <div className="flex gap-4 font-UhBeeKang-Ja">
+            <div className="flex gap-4 font-sans text-sm">
               {locationData.map(item => (
                 <div key={item.contentid}>
                   <Link to={`/location/${item.contentid}`}>

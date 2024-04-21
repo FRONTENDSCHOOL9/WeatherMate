@@ -34,7 +34,7 @@ function MyLocationWeather() {
         try {
           const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
           const response = await axios.get(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&lang=KR`,
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&lang=kr`,
           );
           setUserWeather(response.data);
           setMyPlace(response.data.name);
@@ -53,53 +53,70 @@ function MyLocationWeather() {
     }
   };
 
-  console.log('didii', userWeather);
+  console.log('mylocationWeather:', userWeather);
   const defaultImgPath = '/01.svg'; // 디폴트 이미지 경로
-  const getKoreanWeatherDescription = englishDescription => {
-    switch (englishDescription) {
-      case 'Clear':
-        return '맑음';
-      case 'Clouds':
-        return '구름';
-      case 'Rain':
-        return '비';
-      case 'Drizzle':
-        return '이슬비';
-      case 'Thunderstorm':
-        return '천둥번개';
-      case 'Snow':
-        return '눈';
-      case 'Mist':
-        return '안개';
-      default:
-        return englishDescription;
-    }
-  };
+  // const getKoreanWeatherDescription = englishDescription => {
+  //   switch (englishDescription) {
+  //     case 'Clear':
+  //       return '맑음';
+  //     case 'Clouds':
+  //       return '구름';
+  //     case 'Rain':
+  //       return '비';
+  //     case 'Drizzle':
+  //       return '이슬비';
+  //     case 'Thunderstorm':
+  //       return '천둥번개';
+  //     case 'Snow':
+  //       return '눈';
+  //     case 'Mist':
+  //       return '안개';
+  //     case '':
+  //       return '흐림';
+  //     default:
+  //       return englishDescription;
+  //   }
+  // };
 
+  // const weatherImageMapping = {
+  //   맑음: '/02.svg',
+  //   'few clouds': '/uvi.svg',
+  //   'scattered clouds': '/uvi.svg',
+  //   'broken clouds': '/uvi.svg',
+  //   'shower rain': '/05.svg',
+  //   rain: '/06.svg',
+  //   thunderstorm: '/07.svg',
+  //   snow: '/08.svg',
+  //   mist: '/09.svg',
+  //   온흐림: '/uvi.svg',
+  //   // 추가적인 날씨 종류에 따른 매핑 추가 가능
+  // };
   const weatherImageMapping = {
-    맑음: '/01.svg',
-    'few clouds': '/02.svg',
-    'scattered clouds': '/03.svg',
-    'broken clouds': '/04.svg',
-    'shower rain': '/05.svg',
-    rain: '/06.svg',
-    thunderstorm: '/07.svg',
-    snow: '/08.svg',
-    mist: '/09.svg',
+    Clear: '/uvi.svg',
+    Clouds: '/manyClouds.svg',
+    Rain: '/rain.svg',
+    Drizzle: '/rain.svg',
+    Thunderstorm: '/thunderStorm.svg',
+    Snow: '/mainSnow.svg',
+    Mist: '/Mist.svg',
+    'overcast clouds': '/sun.svg',
     // 추가적인 날씨 종류에 따른 매핑 추가 가능
   };
 
   // userWeather가 존재하고, userWeather.weather 배열의 첫 번째 요소의 description이 있는 경우에만 이미지 경로를 설정
   const getImagePathForWeather = () => {
-    if (!userWeather) return defaultImgPath; // userWeather가 없으면 기본 이미지 반환
+    if (
+      !userWeather ||
+      !userWeather.weather ||
+      userWeather.weather.length === 0
+    )
+      return defaultImgPath; // userWeather나 userWeather.weather가 없으면 기본 이미지 반환
 
     const englishDescription = userWeather.weather[0].main; // 영어로된 날씨 설명 가져오기
-    const koreanDescription = getKoreanWeatherDescription(englishDescription); // 한글로 변환
 
-    // 한글로 된 날씨 설명에 해당하는 이미지 경로 반환
-    return weatherImageMapping[koreanDescription] || defaultImgPath;
+    // 영어로 된 날씨 설명에 해당하는 이미지 경로 반환
+    return weatherImageMapping[englishDescription] || defaultImgPath;
   };
-
   const imagePath = getImagePathForWeather(); // getImagePathForWeather 함수 호출하여 imagePath 설정
 
   // 새로고침 함수
@@ -129,7 +146,11 @@ function MyLocationWeather() {
         <Loading />
       ) : (
         <>
-          <img src={imagePath} alt="weather svg " className="mb-3" />
+          <img
+            src={imagePath}
+            alt="weather svg "
+            className="mb-3 w-[100px] h-[100px] bg-cover"
+          />
           {userWeather && (
             <>
               <div className="text-4xl font-bold  ">
@@ -139,20 +160,14 @@ function MyLocationWeather() {
                 {userWeather.weather[0].description}
               </p>
               <h2 className="text-2xl font-bold mb-4">
-                {myPlace}, {userWeather.sys.country}
+                {myPlace},{/* {userWeather.sys.country} */}
               </h2>
 
-              <p className="mb-3 font-bold">
-                생성된 시간 : {unixToHumanTime(userWeather.dt)}
-              </p>
+              <p className="mb-3">기준 : {unixToHumanTime(userWeather.dt)}</p>
               <div className="flex gap-5 mb-20">
                 <p className="flex flex-col justify-center items-center">
-                  <img src="01.svg" className="w-5 h-5" />
-                  {unixToHumanTime(userWeather.sys.sunrise)}
-                </p>
-                <p className="flex flex-col justify-center items-center">
-                  {/* 날씨 이미지  */}
-                  <img src="02.svg" className="w-5 h-5" />
+                  <img src="sunset.svg" className="w-5 h-5" />
+                  {unixToHumanTime(userWeather.sys.sunrise)} ,
                   {unixToHumanTime(userWeather.sys.sunset)}
                 </p>
               </div>
