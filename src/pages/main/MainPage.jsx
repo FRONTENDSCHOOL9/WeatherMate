@@ -13,19 +13,27 @@ import WeatherDetail from './weatherDetail';
 
 function MainWeather() {
   return (
-    <div className="min-h-[1700px] font-sans overflow-hidden sm:px-60">
+    <div className=" font-sans overflow-hidden sm:px-60">
       <div className="w-full">
         <div>
           <div className="w-full min-h-[800px]">
-            <TodaysComent />
-            <MyLocationWeather />
-            <WeatherByTimeZone />
-            <ToTheTopButton />
-            <WeatherDetail />
+            <div className="flex flex-col sm:flex-row sm:flex-wrap">
+              <div className="sm:w-[50%]">
+                <TodaysComent />
+                <MyLocationWeather />
+              </div>
+              <div className="sm:order-3 w-[100%]">
+                <WeatherByTimeZone />
+              </div>
+              <div className="sm:w-[50%] sm:mt-40">
+                <WeatherDetail />
+                <RecommendationPreview />
+                <PreviewMbti />
+              </div>
+            </div>
           </div>
-          <RecommendationPreview />
-          <PreviewMbti />
         </div>
+        <ToTheTopButton />
       </div>
     </div>
   );
