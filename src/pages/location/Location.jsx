@@ -81,7 +81,7 @@ function Location({ keyword }) {
   }, [searchKeyword, contentID]);
 
   const formatDistance = distance => `${(distance / 1000).toFixed(1)} km`;
-  const recoDefaultImg = '/defaultImg.svg';
+  const recoDefaultImg = '/littleCloud.svg';
 
   const fetchNextPage = async () => {
     try {
@@ -137,14 +137,14 @@ function Location({ keyword }) {
   };
 
   const options = [
-    { id: '12', label: '관광지' },
-    { id: '14', label: '문화시설' },
-    { id: '15', label: '축제공연행사' },
-    { id: '25', label: '여행지' },
-    { id: '28', label: '레포츠' },
-    { id: '32', label: '숙박' },
-    { id: '38', label: '비오는 날 쇼핑어때요?' },
-    { id: '39', label: '음식점' },
+    { id: '12', label: '관광지', img_src: 'tour.svg' },
+    { id: '14', label: '문화시설', img_src: 'communityplace.svg' },
+    { id: '15', label: '행사', img_src: 'festival.svg' },
+    { id: '25', label: '여행지', img_src: 'travel.svg' },
+    { id: '28', label: '레포츠', img_src: 'reports.svg' },
+    { id: '32', label: '숙박', img_src: 'hotel.svg' },
+    { id: '38', label: '쇼핑', img_src: 'shopping.svg' },
+    { id: '39', label: '음식점', img_src: 'food.svg' },
   ];
 
   const getCategoryText = cat2 => {
@@ -172,17 +172,21 @@ function Location({ keyword }) {
 
   return (
     <div className="container mx-auto p-4 min-h-screen">
-      <h1 className="text-3xl mb-2">추천 키워드</h1>
-      <div className="flex flex-wrap justify-center items-center gap-5 mb-5">
-        {options.map(option => (
-          <LocationKeywords
-            key={option.id}
-            id={option.id}
-            label={option.label}
-            onClick={setContentID}
-          />
+      <p className="mb-3 text-xs">웨더메이트 추천 키워드</p>
+      <div className="flex flex-wrap justify-center items-center ">
+        {options.map((option, index) => (
+          <div className="w-1/4" key={option.id}>
+            {/* 각 컴포넌트를 1/4 너비로 설정 */}
+            <LocationKeywords
+              id={option.id}
+              label={option.label}
+              img_src={option.img_src}
+              onClick={setContentID}
+            />
+          </div>
         ))}
       </div>
+      <hr className="w-full border-t border-gray-300 mb-8" />
       {isLoading ? (
         <Loading />
       ) : (
@@ -190,16 +194,15 @@ function Location({ keyword }) {
           {locationData?.map((item, index) => (
             <div
               className="p-4 rounded-md shadow-md overflow-y-hidden"
-              key={index}
+              key={index} // 이 위치에 고유한 키를 제공합니다.
             >
               <IoIosBookmark
                 className="text-sub_sal w-[35px] h-[35px] ml-auto"
                 onClick={() => handleBookMark(item.contentid)}
               />
-              <Link key={index} to={`/location/${item.contentid}`}>
+              <Link to={`/location/${item.contentid}`}>
                 <h2 className="text-xl font-bold mb-2">{item.title}</h2>
                 <p className="">주소:{item.addr1}</p>
-                <p className="">동:{item.addr2}</p>
                 <img
                   src={item.firstimage ? item.firstimage : recoDefaultImg}
                   alt="이미지1"
@@ -208,9 +211,6 @@ function Location({ keyword }) {
 
                 <div className="flex w-[200px] box-border gap-3 mt-8">
                   <div className="flex justify-center items-center ml-auto gap-3">
-                    <div className="bg-white w-[112px] h-[95px] flex flex-col gap-5">
-                      <p className="text-center"></p>
-                    </div>
                     <div className="bg-[#FFF387] w-[112px] h-[95px] flex flex-col gap-5">
                       <p className="text-center">거리</p>
                       <p className="text-xs text-center">

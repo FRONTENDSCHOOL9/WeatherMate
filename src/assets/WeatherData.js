@@ -13,4 +13,3 @@ const dummyData = [
 
 export default dummyData;
 
-// 희선님 그려야 할 것 : 두개...
