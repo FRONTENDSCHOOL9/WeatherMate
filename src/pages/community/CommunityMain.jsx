@@ -54,15 +54,17 @@ function CommunityMain() {
   };
 
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
-  
+
   // console.log(data.item);
   
   return (
+
     <div className="min-h-screen min-w-96">
       <div className="px-5 box-border">
         <div className="flex items-center justify-center border-b-4">
           <CommunityHeader title={'커뮤니티'}/>
           <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold ">새 글쓰기</button>
+
         </div>
       </div>
       <CommunityPopularItem data={data}/>
