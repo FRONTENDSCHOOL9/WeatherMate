@@ -6,8 +6,8 @@ import MbtiTest from '@pages/Mbti/MbtiTest';
 import ErrorPage from '@pages/ErrorPage';
 import CommunityNew from '@pages/community/CommunityNew';
 import CommunityDetail from './pages/community/CommunityDetail';
-import Question from './pages/Mbti/Question';
-import Result from './pages/Mbti/Result';
+import MbtiQuestion from './pages/Mbti/MbtiQuestion';
+import MbtiResult from './pages/Mbti/MbtiResult';
 import SignUp from '@pages/user/SignUp';
 import Login from '@pages/user/Login';
 import UserPage from '@pages/user/UserPage';
@@ -64,16 +64,12 @@ const router = createBrowserRouter([
         element: <MbtiTest />,
       },
       {
-        path: 'mbti',
-        element: <MbtiTest />,
-      },
-      {
         path: 'mbti/question',
-        element: <Question />,
+        element: <MbtiQuestion />,
       },
       {
         path: 'mbti/result/',
-        element: <Result />,
+        element: <MbtiResult />,
       },
       {
         path: 'user/mypage',
@@ -112,4 +108,4 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
-// 이게 수정 
+// 이게 수정

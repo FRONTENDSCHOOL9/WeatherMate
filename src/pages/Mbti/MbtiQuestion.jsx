@@ -4,7 +4,7 @@ import MbtiQuestionData from '@assets/MbtiQuestionData';
 
 import DetailPageHeader from '@components/layout/DetailPageHeader';
 
-function Question() {
+function MbtiQuestion() {
   const [questionNo, setQuestionNo] = React.useState(0);
   const [totalScore, setTotalScore] = React.useState([
     { id: 'EI', score: 0 },
@@ -52,27 +52,27 @@ function Question() {
 
   return (
     <>
-      <DetailPageHeader title={'날씨 테스트'} />
-      <div className="my-10 mx-10 flex gap-10 flex-col items-center">
-        <h1 className="text-3xl font-bold">날씨 성격 테스트</h1>
-        <div className="w-full bg-gray-200 min-w-96 rounded-full dark:bg-gray-700">
+      <DetailPageHeader title={'날씨 성격 테스트'} />
+      <div className="my-10 mx-10 flex gap-10 flex-col items-center font-TTLaundryGothicB">
+        <h1 className="text-3xl font-bold"></h1>
+        <div className="w-full bg-gray-200 min-w-96 rounded-full ">
           <div
-            className="bg-primary text-xs font-medium text-white text-center py-0.5 rounded-full"
+            className="bg-primary text-xs  text-white text-center py-0.5 rounded-full"
             style={{ width: `${progress * 100}%` }}
           >
             {`${questionNo + 1}/${MbtiQuestionData.length}`}
           </div>
         </div>
 
-        <div className=" min-w-96 border-4 font-bold rounded-lg p-10 border-sub_sal">
-          당신의 선택은? <br />
+        <div className=" min-w-96 border-4 text-xl text-gray-700 rounded-lg p-10 border-primary">
+          <p>당신의 선택은?</p> <br />
           {MbtiQuestionData[questionNo].title}
         </div>
         <button
           onClick={() =>
             handleClickButton(1, MbtiQuestionData[questionNo].type)
           }
-          className="min-w-96 rounded bg-primary p-5 font-bold active:bg-sub_sal text-black"
+          className="min-w-96 rounded bg-white border-2 p-2 text-lg text-gray-700 font-bold "
         >
           {MbtiQuestionData[questionNo].answer1}
         </button>
@@ -80,19 +80,19 @@ function Question() {
           onClick={() =>
             handleClickButton(0, MbtiQuestionData[questionNo].type)
           }
-          className="min-w-96 rounded bg-primary p-5 font-bold active:bg-sub_sal text-black "
+          className="min-w-96 rounded bg-white border-2 p-2 text-lg  text-gray-700 font-bold "
         >
           {MbtiQuestionData[questionNo].answer2}
         </button>
         <button
           onClick={handleback}
-          className="min-w-96 rounded bg-primary p-5 font-bold active:bg-sub_sal text-black "
+          className="min-w-96 rounded bg-white border-2 p-2 text-lg text-gray-700 font-bold "
         >
-          이전 문제로 돌아가기
+          이전 문제 다시 풀기
         </button>
       </div>
     </>
   );
 }
 
-export default Question;
+export default MbtiQuestion;
