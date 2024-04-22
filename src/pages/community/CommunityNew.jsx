@@ -89,53 +89,53 @@ function CommunityNew() {
           <div className="my-4 flex flex-col">
             <p className="text-lg font-bold">오늘의 날씨 선택</p>
             <div className="border mt-2 py-2 rounded-xl">
-              <div onClick={handleClick} className="grid-cols-6 gap- px-5 xl:grid-cols-2">
-                <button type="button"  >
+              <div onClick={handleClick} className="grid grid-cols-6 gap-1 px-2 lg:grid-cols-3">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
                     src="/Sun.svg"
                     alt="Sun"
                     data-weather="Sun"
-                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
                     src="/Cloudy.svg"
                     alt="Cloudy"
                     data-weather="Cloudy"
-                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
                     src="/Rainy.svg"
                     alt="Rainy"
                     data-weather="Rainy"
-                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
                     src="/Foggy.svg"
                     alt="Foggy"
                     data-weather="Foggy"
-                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
                     src="/Snow.svg"
                     alt="Snow"
                     data-weather="Snow"
-                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
                     src="/Wind.svg"
                     alt="Wind"
                     data-weather="Wind"
-                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
                   />
                 </button>
               </div>
