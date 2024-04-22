@@ -1,6 +1,5 @@
 import { Outlet, useParams } from 'react-router-dom';
 import CommunityHeader from './CommunityHeader';
-import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { memberState } from '@recoil/atom.mjs';
 import { useNavigate } from 'react-router-dom';
@@ -13,40 +12,24 @@ import Button from '@components/layout/Button';
 function CommunityDetail() {
   const navigate = useNavigate();
   const user = useRecoilValue(memberState);
-  // const [like, setLike] = useRecoilState(likeState);
   const { _id } = useParams();
   const axios = useCustomAxios();
   
-  // const [clicked, setClicked] = useState(false);
-
-  // localStorage.setItem("likeState",like)
-
-  // const handleLikeBTN = () => {
-  //   if (!user) {
-  //     const gotologin = confirm(
-  //       '로그인 후 이용 가능합니다. \n 로그인 하시겠습니까?',
-  //     );
-  //     gotologin && navigate('/user/login');
-  //   } else {
-  //     clicked ? (setClicked(false), setLike(like !== 0 && like-1)) : (setClicked(true),setLike(like+1));
-  //     localStorage.setItem("likeState",like)
-  //   }
-  // };
-
-  let firstRender = useRef(true);
-
-  useEffect(() => {
-    firstRender.current = false;
-  }, []);
+  // 사용하지 않는 속성 사용 취소
+  // let firstRender = useRef(true);
+  // useEffect(() => {
+  //   firstRender.current = false;
+  // }, []);
 
   const { data } = useQuery({
     queryKey: ['posts', _id],
     queryFn: () =>
       axios.get(`/posts/${_id}`, {
-        params: { incrementView: firstRender.current },
+        // params: { incrementView: firstRender.current }, -> 불필요 params 전달 취소
       }),
     select: response => response.data,
     suspense: true,
+    refetchOnWindowFocus: false // -> 변경된 부분만 refetch
   });
   
 
@@ -56,29 +39,28 @@ function CommunityDetail() {
     navigate('/community');
   };
 
+  // 이미지 재호출 불필요
+  // const [image, setImage] = useState(null);
+  // useEffect(() => {
+  //   async function getFiles() {
+  //     try{
+  //       if(item.image){
+  //         const res = await axios.get(`/files/07-WeatherMate/${data.item.image}`,{
+  //           responseType: 'blob'
+  //         })
+  //         const url = URL.createObjectURL(res.data)
+  //         setImage(url)
+  //       }else{
+  //         setImage(null)
+  //       }
+  //     }catch(error){
+  //       console.error(error)
+  //     }
+  //   }
+  //   getFiles();
+  // },[])
+            
   const item = data?.item;
-  
-  
-  const [image, setImage] = useState(null);
-  useEffect(() => {
-    async function getFiles() {
-      try{
-        if(item.image){
-          const res = await axios.get(`/files/07-WeatherMate/${data.item.image}`,{
-            responseType: 'blob'
-          })
-          const url = URL.createObjectURL(res.data)
-          setImage(url)
-        }else{
-          setImage(null)
-        }
-      }catch(error){
-        console.error(error)
-      }
-    }
-    getFiles();
-  },[])
-  
   // console.log(data);
   // console.log(item);
 
@@ -110,13 +92,12 @@ function CommunityDetail() {
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     {item.title && <img className="w-12 h-12 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weather" />}
-                    {/* <p className="text-blue-300">{item.title}</p> */}
                   </div>
                 </div>
 
                 <div className='grid'>
                   <div>
-                    {image && <img src={image} alt="" className="w-full h-60 max-w-fit"/>}
+                    {item.image && <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`} alt="" className="w-full h-60 max-w-fit"/>} {/*바로 불러오기*/}
                   </div>
                   <div className="bg-gray-400 text-white rounded-md p-2 box-border">
                     {item.content}
@@ -143,15 +124,6 @@ function CommunityDetail() {
               </div>
             </section>
           )}
-
-            {/* <button onClick={handleLikeBTN} className="flex gap-2 items-center">
-              {clicked ? (
-                <FaHeart className="text-orange-300 text-2xl" />
-              ) : (
-                <FaRegHeart className="text-orange-300 text-2xl" />
-              )}
-            </button>
-            <p className="text-orange-300">좋아요 {like}</p> */}
 
         </div>
 

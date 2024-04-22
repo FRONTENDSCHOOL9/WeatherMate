@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import CommunityHeader from './CommunityHeader';
@@ -61,17 +60,15 @@ function CommunityNew() {
 
   return (
     <div className="px-5 box-border min-h-screen min-w-96">
-      <Button
-        onClick={() => navigate('/community')}
-        className="absolute left-6 top-10"
-      >
-        <FaArrowLeft className="text-2xl" />
-      </Button>
-      <CommunityHeader title={'글 작성하기'} />
+      <div className="flex">
+        <Button onClick={() => navigate('/community')} className=""><FaArrowLeft className="text-2xl" /></Button>
+        <CommunityHeader title={'새 글쓰기'} />
+      </div>
       <br />
-      <form onSubmit={handleSubmit(onSubmit)} className="grid lg:grid-cols-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-3">
+
         <div>
-          <div className="flex">
+          <div className="flex gap-2">
             <label
               htmlFor="file"
               className="w-20 h-20 bg-blue-400 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white"
@@ -79,8 +76,8 @@ function CommunityNew() {
               <MdOutlineCameraAlt className="text-3xl" />
               사진 추가
             </label>
-
             <input
+              className=""
               type="file"
               name="contentImg"
               accept="image/*"
@@ -92,7 +89,7 @@ function CommunityNew() {
           <div className="my-4 flex flex-col">
             <p className="text-lg font-bold">오늘의 날씨 선택</p>
             <div className="border mt-2 py-2 rounded-xl">
-              <div onClick={handleClick} className="flex justify-between px-5">
+              <div onClick={handleClick} className="grid-cols-6 gap- px-5 xl:grid-cols-2">
                 <button type="button"  >
                   <img
                     src="/Sun.svg"
