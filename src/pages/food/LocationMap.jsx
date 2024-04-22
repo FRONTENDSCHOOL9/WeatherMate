@@ -33,7 +33,8 @@ function LocationMap({ latitude, longitude, locationName }) {
 
     infowindow.open(map, marker);
   }, [latitude, longitude, locationName]);
-  return <div id="map" style={{ width: '100%', height: '250px' }}></div>;
+  return <div id="map" className="w-full h-80 rounded-lg"></div>;
 }
 
 export default LocationMap;
+// style={{ width: '100%', height: '250px' }}
