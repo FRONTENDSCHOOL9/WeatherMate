@@ -76,22 +76,22 @@ function TodaysComent() {
   const fileName = imagePath; // 경로에서 파일 이름 추출
 
   return (
-    <div className=" w-full text-[1.775rem] font-bold h-[300px] font-UhBeeKang-Ja">
+    <div className=" w-full h-[300px] font-sans">
       <div className="p-5">
         <div className=" w-full ml-8 mt-[72px] ">
           {/* user name 받아와 저장해야합니다 */}
-          <div className=" w-[350px] flex flex-wrap">
-            <div className="text-primary text-2xl mb-3">
+          <div className=" w-[350px] flex flex-wrap ">
+            <div className="text-primary mb-3 text-2xl">
               <div>
                 {sessionData &&
                 sessionData.useState &&
                 sessionData.useState.name
                   ? `${sessionData.useState.name} 님 안녕하세요?`
-                  : '환영해요!.'}
+                  : '환영해요!'}
               </div>
             </div>
 
-            <p className="comment-text whitespace-normal truncate w-full py-3 ">
+            <p className="comment-text whitespace-normal truncate w-full mb-3 text-2xl font-semibold">
               {recomendClothes}
             </p>
             <div className="font-sans text-base">
@@ -107,11 +107,10 @@ function TodaysComent() {
       </div>
       <div className="flex justify-center items-center">
         <div className="">
-          {/* {메인 캐릭터 이미지 추가 } */}
           <img
             src={fileName}
             alt="main-img"
-            className="w-[200px] pl-9 ml-32 comment-text2 "
+            className="w-[250px] pl-9 ml-32 comment-text2"
           />
         </div>
       </div>
