@@ -19,23 +19,23 @@ function SearchLocation() {
   };
 
   return (
-    <>
-      <div className="flex justify-center items-center mt-5">
-        <form onSubmit={handleSubmit}>
+    <div className="sm:px-48">
+      <div className="flex justify-center items-center mt-[2rem] w-full mb-6">
+        <form onSubmit={handleSubmit} className="relative">
           <input
-            className="border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200
-            w-80 h-10"
+            className="border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black w-[25rem] h-[2.5rem] pl-10 font-bold" // 버튼의 너비만큼 왼쪽 여백 추가
+            placeholder="장소 검색"
             type="text"
             value={keyword}
             onChange={handleChange}
           />
-          <button type="submit" className="px-3 relative right-10">
-            <FaSearch />
+          <button type="submit" className="absolute left-2 top-3">
+            <FaSearch className="text-slate-300 focus:outline-none" />
           </button>
         </form>
       </div>
-      <Location keyword={debouncedKeyword} />{' '}
-    </>
+      <Location keyword={debouncedKeyword} />
+    </div>
   );
 }
 

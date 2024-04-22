@@ -6,8 +6,8 @@ import MbtiTest from '@pages/Mbti/MbtiTest';
 import ErrorPage from '@pages/ErrorPage';
 import CommunityNew from '@pages/community/CommunityNew';
 import CommunityDetail from './pages/community/CommunityDetail';
-import Question from './pages/Mbti/Question';
-import Result from './pages/Mbti/Result';
+import MbtiQuestion from './pages/Mbti/MbtiQuestion';
+import MbtiResult from './pages/Mbti/MbtiResult';
 import SignUp from '@pages/user/SignUp';
 import Login from '@pages/user/Login';
 import UserPage from '@pages/user/UserPage';
@@ -18,6 +18,10 @@ import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
 import FoodMainPage from './pages/food/FoodMainPage';
 import ReplyList from './pages/community/ReplyList';
+import MainLogin from '@pages/user/MainLogin';
+import UserEdit from '@pages/user/UserEdit';
+import Edit from '@pages/user/Edit';
+import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +32,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <MainPage />,
+      },
+      {
+        path: '/allcity',
+        element: <AllCitiesWeather />,
       },
       {
         path: 'community',
@@ -61,11 +69,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'mbti/question',
-        element: <Question />,
+        element: <MbtiQuestion />,
       },
       {
-        path: 'mbti/result',
-        element: <Result />,
+        path: 'mbti/result/',
+        element: <MbtiResult />,
       },
       {
         path: 'user/mypage',
@@ -87,8 +95,21 @@ const router = createBrowserRouter([
         path: 'user/setting',
         element: <Setting />,
       },
+      {
+        path: 'user/edit',
+        element: <UserEdit />,
+      },
+      {
+        path: 'edit',
+        element: <Edit />,
+      },
     ],
+  },
+  {
+    path: 'main/login',
+    element: <MainLogin />,
   },
 ]);
 
 export default router;
+// 이게 수정

@@ -1,12 +1,11 @@
-import Home from './Home';
-
+import MbtiHome from './MbtiHome';
 
 function MbtiTest() {
   return (
-  <>
-    <Home />
-  </>
-  )
+    <>
+      <MbtiHome />
+    </>
+  );
 }
 
 export default MbtiTest;

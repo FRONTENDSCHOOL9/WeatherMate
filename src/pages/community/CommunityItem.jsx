@@ -34,15 +34,19 @@ function CommunityItem({item}) {
     }
   };
 
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
   useEffect(() => {
     async function getFiles() {
       try{
-        const res = await axios.get(`/files/07-WeatherMate/${item.image}`,{
-          responseType: 'blob'
-        })
-        const url = URL.createObjectURL(res.data)
-        setImage(url ? url : null)
+        if(item.image){
+          const res = await axios.get(`/files/07-WeatherMate/${item.image}`,{
+            responseType: 'blob'
+          })
+          const url = URL.createObjectURL(res.data)
+          setImage(url)
+        }else{
+          setImage(null)
+        }
       }catch(error){
         console.error(error)
       }
@@ -59,15 +63,15 @@ function CommunityItem({item}) {
           <p className="rounded-full border-gray-400 border-2 w-12 h-12"></p>
           <div className="grow flex items-center">
             <div className="grow">
-              <h1 className="text-lg font-bold">{item.user.name}</h1>
+              <h1 className="text-lg font-bold">{item.user?.name}</h1>
               <p className="text-blue-500">조회수 {item.views}</p>
             </div>
-            <img className="w-10 h-10 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weatherIcon" />
+            {item.title && <img className="w-10 h-10 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weatherIcon" />}
           </div>
         </div>
         <div>
           <div className="bg-gray-500 text-white rounded-md p-2 box-border">{item.content}</div>
-          <img src={image} alt="image" />
+          {image && <img src={image} alt="image" />}
           {/* <div>{item.image}</div> */}
         </div>
       </div>

@@ -1,14 +1,11 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import LocationAddReply from './LocationAddReply';
 import Loading from '@components/layout/Loading';
-
 import DetailPageHeader from '@components/layout/DetailPageHeader';
 import LocationMap from '@pages/food/LocationMap';
-
 import LocationBookMark from './LocationBookmark';
-import LocationSuperDetail from './LocationSuperDetail';
+import LocationAddReply from './LocationAddReply';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -17,6 +14,9 @@ function LocationDetailPage() {
   const [detailData, setDetailData] = useState(null);
   const [homepageUrls, setHomepageUrls] = useState([]);
   const [isMoreView, setIsMoreView] = useState(false);
+  const [superDetail, setSuperDetail] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,108 +47,166 @@ function LocationDetailPage() {
         );
       }
     };
+
+    const fetchSuperDetail = async () => {
+      try {
+        const response = await axios.get(
+          `https://apis.data.go.kr/B551011/KorService1/detailIntro1?MobileOS=ETC&MobileApp=testWeb&contentId=${id}&contentTypeId=12&serviceKey=${apiKey}&_type=json`,
+        );
+        setSuperDetail(response.data.response.body.items.item);
+        setLoading(false);
+      } catch (error) {
+        console.error('데이터 패칭 실패', error);
+        setError(error);
+        setLoading(false);
+      }
+    };
+
     fetchData();
+    fetchSuperDetail();
   }, [id]);
-
-  // const getOldReply = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `https://market-lion.koyeb.app/api/posts/1/replies`,
-  //     );
-  //     setOldReply(response.data);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error(
-  //       '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
-  //       error,
-  //     );
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getOldReply();
-  // }, [id]);
-
-  if (!detailData) {
-    return <Loading />;
-  }
 
   const onClickMoreViewButton = () => {
     setIsMoreView(!isMoreView);
   };
 
+  if (!detailData || loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-50 py-20 bg-red-400">
+        에러: {error.message}
+      </div>
+    );
+  }
+
   return (
     <>
       <DetailPageHeader title={'상세보기'} />
-      <div className="p-4">
-        <h1 className="text-xl font-semibold mb-2">{detailData.title}</h1>
-        <img
-          src={detailData.firstimage}
-          alt="이미지1"
-          className="my-4 w-full"
-        />
-        {homepageUrls.map((url, index) => (
-          <button
-            key={index}
-            onClick={() => window.open(url, '_blank')}
-            className="border-2"
-          >
-            홈페이지로 이동하기
-          </button>
-        ))}
-        <table className="table-auto p-4 mb-6 bg-gray-100 dark:bg-gray-600 shadow-md rounded-lg">
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>설명</td>
-              <td>
-                {isMoreView
-                  ? detailData.overview
-                  : detailData.overview.substring(0, 80) + '...'}
-                <button
-                  onClick={onClickMoreViewButton}
-                  className="text-blue-500  left-0 "
-                >
-                  {isMoreView ? '접기' : '더보기'}
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="p-4 mb-6 bg-gray-100 dark:bg-gray-600 shadow-md rounded-lg">
-          <p>
-            설명:{' '}
-            {isMoreView
-              ? detailData.overview
-              : detailData.overview.substring(0, 80) + '...'}
-            <button onClick={onClickMoreViewButton} className="text-blue-500 ">
-              {isMoreView ? '접기' : '더보기'}
+      <div className="p-5  flex flex-col gap-4 md:px-60 lg:px-96">
+        <div className="flex justify-between">
+          <h1 className="text-3xl font-semibold content-center ">
+            {detailData.title}
+          </h1>
+          {homepageUrls.map((url, index) => (
+            <button
+              key={index}
+              onClick={() => window.open(url, '_blank')}
+              className="bg-white border-2 rounded-xl p-2 text-sm text-indigo-400 font-bold  "
+            >
+              홈페이지로 이동하기
             </button>
-          </p>
+          ))}
         </div>
-
-        <LocationMap
-          latitude={Number(detailData.mapy)}
-          longitude={Number(detailData.mapx)}
-          locationName={detailData.title}
-        />
-        <p>
-          주소: {detailData.addr1} ({detailData.addr2})
-        </p>
-        <LocationSuperDetail id={id} />
+        <div className="flex flex-col gap-4 lg:flex-row">
+          <img
+            src={detailData.firstimage}
+            alt="이미지1"
+            className=" w-full rounded-lg"
+          />
+          <div className="rounded-lg">
+            <div>
+              <p>
+                주소: {detailData.addr1} ({detailData.addr2})
+              </p>
+              <LocationMap
+                latitude={Number(detailData.mapy)}
+                longitude={Number(detailData.mapx)}
+                locationName={detailData.title}
+              />
+            </div>
+            <table className="table-fixed bg-gray-100 md:mt-6">
+              <thead>
+                <tr>
+                  <th scope="col" className="w-24 px-6 py-3">
+                    정보
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    내용
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="text-center p-2">설명</td>
+                  <td>
+                    {detailData.overview
+                      ? isMoreView
+                        ? detailData.overview
+                        : detailData.overview.substring(0, 40) + '...'
+                      : '내용 없음'}
+                    {detailData.overview && (
+                      <button
+                        onClick={onClickMoreViewButton}
+                        className="text-blue-500  left-0 "
+                      >
+                        {isMoreView ? '접기' : '더보기'}
+                      </button>
+                    )}
+                  </td>
+                </tr>
+                {superDetail.length > 0 && (
+                  <>
+                    <tr>
+                      <td className="text-center p-2">전화번호</td>
+                      <td>
+                        {superDetail[0].infocenter
+                          ? superDetail[0].infocenter
+                          : '내용 없음'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="text-center p-2">주차 여부</td>
+                      <td>
+                        {superDetail[0].parking
+                          ? superDetail[0].parking
+                          : '내용 없음'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="text-center p-2">이용 시간</td>
+                      <td>
+                        {' '}
+                        {superDetail[0].usetime
+                          ? superDetail[0].usetime
+                          : '내용 없음'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="text-center p-2">쉬는날</td>
+                      <td>
+                        {' '}
+                        {superDetail[0].restdate
+                          ? superDetail[0].restdate
+                          : '내용 없음'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="text-center p-2">카시트 이용 여부</td>
+                      <td>
+                        {' '}
+                        {superDetail[0].chkbabycarriage
+                          ? superDetail[0].chkbabycarriage
+                          : '내용 없음'}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="text-center p-2">반려 동물 동반</td>
+                      <td>
+                        {' '}
+                        {superDetail[0].chkpet
+                          ? superDetail[0].chkpet
+                          : '내용 없음'}
+                      </td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
         <LocationBookMark />
         <LocationAddReply id={id} />
       </div>
