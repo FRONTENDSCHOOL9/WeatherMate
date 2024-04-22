@@ -1,4 +1,3 @@
-// Location.js
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -7,30 +6,25 @@ import { IoIosBookmark } from 'react-icons/io';
 import LocationKeywords from './LocationKeyword';
 import { useRecoilValue } from 'recoil';
 import { memberState } from '@recoil/atom.mjs';
-import { Rating } from '@mui/material';
-import { Typography } from '@mui/material';
+import Loading from '@components/layout/Loading';
+
 /* eslint-disable */
-
-//관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점) ID
-
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 const SEVER_KEY = import.meta.env.VITE_API_SERVER;
 
 function Location({ keyword }) {
-  const [locationData, setLocationData] = useState([]);
-  const [locationReady, setLocationReady] = useState(false); // 받아오는 location 상태
-  const [searchKeyword, setSearchKeyword] = useState(''); // 검색내용
-  const [selectedOption, setSelectedOption] = useState(''); // 옵션 드랍다운 선택 상태
+  const [locationData, setLocationData] = useState([]); //
+  const [locationReady, setLocationReady] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [contentID, setContentID] = useState('12'); // 초기값으로 contentID 설정
-  const [value, setValue] = useState(1);
+  const [contentID, setContentID] = useState('12');
+
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const user = useRecoilValue(memberState); // 사용자 로그인 여부 확인을 위한 전역상태 불러오기
-  const radius = '100000'; // 거리반경(단위:m) , Max값 20000m=20Km
-
+  const user = useRecoilValue(memberState);
+  const radius = '200000';
   const { latitude, longitude } = useCurrentLocation();
-
-  console.log('로그인여부', user);
 
   useEffect(() => {
     if (latitude !== null && longitude !== null) {
@@ -38,21 +32,18 @@ function Location({ keyword }) {
     }
   }, [latitude, longitude]);
 
-  // 검색창이 아닐 때 비어있을 때
-
-  console.log('cID', contentID);
-  // 현재 위치 기반으로 장소를 우선적으로 추천해주는 함수
   useEffect(() => {
     if (locationReady && !searchKeyword.trim().length) {
       const fetchData = async () => {
+        setIsLoading(true);
         try {
           const response = await axios.get(
-            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=6&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json`,
+            `http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=6&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentID}&_type=json `,
           );
           setLocationData(response.data.response.body.items.item);
-          setValue(Number(response.data.response.body.items.item[0].mlevel));
-          console.log('추천장소', locationData);
+          setIsLoading(false);
         } catch (error) {
+          setIsLoading(false);
           console.error(
             '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
             error,
@@ -67,40 +58,31 @@ function Location({ keyword }) {
     setSearchKeyword(keyword);
   }, [keyword]);
 
-  // 검색 키워드가 있을 때 호출
   useEffect(() => {
     if (searchKeyword) {
       const fetchData = async () => {
+        setIsLoading(true);
         try {
           const response = await axios.get(
-            `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${apiKey}&keyword=${keyword}&_type=json&contentTypeId=${contentID}
-  `,
+            `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?MobileOS=ETC&MobileApp=testweb&serviceKey=${apiKey}&keyword=${keyword}&_type=json&contentTypeId=${contentID}`,
           );
           setLocationData(response.data.response.body.items.item);
-
-          console.log('newdata', response.data);
+          setIsLoading(false);
         } catch (error) {
+          setIsLoading(false);
           console.error(
             '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
             error,
           );
         }
       };
-
       fetchData();
     }
   }, [searchKeyword, contentID]);
 
-  console.log('val', value);
+  const formatDistance = distance => `${(distance / 1000).toFixed(1)} km`;
+  const recoDefaultImg = '/littleCloud.svg';
 
-  //km로 변경함수
-  function formatDistance(distance) {
-    return `${(distance / 1000).toFixed(1)} km`;
-  }
-  // 이미지가 없는 경우 default 이미지 보여주기
-  const recoDefaultImg = '/defaultImg.svg';
-
-  //다음 페이지 호출 함수
   const fetchNextPage = async () => {
     try {
       const response = await axios.get(
@@ -110,9 +92,7 @@ function Location({ keyword }) {
         ...prevData,
         ...response.data.response.body.items.item,
       ]);
-
-      console.log('preData', locationData);
-      setCurrentPage(prevPage => prevPage + 1); // 다음 페이지로 현재 페이지 업데이트
+      setCurrentPage(prevPage => prevPage + 1);
     } catch (error) {
       console.error(
         '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
@@ -127,56 +107,17 @@ function Location({ keyword }) {
       scrollTop + clientHeight >= scrollHeight - 5 &&
       locationData.length > 0
     ) {
-      fetchNextPage(); // 스크롤이 끝으로 내려갔을 때 다음 페이지의 데이터를 가져옴
+      fetchNextPage();
     }
   };
 
-  //스크롤 이벤트
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [locationData]); // locationData가 업데이트 될 때마다 이벤트 리스너를 추가/제거
+  }, [locationData]);
 
-  function formatDistance(distance) {
-    return `${(distance / 1000).toFixed(1)} km`;
-  }
-
-  const handleOptionClick = contentID => {
-    setContentID(contentID);
-  };
-
-  // 북마크 추가 기능
-  // post 방식
-  // const handleBookMark = async contentId => {
-  //   if (!user) {
-  //     const confirmed = confirm('로그인 부터 해주세요');
-  //     if (confirmed) {
-  //       navigate('/user/login');
-  //     }
-  //   } else {
-  //     try {
-  //       // 사용자가 로그인한 상태에서 북마크 추가를 위한 포스트 요청 보내기
-  //       const response = await axios.post(
-  //         `${SEVER_KEY}/bookmarks/product/${contentId}`,
-  //         {
-  //           memo: 'test',
-  //         }, // 요청 본문
-  //         {
-  //           headers: {
-  //             Authorization: 'Bearer ' + user.token.accessToken,
-  //           },
-  //         }, // 옵션 객체
-  //       );
-  //       console.log('북마크 추가 성공:', response.data);
-  //     } catch (error) {
-  //       console.error('북마크 추가 실패:', error);
-  //     }
-  //   }
-  // };
-
-  // 로컬 방식
   const handleBookMark = contentId => {
     if (!user) {
       const confirmed = confirm('로그인 부터 해주세요');
@@ -185,20 +126,8 @@ function Location({ keyword }) {
       }
     } else {
       try {
-        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || []; // 기존 북마크 목록 가져오기
-        // 사용자가 로그인한 상태에서 북마크 추가를 위한 포스트 요청 보내기
-        // axios.post(
-        //   `${SEVER_KEY}/bookmarks/product/${contentId}`,
-        //   {},
-        //   {
-        //     headers: {
-        //       Authorization: 'Bearer ' + user.token.accessToken,
-        //     },
-        //   },
-        // );
-        // 북마크 목록에 contentId 추가
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
         bookmarks.push(contentId);
-        // 로컬 스토리지에 업데이트된 북마크 목록 저장
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
         console.log('북마크 추가 성공:', contentId);
       } catch (error) {
@@ -207,20 +136,18 @@ function Location({ keyword }) {
     }
   };
 
-  // 키워드 별 옵션
-
   const options = [
-    { id: '12', label: '관광지' },
-    { id: '14', label: '문화시설' },
-    { id: '15', label: '축제공연행사' },
-    { id: '25', label: '여행지' },
-    { id: '28', label: '레포츠' },
-    { id: '32', label: '숙박' },
-    { id: '38', label: '비오는 날 쇼핑어때요?' },
-    { id: '39', label: '음식점' },
+    { id: '12', label: '관광지', img_src: 'tour.svg' },
+    { id: '14', label: '문화시설', img_src: 'communityplace.svg' },
+    { id: '15', label: '행사', img_src: 'festival.svg' },
+    { id: '25', label: '여행지', img_src: 'travel.svg' },
+    { id: '28', label: '레포츠', img_src: 'reports.svg' },
+    { id: '32', label: '숙박', img_src: 'hotel.svg' },
+    { id: '38', label: '쇼핑', img_src: 'shopping.svg' },
+    { id: '39', label: '음식점', img_src: 'food.svg' },
   ];
 
-  function getCategoryText(cat2) {
+  const getCategoryText = cat2 => {
     switch (cat2) {
       case 'A0101':
         return '자연 관광지';
@@ -238,71 +165,73 @@ function Location({ keyword }) {
         return '음식점';
       case 'B0201':
         return '숙박시설';
-      // 필요에 따라 추가적인 중분류에 대한 처리를 여기에 추가할 수 있습니다
       default:
         return '문화';
     }
-  }
+  };
+
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl mb-2">추천 키워드</h1>
-      <div className="flex flex-wrap justify-center items-center gap-5 mb-5">
-        {options.map(option => (
-          <LocationKeywords
-            key={option.id}
-            id={option.id}
-            label={option.label}
-            onClick={handleOptionClick}
-          />
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {locationData?.map((item, index) => (
-          <div
-            className="p-4 rounded-md shadow-md min-h-[600px] max-h-[500px] overflow-y-hidden"
-            key={index}
-          >
-            <IoIosBookmark
-              className="text-sub_sal w-[35px] h-[35px] ml-auto"
-              onClick={() => handleBookMark(item.contentid)}
+    <div className="container mx-auto p-4 min-h-screen">
+      <p className="mb-3 text-xs">웨더메이트 추천 키워드</p>
+      <div className="flex flex-wrap justify-center items-center ">
+        {options.map((option, index) => (
+          <div className="w-1/4" key={option.id}>
+            {/* 각 컴포넌트를 1/4 너비로 설정 */}
+            <LocationKeywords
+              id={option.id}
+              label={option.label}
+              img_src={option.img_src}
+              onClick={setContentID}
             />
-            <Link key={index} to={`/location/${item.contentid}`}>
-              <h2 className="text-xl font-bold mb-2">{item.title}</h2>
-              <p className="text-xㄴ">{item.addr1}</p>
-
-              <img
-                src={item.firstimage ? item.firstimage : recoDefaultImg}
-                alt="이미지1"
-                className="w-full max-h-[350px] mb-2 rounded-md overflow-hidden"
-              />
-
-              <div className="flex w-[200px] box-border gap-3 mt-8">
-                <div className="flex justify-center items-center ml-auto gap-3">
-                  <div className="bg-white w-[112px] h-[95px] flex flex-col gap-5">
-                    <p className="text-center">
-                      <Typography component="legend">별점</Typography>
-                      <Rating name="read-only" value={value} readOnly />
-                    </p>
-                  </div>
-                  <div className="bg-[#FFF387] w-[112px] h-[95px] flex flex-col gap-5">
-                    <p className="text-center">거리</p>
-                    <p className="text-xs text-center">
-                      {formatDistance(item.dist)}
-                    </p>
-                  </div>
-                  <div className="bg-primary w-[112px] h-[95px] flex flex-col gap-5">
-                    <p className="text-center">분류</p>
-                    <p className="text-xs text-center">
-                      {getCategoryText(item.cat2)}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Link>
           </div>
         ))}
       </div>
+      <hr className="w-full border-t border-gray-300 mb-8" />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {locationData?.map((item, index) => (
+            <div
+              className="p-4 rounded-md shadow-md overflow-y-hidden"
+              key={index} // 이 위치에 고유한 키를 제공합니다.
+            >
+              <IoIosBookmark
+                className="text-sub_sal w-[35px] h-[35px] ml-auto"
+                onClick={() => handleBookMark(item.contentid)}
+              />
+              <Link to={`/location/${item.contentid}`}>
+                <h2 className="text-xl font-bold mb-2">{item.title}</h2>
+                <p className="">주소:{item.addr1}</p>
+                <img
+                  src={item.firstimage ? item.firstimage : recoDefaultImg}
+                  alt="이미지1"
+                  className="w-full  mb-2 rounded-md overflow-hidden aspect-square object-cover"
+                />
+
+                <div className="flex w-[200px] box-border gap-3 mt-8">
+                  <div className="flex justify-center items-center ml-auto gap-3">
+                    <div className="bg-[#FFF387] w-[112px] h-[95px] flex flex-col gap-5">
+                      <p className="text-center">거리</p>
+                      <p className="text-xs text-center">
+                        {isNaN(parseFloat(item.dist))
+                          ? '너무멀어요!'
+                          : formatDistance(parseFloat(item.dist))}
+                      </p>
+                    </div>
+                    <div className="bg-primary w-[112px] h-[95px] flex flex-col gap-5">
+                      <p className="text-center">분류</p>
+                      <p className="text-xs text-center">
+                        {getCategoryText(item.cat2)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

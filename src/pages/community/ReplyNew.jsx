@@ -7,15 +7,17 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import Submit from "@components/layout/Submit";
 
 ReplyNew.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
+  newReply: PropTypes.array,
+  setNewReply: PropTypes.func
 }
 
-function ReplyNew({item}) {
+function ReplyNew({newReply, setNewReply}) {
   const navigate = useNavigate();
   const axios = useCustomAxios();
   const {_id} = useParams();
   const user = useRecoilValue(memberState)
-  const {register, handleSubmit, formState: {errors}, } = useForm();
+  const {register, handleSubmit, formState: {errors}, reset} = useForm();
   
   const handleReply = () => {
     if (!user) {
@@ -25,23 +27,20 @@ function ReplyNew({item}) {
       gotologin && navigate('/user/login');
     } else {
       console.log(_id);
-      navigate(`/community/${item._id}`);
+      navigate(`/community/${_id}`);
     }
   };
 
   const onSubmit = async (formData) => {
-    try{
       const reply = await axios.post(`/posts/${_id}/replies`,formData)
+      setNewReply([...newReply, reply.data.item])
       navigate(`/community/${_id}`)
-      console.log(reply);
-    }catch(error){
-      console.error(error)
-    }
+      reset();
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex gap-1 border bg-gray-200 p-3 rounded-md">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex gap-1 border bg-gray-400 p-3 rounded-md">
         <div className="flex flex-col grow">
           <textarea
             {...register('comment', {required: '내용을 입력하세요',minLength: {value: 2,message: '2글자 이상 입력하세요'}})}

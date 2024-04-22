@@ -3,13 +3,30 @@ import { userWeatherState } from '../../recoil/atom.mjs';
 import dummyData from '../../assets/WeatherData';
 import { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
+import { Link } from 'react-router-dom';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
 /** 날씨에 따른 의상 추천 & 이미지 보여주기 */
 function TodaysComent() {
   const userWeather = useRecoilValue(userWeatherState); // Recoil 상태만 가져오기
   const [recomendClothes, setRecomendClothes] = useState(null);
   const [recommendationImage, setRecommendationImage] = useState(null);
+  const [sessionData, setSessionData] = useState(null);
+
+  useEffect(() => {
+    // 세션에서 데이터 가져오기
+    const sessionString = sessionStorage.getItem('saveUser');
+    if (sessionString) {
+      const sessionObj = JSON.parse(sessionString); // JSON 문자열 파싱
+      setSessionData(sessionObj);
+    }
+  }, []); // 컴포넌트가 마운트될 때만 실행되도록 빈 배열을 두 번째 매개변수로 전달
+
   // const [mainImgUrl, setMainImgUrl] = useState(null);
+
+  console.log('session', sessionData);
+
+  // 온도 비즈니스 로직
   useEffect(() => {
     const getRecommendedClothes = () => {
       const userTemperature = userWeather?.main.temp - 273.15;
@@ -58,28 +75,42 @@ function TodaysComent() {
   const imagePath = recommendationImage;
   const fileName = imagePath; // 경로에서 파일 이름 추출
 
-  console.log(fileName, 'xxxx');
-
   return (
-    <div className=" w-full text-[1.775rem] font-bold h-[300px] font-UhBeeKang-Ja">
+    <div className=" w-full h-[300px] font-sans">
       <div className="p-5">
         <div className=" w-full ml-8 mt-[72px] ">
           {/* user name 받아와 저장해야합니다 */}
-          <div className=" w-[350px] flex flex-wrap">
-            <p className="text-primary mb-3">짱구님 안녕하세요?</p>
-            <p className="comment-text whitespace-normal truncate ">
+          <div className=" w-[350px] flex flex-wrap ">
+            <div className="text-primary mb-3 text-2xl">
+              <div>
+                {sessionData &&
+                sessionData.useState &&
+                sessionData.useState.name
+                  ? `${sessionData.useState.name} 님 안녕하세요?`
+                  : '환영해요!'}
+              </div>
+            </div>
+
+            <p className="comment-text whitespace-normal truncate w-full mb-3 text-2xl font-semibold">
               {recomendClothes}
             </p>
+            <div className="font-sans text-base">
+              <Link to="/allcity">
+                <div className="flex px-3 py-1 items-center rounded border-primary border-2 text-slate-700">
+                  <p>전국날씨</p>
+                  <MdOutlineKeyboardArrowRight />
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
       <div className="flex justify-center items-center">
         <div className="">
-          {/* {메인 캐릭터 이미지 추가 } */}
           <img
             src={fileName}
             alt="main-img"
-            className="w-[200px] pl-9 ml-32 comment-text2 "
+            className="w-[250px] pl-9 ml-32 comment-text2"
           />
         </div>
       </div>

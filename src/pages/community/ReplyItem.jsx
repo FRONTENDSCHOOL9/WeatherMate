@@ -9,19 +9,19 @@ ReplyItem.propTypes = {
 
 function ReplyItem({item, handleDelete}) {
 
-  console.log(item);
+  // console.log(item);
 
   return (
-    <div className="mt-3 p-5 bg-gray-200 border rounded flex gap-3">
-      <div className="rounded-full w-10 h-10 bg-indigo-200">
+    <div className="mt-2 p-3 bg-gray-400 border flex gap-3 rounded-lg items-center ">
+      <div className="rounded-full w-12 h-12 bg-indigo-200 ">
         
       </div>
-      <div className="flex justify-between">
-        <div className="">
+      <div className="flex justify-between items-center grow">
+        <div className="grow">
           <div>{item.user.name}</div>
-          <div>{item.comment}</div>
+          <div className="border-2 rounded-lg p-1">{item.comment}</div>
         </div>
-        <button onClick={() => handleDelete(item._id)} className="bg-red-500 rounded h-8 grow-0 font-bold">Delete</button>
+        <button onClick={() => handleDelete(item._id)} className="bg-red-500 rounded h-8 font-bold text-white px-1">삭제</button>
       </div>
     </div>
   );

@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <>
-      <footer className="w-full flex text-white min-h-24 rounded-t-3xl items-center justify-center gap-8 bg-white sticky bottom-0 shadow-inner">
+      <footer className="w-full flex text-white min-h-24 rounded-t-3xl items-center justify-center gap-8 bg-white sticky bottom-0 shadow-inner sm:hidden">
         <Link to="/" className="flex flex-col items-center text-primary px-2">
-          <GoHomeFill className="text-4xl mb-1"/>
+          <GoHomeFill className="text-4xl mb-1" />
           <p className="text-nowrap">홈</p>
         </Link>
 

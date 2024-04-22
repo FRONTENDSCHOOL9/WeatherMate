@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dbinit:sample": "node ./init.js sample 00-sample",
-    "dbinit:team": "node ./init.js team 07-weatherMate"
+    "dbinit:team": "node ./init.js team 07-WeatherMate"
   },
   "keywords": [],
   "author": "",

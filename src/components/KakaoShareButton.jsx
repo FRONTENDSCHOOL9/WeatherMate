@@ -18,7 +18,7 @@ function KakaoShareButton(data) {
       objectType: 'feed',
       content: {
         title: '🌤️날씨 성격 테스트🌤️',
-        description: `나는 ${data.data.id}입니다.`,
+        description: ` ${data.data.title}`,
         imageUrl: url + data.data.image,
         link: {
           mobileWebUrl: resultUrl,
@@ -41,7 +41,7 @@ function KakaoShareButton(data) {
   return (
     <button
       onClick={shareKakao}
-      className="rounded bg-primary px-4 py-2 font-bold hover:bg-sub_sal text-white "
+      className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
     >
       카카오톡 공유하기
     </button>

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
 const { persistAtom } = recoilPersist(
@@ -29,8 +29,15 @@ export const likeState = atom({
   effects: [persistAtom],
 })
 
+
 export const memberState = atom({
   key: 'useState',
-  default: null,
+  default: {
+    id: '',
+    name: '',
+    email: '',
+    password: ''
+  },
   effects: [persistAtom],
 });
+

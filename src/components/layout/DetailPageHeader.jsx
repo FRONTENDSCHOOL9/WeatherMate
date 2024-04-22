@@ -12,13 +12,13 @@ function DetailPageHeader({ title }) {
   };
   return (
     <>
-      <Button onClick={handleGoBack} className="absolute left-6 top-10">
-        <FaArrowLeft className="text-2xl" />
-      </Button>
-      <div className="px-5 box-border flex flex-col">
-        <div className="p-5 border-b-4 text-center mt-4 grow">
-          <h1 className="inline-block font-bold text-xl">{title}</h1>
-        </div>
+      <div className="px-5 p-5 border-b-4 flex items-center justify-between">
+        <Button onClick={handleGoBack} className="flex items-center">
+          <FaArrowLeft className="text-2xl" />
+        </Button>
+
+        <h1 className="font-bold text-xl">{title}</h1>
+        <div className="w-5"></div>
       </div>
     </>
   );
