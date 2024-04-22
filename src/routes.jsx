@@ -21,6 +21,7 @@ import ReplyList from './pages/community/ReplyList';
 import MainLogin from '@pages/user/MainLogin';
 import UserEdit from '@pages/user/UserEdit';
 import Edit from '@pages/user/Edit';
+import AllCitiesWeather from '@pages/main/AllCitiesWeather';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <MainPage />,
+      },
+      {
+        path: '/allcity',
+        element: <AllCitiesWeather />,
       },
       {
         path: 'community',

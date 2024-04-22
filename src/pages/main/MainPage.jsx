@@ -7,30 +7,33 @@ import PreviewMbti from './PreviewMbti';
 
 import RecommendationPreview from './RecommendationPreview';
 import TodaysComent from './TodaysComent';
+import WeatherByTimeZone from './WeatherByTimeZone';
 import WeatherDetail from './weatherDetail';
 // import WeatherByTimeZone from './WeatherByTimeZone';
 
 function MainWeather() {
   return (
-    <div className="min-h-[1700px] font-sans overflow-hidden">
+    <div className=" font-sans overflow-hidden sm:px-60">
       <div className="w-full">
         <div>
           <div className="w-full min-h-[800px]">
-            <TodaysComent />
-            {/* 오늘의 한마디 */}
-            <MyLocationWeather />
-            <ToTheTopButton />
-            <WeatherDetail />
+            <div className="flex flex-col sm:flex-row sm:flex-wrap">
+              <div className="sm:w-[50%]">
+                <TodaysComent />
+                <MyLocationWeather />
+              </div>
+              <div className="sm:order-3 w-[100%]">
+                <WeatherByTimeZone />
+              </div>
+              <div className="sm:w-[50%] sm:mt-40">
+                <WeatherDetail />
+                <RecommendationPreview />
+                <PreviewMbti />
+              </div>
+            </div>
           </div>
-          <RecommendationPreview />
-          {/* 장소추천 프리뷰  */}
-          <PreviewMbti />
-          {/* mbti test 프리뷰 */}
-
-          {/* <AllCitiesWeather /> */}
-
-
         </div>
+        <ToTheTopButton />
       </div>
     </div>
   );
