@@ -73,8 +73,8 @@ function CommunityItem({item}) {
           <div className="bg-gray-500 text-white rounded-md p-2 box-border">{item.content}</div>
           {image ?
             <img src={image} alt="image" /> : 
-            <div className="flex flex-col justify-center items-center">
-              <img  className="w-full" src={`/${item.title}.svg`} alt="image"/>
+            <div className="flex flex-col justify-center items-center pt-2">
+              {item.title ? <img  className="w-fit" src={`/${item.title}.svg`} alt="image"/> : null}
               <br />
               <p className="text-xl text-sky-500">내 날씨는 {item.title ? item.title : '없어요'}!!</p>
             </div>}

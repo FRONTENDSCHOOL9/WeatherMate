@@ -95,7 +95,7 @@ function CommunityNew() {
                     src="/Sun.svg"
                     alt="Sun"
                     data-weather="Sun"
-                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
+                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -103,7 +103,7 @@ function CommunityNew() {
                     src="/Cloudy.svg"
                     alt="Cloudy"
                     data-weather="Cloudy"
-                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
+                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -111,7 +111,7 @@ function CommunityNew() {
                     src="/Rainy.svg"
                     alt="Rainy"
                     data-weather="Rainy"
-                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
+                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -119,7 +119,7 @@ function CommunityNew() {
                     src="/Foggy.svg"
                     alt="Foggy"
                     data-weather="Foggy"
-                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
+                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -127,7 +127,7 @@ function CommunityNew() {
                     src="/Snow.svg"
                     alt="Snow"
                     data-weather="Snow"
-                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
+                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -135,7 +135,7 @@ function CommunityNew() {
                     src="/Wind.svg"
                     alt="Wind"
                     data-weather="Wind"
-                    className={`rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto ${iconColors[0]}`}
+                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
                   />
                 </button>
               </div>
