@@ -9,10 +9,10 @@ import Submit from '@components/layout/Submit.jsx';
 
 function Login() {
   const location = useLocation();
-
   const setUser = useSetRecoilState(memberState);
   const axios = useCustomAxios();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -56,51 +56,67 @@ function Login() {
 
   return (
     <>
-      <nav className="h-screen">
-        <h2>로그인</h2>
+      <nav className="h-screen flex items-center justify-center bg-gray-100 p-16 max-w-full min-w-80">
+        <div className="text-center rounded-md p-8 w-full max-w-md">
+          <h2 className="text-3xl font-semibold">로그인</h2>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label>이메일</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="이메일을 입력하세요"
-            {...register('email', {
-              required: '이메일을 입력하세요',
-              pattern: {
-                value:
-                  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
-                message: '이메일 형식이 아닙니다',
-              },
-            })}
-          />
-          {errors.name && (
-            <p className="ml-2 mt-1 text-sm text-red-500">
-              {errors.name.message}
-            </p>
-          )}
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
+            <div className="flex flex-col space-y-4">
+              <div>
+                <label htmlFor="email" className="sr-only">
+                  이메일
+                </label>
+                <input
+                  className="py-2 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-400 focus:border-transparent w-full"
+                  type="email"
+                  id="email"
+                  placeholder="이메일을 입력하세요"
+                  {...register('email', {
+                    required: '이메일을 입력하세요',
+                    pattern: {
+                      value:
+                        /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+                      message: '이메일 형식이 아닙니다',
+                    },
+                  })}
+                />
+                {errors.email && (
+                  <p className="ml-2 text-sm text-red-500">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
 
-          <label>비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="비밀번호를 입력하세요"
-            {...register('password', { required: '비밀번호를 입력하세요' })}
-          />
-          {errors.name && (
-            <p className="ml-2 mt-1 text-sm text-red-500">
-              {errors.name.message}
-            </p>
-          )}
+              <div>
+                <label htmlFor="password" className="sr-only">
+                  비밀번호
+                </label>
+                <input
+                  className="py-2 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent w-full"
+                  type="password"
+                  id="password"
+                  placeholder="비밀번호를 입력하세요"
+                  {...register('password', {
+                    required: '비밀번호를 입력하세요',
+                  })}
+                />
+                {errors.password && (
+                  <p className="ml-2 text-sm text-red-500">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
 
-          <Submit>로그인</Submit>
-          <Link
-            className="ml-8 text-blue-500 hover:underline"
-            to="/user/signup"
-          >
-            회원가입
-          </Link>
-        </form>
+              <Submit className="w-full bg-primary rounded-md p-2">로그인</Submit>
+              <Link
+                className="mt-2 text-primary_deep hover:underline inline-block text-center"
+                to="/user/signup"
+              >
+                회원가입
+              </Link>
+            </div>
+          </form>
+        </div>
       </nav>
       <div>충돌발생</div>
     </>
@@ -108,4 +124,3 @@ function Login() {
 }
 
 export default Login;
-// 이게 수정
