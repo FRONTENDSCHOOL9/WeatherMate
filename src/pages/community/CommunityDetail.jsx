@@ -85,12 +85,12 @@ function CommunityDetail() {
   return (
     <div className="min-h-screen min-w-96">
     <div>
-      <div className="flex items-center justify-center">
-        <Button onClick={() => navigate('/community')} className="absolute left-6 top-10">
+      <div className="">
+        <div className="px-5 box-border flex">
+        <Button onClick={() => navigate('/community')} className="">
           <FaArrowLeft className="text-2xl" />
         </Button>
-        <div className="px-5 box-border flex flex-col">
-          <CommunityHeader title={'상세보기'} />
+        <CommunityHeader title={'상세보기'} />
         </div>
       </div>
       <div className="grid md:grid-cols-2">

@@ -62,11 +62,15 @@ function CommunityMain() {
       <div className="px-5 box-border">
         <div className="flex items-center justify-center border-b-4">
           <CommunityHeader title={'커뮤니티'}/>
-          <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold ">새 글쓰기</button>
         </div>
       </div>
       <CommunityPopularItem data={data}/>
-      <Search onClick={handleSearch}></Search>
+      <div className="flex items-center px-5 gap-3">
+        <div className="grow">
+          <Search onClick={handleSearch} ></Search>
+        </div>
+        <button onClick={handleWrite} className="bg-indigo-200 boreder rounded-xl px-4 py-3 text-sm text-indigo-400 font-bold text-nowrap w-40">새 글쓰기</button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-5">
         {isLoading && (
           <p colSpan="5">로딩중...</p>
