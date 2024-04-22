@@ -1,12 +1,13 @@
 import Loading from '@components/layout/Loading';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function LocationBookMark() {
   const [bookmarks, setBookmarks] = useState([]);
   const [bookmarkData, setBookmarkData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   const fetchData = async contentId => {
     try {
       const response = await axios.get(
@@ -34,17 +35,27 @@ function LocationBookMark() {
     fetchDataForBookmarks();
   }, [bookmarks]);
 
+  const moveToBookMarkPage = () => {
+    navigate(`/location/${bookmarkData[0].contentid}`);
+  };
+
   return (
-    <div className="h-[500px]">
-      <h2>북마크 목록</h2>
+    <div className="h-[300px] bg-red-200 overflow-y-scroll">
+      <h1>북마크 목록</h1>
       {loading ? (
         <Loading />
       ) : (
-        <ul>
+        <ul onClick={moveToBookMarkPage}>
           {bookmarkData.map((item, index) => (
-            <div key={index} className="flex">
-              <p className="text-3xl">{item.title}</p>
-              <img src={item.firstimage} className="w-20 h-20" />
+            <div
+              key={index}
+              className="flex justify-center items-center flex-wrap"
+            >
+              <img
+                src={item.firstimage ? item.firstimage : '/01.svg'}
+                className="w-20 h-20 rounded-3xl"
+              />
+              <p className="text-base">{item.title}</p>
             </div>
           ))}
         </ul>

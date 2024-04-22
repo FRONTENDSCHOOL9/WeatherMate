@@ -11,7 +11,6 @@ function WeatherDetail() {
   return (
     <>
       <div>
-        <h2 className="pl-9">상세날씨 </h2>
         <div className="flex justify-center items-center  shadow-sm p-6">
           {detailWeather && (
             <div className="flex justify-center items-center gap-4 font-sans">

@@ -31,7 +31,7 @@ function RecommendationPreview() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            `https://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=4&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentTypeId}&_type=json&arrange=A`,
+            `https://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=3&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentTypeId}&_type=json&arrange=A`,
           );
 
           setLocationData(response.data.response.body.items.item);
@@ -56,9 +56,9 @@ function RecommendationPreview() {
   }
 
   return (
-    <div className="flex items-center justify-center w-full px-5">
+    <div className="flex items-center justify-center w-full px-8">
       <div className="mt-10">
-        <h1 className="text-xl mx-4 mb-7 font-bold">
+        <h1 className="text-xl mb-7 font-bold">
           <strong className="text-primary">웨더메이트</strong> 의 추천장소
           <Link to="/location" className="ml-5">
             더보기
@@ -67,7 +67,7 @@ function RecommendationPreview() {
 
         <div>
           {locationData && (
-            <div className="flex gap-4 font-sans text-sm">
+            <div className="flex gap-8 font-sans text-sm">
               {locationData.map(item => (
                 <div key={item.contentid}>
                   <Link to={`/location/${item.contentid}`}>

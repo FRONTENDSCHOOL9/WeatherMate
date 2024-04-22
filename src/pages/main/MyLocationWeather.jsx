@@ -5,7 +5,7 @@ import { userWeatherState } from '../../recoil/atom.mjs';
 // import dummyData from '../../assets/WeatherData';
 import { IoIosRefresh } from 'react-icons/io';
 import Loading from '../../components/layout/Loading';
-import WeatherByTimeZone from './WeatherByTimeZone';
+// import WeatherByTimeZone from './WeatherByTimeZone';
 
 function MyLocationWeather() {
   const [myPlace, setMyPlace] = useState('');
@@ -138,7 +138,7 @@ function MyLocationWeather() {
 
   return (
     <div className=" w-full pl-9  mb-20 mt-20 ">
-      <div className="absolute top-12 right-5">
+      <div className="absolute top-12 right-12">
         {/* 자식 요소에 absolute 클래스 추가하여 절대 위치 지정 */}
         <IoIosRefresh className="text-4xl" onClick={handleRefresh} />
       </div>
@@ -159,21 +159,25 @@ function MyLocationWeather() {
               <p className="text-lg font-bold ">
                 {userWeather.weather[0].description}
               </p>
+              <p className="mb-7">기준 : {unixToHumanTime(userWeather.dt)}</p>
               <h2 className="text-2xl font-bold mb-4">
                 {myPlace},{/* {userWeather.sys.country} */}
               </h2>
 
-              <p className="mb-3">기준 : {unixToHumanTime(userWeather.dt)}</p>
               <div className="flex gap-5 mb-20">
-                <p className="flex flex-col justify-center items-center">
-                  <img src="sunset.svg" className="w-5 h-5" />
-                  {unixToHumanTime(userWeather.sys.sunrise)} ,
-                  {unixToHumanTime(userWeather.sys.sunset)}
-                </p>
+                <div className="flex flex-col justify-center items-center">
+                  <img src="sunset.svg" className="w-5 h-5 mb-1" />
+                  <p> {unixToHumanTime(userWeather.sys.sunrise)}</p>
+                  <p>{unixToHumanTime(userWeather.sys.sunset)}</p>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                  <img src="sunset.svg" className="w-5 h-5 mb-1" />
+                  <p> {unixToHumanTime(userWeather.sys.sunrise)}</p>
+                  <p>{unixToHumanTime(userWeather.sys.sunset)}</p>
+                </div>
               </div>
             </>
           )}
-          <WeatherByTimeZone />
         </>
       )}
     </div>
