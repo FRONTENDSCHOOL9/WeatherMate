@@ -31,7 +31,7 @@ function SignUp() {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.profileImage[0]);
 
-        const fileRes = await axios('https://market-lion.koyeb.app/api/users', {
+        const fileRes = await axios('https://market-lion.koyeb.app/api/files', {
           method: 'post',
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -39,7 +39,7 @@ function SignUp() {
           data: imageFormData,
         });
 
-        formData.profileImage = fileRes.data.file.name;
+        formData.profileImage = fileRes.data.item[0].name;
       } else {
         delete formData.profileImage;
       }
@@ -47,7 +47,7 @@ function SignUp() {
       alert(res.data.item.name + '님 회원가입이 완료 되었습니다.');
       navigate('/user/login');
     } catch (err) {
-      console.log(err);
+      console.error(err);
       if (err.response?.data.errors) {
         err.response?.data.errors.forEach(error =>
           setError(error.path, { message: error.msg }),
@@ -63,7 +63,7 @@ function SignUp() {
       <h2>회원가입</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>이름</label>
+        <lebel>이름</lebel>
         <input
           type="text"
           id="name"
@@ -115,12 +115,6 @@ function SignUp() {
           </p>
         )}
 
-        <label
-          className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
-          htmlFor="profileImage"
-        >
-          프로필 이미지
-        </label>
         <label
           className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
           htmlFor="profileImage"
