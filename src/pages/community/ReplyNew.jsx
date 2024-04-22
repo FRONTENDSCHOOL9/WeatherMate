@@ -40,7 +40,7 @@ function ReplyNew({newReply, setNewReply}) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex gap-1 border bg-gray-200 p-3 rounded-md">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex gap-1 border bg-gray-400 p-3 rounded-md">
         <div className="flex flex-col grow">
           <textarea
             {...register('comment', {required: '내용을 입력하세요',minLength: {value: 2,message: '2글자 이상 입력하세요'}})}

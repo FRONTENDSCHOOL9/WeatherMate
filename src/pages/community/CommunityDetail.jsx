@@ -83,7 +83,7 @@ function CommunityDetail() {
   // console.log(item);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen min-w-96">
     <div>
       <div className="flex items-center justify-center">
         <Button onClick={() => navigate('/community')} className="absolute left-6 top-10">
@@ -93,8 +93,8 @@ function CommunityDetail() {
           <CommunityHeader title={'상세보기'} />
         </div>
       </div>
-      <div className="grid sm:grid-cols-2">
-      <div className="px-5">
+      <div className="grid md:grid-cols-2">
+      <div className="px-5 rounded-md border">
         <div>
           {item && (
             <section className="py-4">
