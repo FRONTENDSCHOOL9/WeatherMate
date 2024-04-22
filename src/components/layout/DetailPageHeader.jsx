@@ -18,7 +18,7 @@ function DetailPageHeader({ title }) {
         </Button>
 
         <h1 className="font-bold text-xl">{title}</h1>
-        <div className="w-10"></div>
+        <div className="w-5"></div>
       </div>
     </>
   );
