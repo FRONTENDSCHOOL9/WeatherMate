@@ -25,9 +25,9 @@ function MbtiResult() {
 
   return (
     <>
-      <DetailPageHeader title={'결과 보기'} />
+      <DetailPageHeader title={'날씨 성격 테스트 결과'} />
 
-      <div className="p-10">
+      <div className="py-4 px-8 min-w-[360px] min-h-[400px] font-TTLaundryGothicB">
         <div className="relative top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 p-[15px] w-[180px] h-[180px]  rounded-full bg-white">
           <img
             src={resultData.image}
@@ -35,26 +35,29 @@ function MbtiResult() {
           />
         </div>
 
-        <div className="relative z-0 top-[-90px] border-4 rounded-3xl pt-20 pb-5 px-5  font-TTLaundryGothicB">
-          <p className="">{resultData.title}</p>
-          <p>{resultData.desc}</p>
+        <div className="relative z-0 top-[-90px] border-4 rounded-3xl pt-20 pb-8 px-5 mb-6">
+          <p className="text-xl ">{resultData.title}</p>
+          <br />
+          <p className="text-lg ">{resultData.desc}</p>
         </div>
-      </div>
 
-      <div className="m-6 flex gap-6 flex-col items-center font-TTLaundryGothicB">
-        <button
-          onClick={() => navigate('/mbti')}
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3 px-7 border border-gray-400 rounded-full shadow"
-        >
-          테스트 다시하기
-        </button>
-        <KakaoShareButton data={resultData} />
-        <button
-          onClick={() => navigate('/')}
-          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3 px-7 border border-gray-400 rounded-full shadow w-full"
-        >
-          WeatherMate 둘러보기
-        </button>
+        <div className="relative z-0 top-[-90px] flex gap-6 flex-col items-center ">
+          <div className="flex gap-12">
+            <button
+              onClick={() => navigate('/mbti')}
+              className="bg-white hover:bg-primary text-gray-800 font-semibold py-3 px-7 border border-gray-400 rounded-full shadow "
+            >
+              테스트 다시하기
+            </button>
+            <KakaoShareButton data={resultData} />
+          </div>
+          <button
+            onClick={() => navigate('/')}
+            className="bg-white hover:bg-primary text-gray-800 font-semibold py-3 px-7 border border-gray-400 rounded-full shadow w-full "
+          >
+            WeatherMate 둘러보기
+          </button>
+        </div>
       </div>
     </>
   );
