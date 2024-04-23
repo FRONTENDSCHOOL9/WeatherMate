@@ -41,7 +41,7 @@ export const initData = async (nextSeq) => {
     bookmark: [],
     // QnA, 공지사항, 게시판
     post: [
-
+        {
         _id: await nextSeq('post'),
         type: 'community',
         product_id: 1,
