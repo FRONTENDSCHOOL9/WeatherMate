@@ -37,7 +37,7 @@ function EditProfile() {
       }
 
       const response = await customAxios.patch(
-        `/users/${user._id}`,
+        `/users/${user._id}`, // user 상태의 _id 사용
         updatedData,
       );
       if (response.status !== 200) {
