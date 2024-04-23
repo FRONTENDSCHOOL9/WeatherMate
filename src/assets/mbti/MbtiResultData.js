@@ -1,5 +1,5 @@
 import Entp from '@assets/mbti/mbtiimg/Entp.jpg';
-import Enfj from '@assets/mbti/mbtiimg/Enfj.jpg';
+import Enfj from '@assets/mbti/mbtiimg/Enfj.svg';
 import Esfp from '@assets/mbti/mbtiimg/Esfp.jpg';
 import Estp from '@assets/mbti/mbtiimg/Estp.jpg';
 import Intp from '@assets/mbti/mbtiimg/Intp.jpg';

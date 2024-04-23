@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Button from '@components/layout/Button';
 import LocationBookMark from '@pages/location/LocationBookmark';
-import Location from '@pages/location/Location';
 //여기도
 import { useQuery } from '@tanstack/react-query';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
@@ -23,14 +22,26 @@ function UserPage() {
     navigate('/');
   };
 
-  const Rest_api_key = '2fd33ea8cc22119f8666788667295bed'; //REST API KEY
-  const redirect_uri = 'http://localhost:5173/oauth'; //Redirect URI
+
+  // const redirect_uri = `${window.location.origin}/auth/kakao`; //Redirect URI
+  // const REST_API_KEY=import.meta.env.VITE_KAKAO_REST_API_KEY;
+  
+
+  //인가 코드를 받고
+
+
+  //우리 api 서버에 보내주기
+  //api 서버가 카카오에 연결이 돼서 정보를 받아온다
+
+  
   // oauth 요청 URL
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+  // const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code`;
 
   const handleLogin = () => {
-    window.location.href = kakaoURL;
+    // console.log(REST_API_KEY, kakaoURL)
+    // window.location.href = kakaoURL;
   };
+
 
   const Edit = () => {
     navigate('/user/edit');
@@ -65,7 +76,7 @@ function UserPage() {
                 className="w-10 h-10 rounded-full mr-4"
                 src={
                   user.profile
-                    ? `https://market-lion.koyeb.app/api/files/07-WeatherMate/${user.profile}`
+                    ? `/api/files/07-WeatherMate/${user.profile}`
                     : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
                 }
                 alt="Profile"
@@ -126,6 +137,7 @@ function UserPage() {
               >
                 카카오로 시작하기
               </button>
+
             </div>
             <Link to="/" className="text-gray-500 hover:underline text-sm">웨더메이트 둘러보기</Link>
           </div>
