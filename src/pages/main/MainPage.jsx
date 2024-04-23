@@ -17,7 +17,11 @@ function MainWeather() {
       <div className="w-full">
         <div>
           <div className="w-full ">
+
             <div className="flex flex-col xl:flex-row sm:flex-wrap ">
+
+            <div className="flex flex-col :flex-row lg:flex-wrap ">
+
               <div className="sm:w-[50%] ">
                 <TodaysComent />
                 <MyLocationWeather />
