@@ -53,9 +53,9 @@ function MbtiQuestion() {
   return (
     <>
       <DetailPageHeader title={'날씨 성격 테스트'} />
-      <div className="my-10 mx-10 flex gap-10 flex-col items-center font-TTLaundryGothicB">
-        <h1 className="text-3xl font-bold"></h1>
-        <div className="w-full bg-gray-200 min-w-96 rounded-full ">
+      <div className="min-w-[360px] min-h-[700px] m-10 flex gap-10 flex-col items-center font-TTLaundryGothicB">
+        <h1 className="text-2xl font-bold">다음 상황에서 당신의 선택은?</h1>
+        <div className="w-full bg-gray-200 rounded-full ">
           <div
             className="bg-primary text-xs  text-white text-center py-0.5 rounded-full"
             style={{ width: `${progress * 100}%` }}
@@ -63,33 +63,35 @@ function MbtiQuestion() {
             {`${questionNo + 1}/${MbtiQuestionData.length}`}
           </div>
         </div>
-
-        <div className=" min-w-96 border-4 text-xl text-gray-700 rounded-lg p-10 border-primary">
-          <p>당신의 선택은?</p> <br />
-          {MbtiQuestionData[questionNo].title}
+        <div className="whitespace-pre-line flex flex-col gap-10">
+          <div className="min-w-[360px]  mx-10 min-h-[172px] border-4 text-xl text-gray-700 rounded-lg p-10 border-primary ">
+            {MbtiQuestionData[questionNo].title}
+          </div>
+          <button
+            onClick={() =>
+              handleClickButton(1, MbtiQuestionData[questionNo].type)
+            }
+            className="min-w-[360px] min-h-[76px] mx-10 rounded bg-white border-2 p-2 text-lg text-gray-700 font-bold "
+          >
+            {MbtiQuestionData[questionNo].answer1}
+          </button>
+          <button
+            onClick={() =>
+              handleClickButton(0, MbtiQuestionData[questionNo].type)
+            }
+            className="min-w-[360px] min-h-[76px] mx-10 rounded bg-white border-2 p-2 text-lg  text-gray-700 font-bold "
+          >
+            {MbtiQuestionData[questionNo].answer2}
+          </button>
+          {questionNo > 0 && (
+            <button
+              onClick={handleback}
+              className="min-w-[360px]  mx-10 rounded bg-white border-2 p-2 text-lg text-gray-700 font-bold "
+            >
+              이전 문제 다시 풀기
+            </button>
+          )}
         </div>
-        <button
-          onClick={() =>
-            handleClickButton(1, MbtiQuestionData[questionNo].type)
-          }
-          className="min-w-96 rounded bg-white border-2 p-2 text-lg text-gray-700 font-bold "
-        >
-          {MbtiQuestionData[questionNo].answer1}
-        </button>
-        <button
-          onClick={() =>
-            handleClickButton(0, MbtiQuestionData[questionNo].type)
-          }
-          className="min-w-96 rounded bg-white border-2 p-2 text-lg  text-gray-700 font-bold "
-        >
-          {MbtiQuestionData[questionNo].answer2}
-        </button>
-        <button
-          onClick={handleback}
-          className="min-w-96 rounded bg-white border-2 p-2 text-lg text-gray-700 font-bold "
-        >
-          이전 문제 다시 풀기
-        </button>
       </div>
     </>
   );

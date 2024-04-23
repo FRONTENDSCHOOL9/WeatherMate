@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import kakaoLogo from '/kakaoLogo.svg';
 const { Kakao } = window;
 
 function KakaoShareButton(data) {
@@ -41,9 +42,10 @@ function KakaoShareButton(data) {
   return (
     <button
       onClick={shareKakao}
-      className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+      className="flex gap-2 bg-kakao hover:bg-primary text-kakao-lable py-3 px-7 border border-gray-400 rounded-3xl shadow"
     >
-      카카오톡 공유하기
+      <img src={kakaoLogo} alt="" className="w-[28px] " />
+      <p className="align-middle">공유하기</p>
     </button>
   );
 }
