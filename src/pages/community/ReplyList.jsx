@@ -55,7 +55,7 @@ function ReplyList() {
           <p className="text-orange-300">댓글 {replyList && (replyList !== 0 ? replyList.length : 0)}개</p>
         </div>
       </div>
-      <div className="grid gap-2 xl:grid-cols-2 2xl:grid-cols-3">
+      <div className="grid gap-2 ">
         {replyList && replyList.map((item) => <ReplyItem key={item._id} item={item} handleDelete={handleDelete}/>)} 
       </div>
     </div>

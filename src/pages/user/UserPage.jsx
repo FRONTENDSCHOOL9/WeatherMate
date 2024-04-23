@@ -1,11 +1,16 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { memberState } from '@recoil/atom.mjs';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Button from '@components/layout/Button';
 import LocationBookMark from '@pages/location/LocationBookmark';
+//여기도
+import { useQuery } from '@tanstack/react-query';
+import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import CommunityItem from '@pages/community/CommunityItem';
+//여기까지 바뀜
 
 function UserPage() {
   const navigate = useNavigate();
@@ -42,7 +47,24 @@ function UserPage() {
     navigate('/user/edit');
   };
 
-  
+
+  //여기부터
+  const [click, setClick] = useState(false);
+  const axios = useCustomAxios();
+  const { data } = useQuery({
+    queryKey: ['posts'],
+    queryFn: () =>
+      axios.get('/posts', {
+        params: {
+          type: "community"
+        },
+      }),
+      select: (response) => response.data,
+      suspense: true,
+      refetchOnMount: "always"
+  });
+  const itemList = data?.item?.filter((item) => item.user._id === user._id).map((item) => <CommunityItem key={item._id} item={item} />);
+  //여기까지 바뀜
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
@@ -71,7 +93,14 @@ function UserPage() {
                   <Link to="/" className="text-blue-500 hover:underline">저장한 장소</Link>
                 </li>
                 <li>
-                  <Link to="/" className="text-blue-500 hover:underline">나의 활동</Link>
+                  {/* 여기부터 */}
+                  <div>
+                    <button type="button" onClick={() => setClick(true)} className="text-blue-500 hover:underline">나의 활동</button>
+                    <div className="flex flex-col gap-2">
+                      {click && itemList}
+                    </div>
+                  </div>
+                  {/* 여기까지 바뀜 */}
                 </li>
               </ul>
             </div>

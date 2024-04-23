@@ -65,9 +65,9 @@ function CommunityNew() {
         <CommunityHeader title={'새 글쓰기'} />
       </div>
       <br />
-      <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="grid lg:grid-cols-2 gap-3 ">
 
-        <div>
+        <div className="flex flex-col lg:justify-between xl:flex-row xl:justify-normal">
           <div className="flex gap-2">
             <label
               htmlFor="file"
@@ -86,10 +86,10 @@ function CommunityNew() {
             />
           </div>
 
-          <div className="my-4 flex flex-col">
+          <div className="my-4 flex flex-col lg:grow lg:m-0">
             <p className="text-lg font-bold">오늘의 날씨 선택</p>
-            <div className="border mt-2 py-2 rounded-xl">
-              <div onClick={handleClick} className="grid grid-cols-6 gap-1 px-2 lg:grid-cols-3">
+            <div className="border mt-2 py-2 rounded-xl lg:grow">
+              <div onClick={handleClick} className="grid grid-cols-6 gap-1 px-2 lg:grid-rows-3 lg:grid-cols-2">
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
                     src="/uvi.svg"
@@ -146,10 +146,10 @@ function CommunityNew() {
         <div>
           <textarea
             id="content"
-            className="w-full p-4 text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            className="w-full p-4 text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 md:text-lg"
             autoFocus
             cols="50"
-            rows="15"
+            rows="10"
             placeholder="웨더메이트에게 공유하고 싶은 날씨 이야기를 해주세요!"
             {...register('content', { required: '내용을 입력하세요.' })}
           />
@@ -163,11 +163,11 @@ function CommunityNew() {
             <Button
               type="button"
               onClick={() => navigate('/community')}
-              className="grow p-1 box-border bg-gray-300 text-white rounded-lg"
+              className="grow p-1 box-border bg-gray-300 text-white rounded-lg md:text-lg"
             >
               취소
             </Button>
-            <Submit className="grow p-1 box-border bg-blue-400 text-white rounded-lg">
+            <Submit className="grow p-1 box-border bg-blue-400 text-white rounded-lg md:text-lg">
               완료
             </Submit>
         </div>
