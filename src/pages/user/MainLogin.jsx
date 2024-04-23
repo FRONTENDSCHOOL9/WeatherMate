@@ -36,7 +36,6 @@ function MainLogin() {
       yoyo: true,
     });
     const tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
-    tl.from('.comment-text2', { opacity: 0, x: 100, duration: 1 });
     return () => {
       // Clean up animations
       tl.kill();

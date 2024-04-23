@@ -91,7 +91,7 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq('post'),
         type: 'community',
-        image: 'mbtibg.png',
+        image: '',
         product_id: 1,
         seller_id: 2,
         user: {
@@ -107,7 +107,7 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq('post'),
         type: 'community',
-        image: 'mbtibg.png',
+        image: '',
         product_id: 1,
         seller_id: 2,
         user: {
@@ -122,7 +122,7 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq('post'),
         type: 'community',
-        image: 'mbtibg.png',
+        image: '',
         product_id: 1,
         seller_id: 2,
         user: {
@@ -137,7 +137,7 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq('post'),
         type: 'community',
-        image: 'mbtibg.png',
+        image: '',
         product_id: 1,
         seller_id: 2,
         user: {
@@ -152,7 +152,7 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq('post'),
         type: 'community',
-        image: 'mbtibg.png',
+        image: '',
         product_id: 1,
         seller_id: 2,
         user: {
@@ -167,7 +167,37 @@ export const initData = async (nextSeq) => {
       {
         _id: await nextSeq('post'),
         type: 'community',
-        image: 'mbtibg.png',
+        image: '',
+        product_id: 1,
+        seller_id: 2,
+        user: {
+          _id: 2,
+          name: 'Tester1',
+        },
+        title: 'manyClouds',
+        content: '테스트용 게시글입니다.',
+        createdAt: getTime(-2, -60 * 60 * 1),
+        updatedAt: getTime(-1, -60 * 60 * 20),
+      },
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        image: '',
+        product_id: 1,
+        seller_id: 2,
+        user: {
+          _id: 2,
+          name: 'Tester1',
+        },
+        title: 'manyClouds',
+        content: '테스트용 게시글입니다.',
+        createdAt: getTime(-2, -60 * 60 * 1),
+        updatedAt: getTime(-1, -60 * 60 * 20),
+      },
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        image: '',
         product_id: 1,
         seller_id: 2,
         user: {
@@ -180,6 +210,9 @@ export const initData = async (nextSeq) => {
         updatedAt: getTime(-1, -60 * 60 * 20),
       },
       
+
+      
+
     ],
 
     // 코드

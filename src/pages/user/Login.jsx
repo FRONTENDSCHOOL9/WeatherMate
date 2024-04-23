@@ -125,7 +125,6 @@ function Login() {
           </form>
         </div>
       </nav>
-      <div>충돌발생</div>
     </>
   );
 }
