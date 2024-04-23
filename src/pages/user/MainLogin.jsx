@@ -50,7 +50,7 @@ function MainLogin() {
       <div className="text-center w-[40%] flex flex-col gap-y-8">
         <div>
           <h2 className="font-TTLaundryGothicB text-xl text-primary">
-            Weather{' '}
+            Weather Mate
           </h2>
           <p className="text-base text-gray-800">
             오늘의 날씨와 우리의 이야기를 나눠봐요
@@ -59,32 +59,32 @@ function MainLogin() {
         </div>
         <div className="w-full flex flex-col gap-4 comment-text">
           <button
-            className="bg-primary py-1 text-base font-medium"
+            className="bg-primary text-white py-2 px-4 rounded-lg  hover:bg-primary_deep"
             onClick={() => navigate('/user/Login')}
           >
             로그인
           </button>
           <button
-            className="bg-white border-2 border-primary hover:primary py-1 text-base font-medium"
+            className="bg-white border-primary border-2 text-primary py-2 px-4 rounded-lg mr-2 hover:bg-gray-200"
             onClick={() => navigate('/user/SignUp')}
           >
             회원가입
           </button>
           <button
-            className="bg-kakao py-1 text-base text-kakao-lable font-medium"
+            className="bg-[#FEE500] text-[#55461a] py-2 px-4 rounded-lg mr-2 hover:bg-[#fed400]"
             onClick={handleLogin}
           >
             카카오로 시작하기
           </button>
           <button
-            className="bg-white text-gray-700 text-sm"
+            className="text-gray-700 text-sm hover:underline"
             onClick={() => navigate('/')}
           >
             웨더메이트 둘러보기
           </button>
         </div>
       </div>
-      <div>충돌발생</div>
+
     </nav>
   );
 }

@@ -7,12 +7,10 @@ import useCustomAxios from "@hooks/useCustomAxios.mjs";
 import Submit from "@components/layout/Submit";
 
 ReplyNew.propTypes = {
-  item: PropTypes.object,
-  newReply: PropTypes.array,
-  setNewReply: PropTypes.func
+  refetch: PropTypes.func
 }
 
-function ReplyNew({newReply, setNewReply}) {
+function ReplyNew({refetch}) {
   const navigate = useNavigate();
   const axios = useCustomAxios();
   const {_id} = useParams();
@@ -32,12 +30,12 @@ function ReplyNew({newReply, setNewReply}) {
   };
 
   const onSubmit = async (formData) => {
-      const reply = await axios.post(`/posts/${_id}/replies`,formData)
-      setNewReply([...newReply, reply.data.item])
-      navigate(`/community/${_id}`)
+      await axios.post(`/posts/${_id}/replies`,formData)
+      refetch();
       reset();
+      // setNewReply([...newReply, reply.data.item]) 상태값 불필요
+      // navigate(`/community/${_id}`) 이동 불필요
   }
-
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex gap-1 border bg-gray-400 p-3 rounded-md">

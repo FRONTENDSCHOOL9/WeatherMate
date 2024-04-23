@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import Loading from '@components/layout/Loading';
 import DetailPageHeader from '@components/layout/DetailPageHeader';
 import LocationMap from '@pages/food/LocationMap';
+import LocationMap from '@pages/location/LocationMap';
+import LocationBookMark from './LocationBookmark';
 
 import LocationAddReply from './LocationAddReply';
 
@@ -85,7 +87,7 @@ function LocationDetailPage() {
   return (
     <>
       <DetailPageHeader title={'상세보기'} />
-      <div className="p-5  flex flex-col gap-4 md:px-60 lg:px-96">
+      <div className="p-5  flex flex-col gap-4 sm:px-60">
         <div className="flex justify-between">
           <h1 className="text-3xl font-semibold content-center ">
             {detailData.title}
@@ -101,23 +103,15 @@ function LocationDetailPage() {
           ))}
         </div>
         <div className="flex flex-col gap-4 lg:flex-row">
+        <div className="rounded-lg">
           <img
             src={detailData.firstimage}
             alt="이미지1"
-            className=" w-full rounded-lg"
+            className=" w-full md:w- rounded-lg"
           />
-          <div className="rounded-lg">
-            <div>
-              <p>
-                주소: {detailData.addr1} ({detailData.addr2})
-              </p>
-              <LocationMap
-                latitude={Number(detailData.mapy)}
-                longitude={Number(detailData.mapx)}
-                locationName={detailData.title}
-              />
-            </div>
-            <table className="table-fixed bg-gray-100 md:mt-6">
+         
+            
+            <table className="table-fixed rounded-lg bg-gray-100 ">
               <thead>
                 <tr>
                   <th scope="col" className="w-24 px-6 py-3">
@@ -206,6 +200,16 @@ function LocationDetailPage() {
               </tbody>
             </table>
           </div>
+          <div>
+              <p>
+                주소: {detailData.addr1} ({detailData.addr2})
+              </p>
+              <LocationMap
+                latitude={Number(detailData.mapy)}
+                longitude={Number(detailData.mapx)}
+                locationName={detailData.title}
+              />
+            </div>
         </div>
 
         <LocationAddReply id={id} />

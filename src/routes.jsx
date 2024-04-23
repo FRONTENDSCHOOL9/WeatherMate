@@ -16,7 +16,7 @@ import LocationDetailPage from './pages/location/LocationDetailPage';
 
 import LocationMainPage from './pages/location/LocationMainPage';
 import Setting from './pages/user/Setting';
-import FoodMainPage from './pages/food/FoodMainPage';
+
 import ReplyList from './pages/community/ReplyList';
 import MainLogin from '@pages/user/MainLogin';
 import UserEdit from '@pages/user/UserEdit';
@@ -27,89 +27,92 @@ const router = createBrowserRouter([
   {
     path: '/',
     errorElement: <ErrorPage />,
-    element: <Layout />,
     children: [
       {
         index: true,
-        element: <MainPage />,
+        element: <MainLogin />,
       },
       {
-        path: '/allcity',
-        element: <AllCitiesWeather />,
-      },
-      {
-        path: 'community',
-        element: <CommunityMain />,
-      },
-      {
-        path: 'community/new',
-        element: <CommunityNew />,
-      },
-      {
-        path: 'community/:_id',
-        element: <CommunityDetail />,
+        path: '/',
+        element: <Layout />,
         children: [
           {
             index: true,
-            element: <ReplyList />,
+            path: 'main',
+            element: <MainPage />,
+          },
+          {
+            path: '/allcity',
+            element: <AllCitiesWeather />,
+          },
+          {
+            path: 'community',
+            element: <CommunityMain />,
+          },
+          {
+            path: 'community/new',
+            element: <CommunityNew />,
+          },
+          {
+            path: 'community/:_id',
+            element: <CommunityDetail />,
+            children: [
+              {
+                index: true,
+                element: <ReplyList />,
+              },
+            ],
+          },
+          {
+            path: 'location',
+            element: <LocationMainPage />,
+          },
+          {
+            path: 'location/:id',
+            element: <LocationDetailPage />,
+          },
+
+          {
+            path: 'mbti',
+            element: <MbtiTest />,
+          },
+          {
+            path: 'mbti/question',
+            element: <MbtiQuestion />,
+          },
+          {
+            path: 'mbti/result/',
+            element: <MbtiResult />,
+          },
+          {
+            path: 'user/mypage',
+            element: <UserPage />,
+          },
+
+          {
+            path: 'user/signup',
+            element: <SignUp />,
+          },
+          {
+            path: 'user/login',
+            element: <Login />,
+          },
+          {
+            path: 'user/setting',
+            element: <Setting />,
+          },
+          {
+            path: 'user/edit',
+            element: <UserEdit />,
+          },
+          {
+            path: 'edit',
+            element: <Edit />,
           },
         ],
       },
-      {
-        path: 'location',
-        element: <LocationMainPage />,
-      },
-      {
-        path: 'location/:id',
-        element: <LocationDetailPage />,
-      },
-      {
-        path: 'mbti',
-        element: <MbtiTest />,
-      },
-      {
-        path: 'mbti/question',
-        element: <MbtiQuestion />,
-      },
-      {
-        path: 'mbti/result/',
-        element: <MbtiResult />,
-      },
-      {
-        path: 'user/mypage',
-        element: <UserPage />,
-      },
-      {
-        path: 'food',
-        element: <FoodMainPage />,
-      },
-      {
-        path: 'user/signup',
-        element: <SignUp />,
-      },
-      {
-        path: 'user/login',
-        element: <Login />,
-      },
-      {
-        path: 'user/setting',
-        element: <Setting />,
-      },
-      {
-        path: 'user/edit',
-        element: <UserEdit />,
-      },
-      {
-        path: 'edit',
-        element: <Edit />,
-      },
     ],
-  },
-  {
-    path: 'main/login',
-    element: <MainLogin />,
   },
 ]);
 
 export default router;
-// 이게 수정

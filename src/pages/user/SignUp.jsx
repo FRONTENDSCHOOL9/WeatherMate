@@ -14,43 +14,40 @@ function SignUp() {
     formState: { errors },
     setError,
   } = useForm({
-    values: {
+    defaultValues: {
       name: '전희선',
       email: 'gmltjs6346pk@naver.com',
       password: '123123123',
     },
   });
 
-  const onSubmit = async formData => {
+  const onSubmit = async (formData) => {
     try {
       formData.type = 'user';
-      console.log(formData);
 
-      //프로필 이미지 등록
       if (formData.profileImage.length > 0) {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.profileImage[0]);
 
-        const fileRes = await axios('https://market-lion.koyeb.app/api/files', {
-          method: 'post',
+        const fileRes = await axios.post('https://market-lion.koyeb.app/api/files', imageFormData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
-          data: imageFormData,
         });
 
         formData.profileImage = fileRes.data.item[0].name;
       } else {
         delete formData.profileImage;
       }
+
       const res = await axios.post('/users', formData);
-      alert(res.data.item.name + '님 회원가입이 완료 되었습니다.');
+      alert(`${res.data.item.name}님 회원가입이 완료되었습니다.`);
       navigate('/user/login');
     } catch (err) {
       console.error(err);
       if (err.response?.data.errors) {
-        err.response?.data.errors.forEach(error =>
-          setError(error.path, { message: error.msg }),
+        err.response?.data.errors.forEach((error) =>
+          setError(error.path, { message: error.msg })
         );
       } else if (err.response?.data.message) {
         alert(err.response?.data.message);
@@ -59,82 +56,89 @@ function SignUp() {
   };
 
   return (
-    <nav className="h-screen">
-      <h2>회원가입</h2>
+    <div className="h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-md w-full space-y-8 p-8 bg-white dark:bg-gray-800 rounded shadow-lg">
+        <h2 className="text-center text-2xl font-bold">회원가입</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <lebel>이름</lebel>
-        <input
-          type="text"
-          id="name"
-          placeholder="이름을 입력하세요"
-          {...register('name', {
-            required: '이름을 입력하세요',
-            minLength: {
-              value: 2,
-              message: '이름을 두글자 이상 입력하세요',
-            },
-          })}
-        />
-        {errors.name && (
-          <p className="ml-2 mt-1 text-sm text-red-500">
-            {errors.name.message}
-          </p>
-        )}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              이름
+            </label>
+            <input
+              type="text"
+              id="name"
+              placeholder="이름을 입력하세요"
+              {...register('name', {
+                required: '이름을 입력하세요',
+                minLength: {
+                  value: 2,
+                  message: '이름을 두글자 이상 입력하세요',
+                },
+              })}
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+            {errors.name && (
+              <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
+            )}
+          </div>
 
-        <label>이메일</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="이메일을 입력하세요"
-          {...register('email', {
-            required: '이메일을 입력하세요',
-            pattern: {
-              value:
-                /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
-              message: '이메일 형식이 아닙니다',
-            },
-          })}
-        />
-        {errors.name && (
-          <p className="ml-2 mt-1 text-sm text-red-500">
-            {errors.name.message}
-          </p>
-        )}
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              이메일
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="이메일을 입력하세요"
+              {...register('email', {
+                required: '이메일을 입력하세요',
+                pattern: {
+                  value: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+                  message: '이메일 형식이 아닙니다',
+                },
+              })}
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+            {errors.email && (
+              <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+            )}
+          </div>
 
-        <label>비밀번호</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="비밀번호를 입력하세요"
-          {...register('password', { required: '비밀번호를 입력하세요' })}
-        />
-        {errors.name && (
-          <p className="ml-2 mt-1 text-sm text-red-500">
-            {errors.name.message}
-          </p>
-        )}
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              비밀번호
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="비밀번호를 입력하세요"
+              {...register('password', { required: '비밀번호를 입력하세요' })}
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+            {errors.password && (
+              <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>
+            )}
+          </div>
 
-        <label
-          className="block text-gray-700 dark:text-gray-200 font-bold mb-2"
-          htmlFor="profileImage"
-        >
-          프로필 이미지
-        </label>
-        <input
-          type="file"
-          accept="image/*"
-          id="profileImage"
-          placeholder="이미지를 선택하세요"
-          {...register('profileImage')}
-        />
+          <div className="mb-4">
+            <label htmlFor="profileImage" className="block text-sm font-medium text-gray-700">
+              프로필 이미지
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              id="profileImage"
+              {...register('profileImage')}
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
 
-        <Submit>회원가입</Submit>
-      </form>
-      <div>충돌발생</div>
-    </nav>
+          <Submit>회원가입</Submit>
+        </form>
+      </div>
+    </div>
   );
 }
 
 export default SignUp;
-// 이게 수정
