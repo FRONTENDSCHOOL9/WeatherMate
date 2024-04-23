@@ -168,8 +168,6 @@ function Location({ keyword }) {
     }
   };
 
-  console.log('xxdta', locationData);
-
   return (
     <div className="container mx-auto p-4 min-h-screen">
       <div className="flex flex-wrap justify-center items-center ">
