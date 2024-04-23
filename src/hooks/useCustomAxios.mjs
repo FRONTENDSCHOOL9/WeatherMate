@@ -16,7 +16,7 @@ function useCustomAxios() {
   // Axios 인스턴스 생성
   const instance = axios.create({
     baseURL: API_SERVER,
-    timeout: 10000 * 10,
+    timeout: 1000 * 10,
     headers: {
       'content-type': 'application/json', // 요청 데이터 유형
       'accept': 'application/json',  // 응답 데이터 유형
