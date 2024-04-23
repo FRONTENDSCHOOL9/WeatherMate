@@ -1,6 +1,6 @@
 /* eslint-disable */
-import React from 'react';
-import useCustomAxios from '@hooks/useCustomAxios.mjs';
+import React from 'react'
+import useCustomAxios from '@hooks/useCustomAxios.mjs'
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { memberState } from '@recoil/atom.mjs';
@@ -25,37 +25,40 @@ function Login() {
     },
   });
 
-  const onSubmit = async formData => {
-    try {
-      const res = await axios.post(
-        'https://market-lion.koyeb.app/api/users/login',
-        formData,
-      );
+
+
+
+
+  const onSubmit = async (formData)=> {
+    try{
+      const res = await axios.post('https://market-lion.koyeb.app/api/users/login', formData);
 
       setUser({
         _id: res.data.item._id,
-        email: res.data.item.email,
+        email:res.data.item.email,
         name: res.data.item.name,
         profile: res.data.item.profileImage,
-        token: res.data.item.token,
+        token: res.data.item.token
       });
 
       alert(res.data.item.name + '님 반갑습니다');
       navigate(location.state?.from ? location.state?.from : '/');
       console.log(res.data.item);
-    } catch (err) {
-      if (err.response?.data.errors) {
-        err.response?.data.errors.forEach(error =>
-          setError(error.path, { message: error.msg }),
-        );
-      } else if (err.response?.data.message) {
+
+
+    } catch(err) {
+      if(err.response?.data.errors){
+        err.response?.data.errors.forEach(error => setError(error.path, {message: error.msg}));
+      }else if(err.response?.data.message){
         alert(err.response?.data.message);
       }
+
     }
-  };
+  }
 
   return (
     <>
+
       <nav className="h-screen flex items-center justify-center bg-gray-100 p-16 max-w-full min-w-80">
         <div className="bg-white text-center rounded-2xl p-8 w-full max-w-md">
           <h2 className="text-xl font-semibold text-primary font-TTLaundryGothicB">Weather Mate</h2>
@@ -124,6 +127,7 @@ function Login() {
       <div>충돌발생</div>
     </>
   );
+
 }
 
 export default Login;

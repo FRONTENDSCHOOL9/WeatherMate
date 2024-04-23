@@ -83,21 +83,18 @@ function CommunityDetail() {
   // console.log(item);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen min-w-96">
     <div>
-      <div>
-        <Button
-          onClick={() => navigate('/community')}
-          className="absolute left-6 top-10"
-        >
+      <div className="flex items-center justify-center">
+        <Button onClick={() => navigate('/community')} className="absolute left-6 top-10">
           <FaArrowLeft className="text-2xl" />
         </Button>
         <div className="px-5 box-border flex flex-col">
           <CommunityHeader title={'상세보기'} />
         </div>
       </div>
-
-      <div className="px-5">
+      <div className="grid md:grid-cols-2">
+      <div className="px-5 rounded-md border">
         <div>
           {item && (
             <section className="py-4">
@@ -117,9 +114,9 @@ function CommunityDetail() {
                   </div>
                 </div>
 
-                <div>
+                <div className='grid'>
                   <div>
-                    {image && <img src={image} alt="" className="w-full h-60"/>}
+                    {image && <img src={image} alt="" className="w-full h-60 max-w-fit"/>}
                   </div>
                   <div className="bg-gray-400 text-white rounded-md p-2 box-border">
                     {item.content}
@@ -160,6 +157,7 @@ function CommunityDetail() {
 
       </div>
       <Outlet context={item} />
+      </div>
     </div>
     </div>
   );

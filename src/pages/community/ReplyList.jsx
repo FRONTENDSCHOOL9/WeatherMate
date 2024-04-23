@@ -33,7 +33,7 @@ function ReplyList() {
   }
 
   useEffect(() => {
-    console.log('댓글:', newReply)
+    // console.log('댓글:', newReply)
     refetch()
   },[newReply])
 
@@ -42,7 +42,7 @@ function ReplyList() {
   // console.log(replyList);
 
   return (
-    <div className="px-5">
+    <div className="p-5 bg-gray-200 rounded-md">
       <ReplyNew newReply={newReply} setNewReply={setNewReply}/>
       <div className="flex mt-2">
         <div className="flex gap-1 items-center">
@@ -54,7 +54,9 @@ function ReplyList() {
           <p className="text-orange-300">댓글 {replyList && (replyList.length !== 0 ? replyList.length : 0)}개</p>
         </div>
       </div>
-      {replyList && replyList.map((e) => <ReplyItem key={e._id} item={e} handleDelete={handleDelete}/>)} 
+      <div className="grid gap-2 xl:grid-cols-2 2xl:grid-cols-3">
+        {replyList && replyList.map((e) => <ReplyItem key={e._id} item={e} handleDelete={handleDelete}/>)} 
+      </div>
     </div>
   )
 }

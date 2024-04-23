@@ -60,7 +60,7 @@ function CommunityNew() {
   };
 
   return (
-    <div className="px-5 box-border min-h-screen">
+    <div className="px-5 box-border min-h-screen min-w-96">
       <Button
         onClick={() => navigate('/community')}
         className="absolute left-6 top-10"
@@ -69,107 +69,111 @@ function CommunityNew() {
       </Button>
       <CommunityHeader title={'글 작성하기'} />
       <br />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex">
-          <label
-            htmlFor="file"
-            className="w-20 h-20 bg-blue-400 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white"
-          >
-            <MdOutlineCameraAlt className="text-3xl" />
-            사진 추가
-          </label>
+      <form onSubmit={handleSubmit(onSubmit)} className="grid lg:grid-cols-2">
+        <div>
+          <div className="flex">
+            <label
+              htmlFor="file"
+              className="w-20 h-20 bg-blue-400 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white"
+            >
+              <MdOutlineCameraAlt className="text-3xl" />
+              사진 추가
+            </label>
 
-          <input
-            type="file"
-            name="contentImg"
-            accept="image/*"
-            id="file"
-            {...register('image')}
-          />
-        </div>
+            <input
+              type="file"
+              name="contentImg"
+              accept="image/*"
+              id="file"
+              {...register('image')}
+            />
+          </div>
 
-        <div className="my-4 flex flex-col">
-          <p className="text-lg font-bold">오늘의 날씨 선택</p>
-          <div className="border mt-2 py-2 rounded-xl">
-            <div onClick={handleClick} className="flex justify-between px-5">
-              <button type="button"  >
-                <img
-                  src="/Sun.svg"
-                  alt="Sun"
-                  data-weather="Sun"
-                  className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
-                />
-              </button>
-              <button type="button">
-                <img
-                  src="/Cloudy.svg"
-                  alt="Cloudy"
-                  data-weather="Cloudy"
-                  className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
-                />
-              </button>
-              <button type="button">
-                <img
-                  src="/Rainy.svg"
-                  alt="Rainy"
-                  data-weather="Rainy"
-                  className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
-                />
-              </button>
-              <button type="button">
-                <img
-                  src="/Foggy.svg"
-                  alt="Foggy"
-                  data-weather="Foggy"
-                  className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
-                />
-              </button>
-              <button type="button">
-                <img
-                  src="/Snow.svg"
-                  alt="Snow"
-                  data-weather="Snow"
-                  className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
-                />
-              </button>
-              <button type="button">
-                <img
-                  src="/Wind.svg"
-                  alt="Wind"
-                  data-weather="Wind"
-                  className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
-                />
-              </button>
+          <div className="my-4 flex flex-col">
+            <p className="text-lg font-bold">오늘의 날씨 선택</p>
+            <div className="border mt-2 py-2 rounded-xl">
+              <div onClick={handleClick} className="flex justify-between px-5">
+                <button type="button"  >
+                  <img
+                    src="/Sun.svg"
+                    alt="Sun"
+                    data-weather="Sun"
+                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                  />
+                </button>
+                <button type="button">
+                  <img
+                    src="/Cloudy.svg"
+                    alt="Cloudy"
+                    data-weather="Cloudy"
+                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                  />
+                </button>
+                <button type="button">
+                  <img
+                    src="/Rainy.svg"
+                    alt="Rainy"
+                    data-weather="Rainy"
+                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                  />
+                </button>
+                <button type="button">
+                  <img
+                    src="/Foggy.svg"
+                    alt="Foggy"
+                    data-weather="Foggy"
+                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                  />
+                </button>
+                <button type="button">
+                  <img
+                    src="/Snow.svg"
+                    alt="Snow"
+                    data-weather="Snow"
+                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                  />
+                </button>
+                <button type="button">
+                  <img
+                    src="/Wind.svg"
+                    alt="Wind"
+                    data-weather="Wind"
+                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        <textarea
-          id="content"
-          className="w-full p-4 text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-          autoFocus
-          cols="50"
-          rows="15"
-          placeholder="웨더메이트에게 공유하고 싶은 날씨 이야기를 해주세요!"
-          {...register('content', { required: '내용을 입력하세요.' })}
-        />
-        {errors.content && (
-          <p className="ml-1 mb-2 text-bold text-red-500">
-            {errors.content.message}
-          </p>
-        )}
+        <div>
+          <textarea
+            id="content"
+            className="w-full p-4 text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            autoFocus
+            cols="50"
+            rows="15"
+            placeholder="웨더메이트에게 공유하고 싶은 날씨 이야기를 해주세요!"
+            {...register('content', { required: '내용을 입력하세요.' })}
+          />
+          {errors.content && (
+            <p className="ml-1 mb-2 text-bold text-red-500">
+              {errors.content.message}
+            </p>
+          )}
 
-        <div className="flex gap-2">
-          <Button
-            type="button"
-            onClick={() => navigate('/community')}
-            className="grow p-1 box-border bg-gray-300 text-white rounded-lg"
-          >
-            취소
-          </Button>
-          <Submit className="grow p-1 box-border bg-blue-400 text-white rounded-lg">
-            완료
-          </Submit>
+          <div className="flex gap-2">
+            <Button
+              type="button"
+              onClick={() => navigate('/community')}
+              className="grow p-1 box-border bg-gray-300 text-white rounded-lg"
+            >
+              취소
+            </Button>
+            <Submit className="grow p-1 box-border bg-blue-400 text-white rounded-lg">
+              완료
+            </Submit>
+        </div>
         </div>
       </form>
     </div>
