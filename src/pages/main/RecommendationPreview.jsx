@@ -50,6 +50,8 @@ function RecommendationPreview() {
     }
   }, [locationReady, latitude, longitude]);
 
+  console.log('xx', locationData);
+
   // 로딩 중일 때 보여줄 컴포넌트
   if (loading) {
     return <Loading />;

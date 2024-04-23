@@ -12,6 +12,7 @@ const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 /* eslint-disable */
 
 function Location({ keyword }) {
+  const user = useRecoilValue(memberState);
   const [locationData, setLocationData] = useState([]); //
   const [locationReady, setLocationReady] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -19,8 +20,8 @@ function Location({ keyword }) {
   const [contentID, setContentID] = useState('12');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const user = useRecoilValue(memberState);
   const radius = '200000';
+
   const { latitude, longitude } = useCurrentLocation();
 
   useEffect(() => {
@@ -78,7 +79,7 @@ function Location({ keyword }) {
   }, [searchKeyword, contentID]);
 
   const formatDistance = distance => `${(distance / 1000).toFixed(1)} km`;
-  const recoDefaultImg = '/clothes-m-2.svg';
+  const recoDefaultImg = '/readyforimage.jpeg';
 
   const fetchNextPage = async () => {
     try {
@@ -95,6 +96,7 @@ function Location({ keyword }) {
         '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
         error,
       );
+    } finally {
     }
   };
 
@@ -168,8 +170,6 @@ function Location({ keyword }) {
     }
   };
 
-  console.log('xxdta', locationData);
-
   return (
     <div className="container mx-auto p-4 min-h-screen">
       <div className="flex flex-wrap justify-center items-center ">
@@ -192,7 +192,7 @@ function Location({ keyword }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative">
           {locationData?.map((item, index) => (
             <div
-              className="p-4 rounded-md shadow-md overflow-y-hidden relative" // 부모 요소도 relative로 설정합니다.
+              className="p-4 rounded-md shadow-md overflow-y-hidden relative m-w-[400]" // 부모 요소도 relative로 설정합니다.
               key={index}
             >
               <div className="flex gap-4">
@@ -223,7 +223,7 @@ function Location({ keyword }) {
                         {/* 노란색 박스에 absolute 위치를 설정합니다. */}
                         <p className="text-base text-right">
                           {isNaN(parseFloat(item.dist))
-                            ? '너무멀어요!'
+                            ? ''
                             : formatDistance(parseFloat(item.dist))}
                         </p>
                       </div>

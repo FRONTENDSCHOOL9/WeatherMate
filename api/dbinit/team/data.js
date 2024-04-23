@@ -41,7 +41,7 @@ export const initData = async (nextSeq) => {
     bookmark: [],
     // QnA, 공지사항, 게시판
     post: [
-      {
+
         _id: await nextSeq('post'),
         type: 'community',
         product_id: 1,
@@ -113,6 +113,7 @@ export const initData = async (nextSeq) => {
         user: {
           _id: 2,
           name: 'Tester1',
+
         },
         title: 'manyClouds',
         content: '테스트용 게시글입니다.',
