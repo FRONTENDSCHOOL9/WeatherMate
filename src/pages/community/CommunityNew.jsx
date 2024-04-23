@@ -44,7 +44,7 @@ function CommunityNew() {
     navigate(`/community/${res.data.item._id}`);
   };
 
-  const iconColors = ['bg-gray-300', 'bg-blue-300'];
+  const iconColors = ['bg-white', 'bg-blue-300'];
   const [weatherArr, setWeatherArr] = useState([]);
   const [dataWeater, setDataWeather] = useState('')
 
@@ -95,7 +95,7 @@ function CommunityNew() {
                     src="/uvi.svg"
                     alt="uvi"
                     data-weather="uvi"
-                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -103,7 +103,7 @@ function CommunityNew() {
                     src="/manyClouds.svg"
                     alt="manyClouds"
                     data-weather="manyClouds"
-                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -111,7 +111,7 @@ function CommunityNew() {
                     src="/rain.svg"
                     alt="rain"
                     data-weather="rain"
-                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -119,7 +119,7 @@ function CommunityNew() {
                     src="/littleCloud.svg"
                     alt="littleCloud"
                     data-weather="littleCloud"
-                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -127,7 +127,7 @@ function CommunityNew() {
                     src="/mainSnow.svg"
                     alt="mainSnow"
                     data-weather="mainSnow"
-                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
                 <button type="button" className={`${iconColors[0]} rounded-lg`}>
@@ -135,7 +135,7 @@ function CommunityNew() {
                     src="/windspeed.svg"
                     alt="windspeed"
                     data-weather="windspeed"
-                    className={"rounded-md px-3 h-full lg:h-14 w-14 place-content-center m-auto"}
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
               </div>
