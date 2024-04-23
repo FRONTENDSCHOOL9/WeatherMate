@@ -22,6 +22,7 @@ import MainLogin from '@pages/user/MainLogin';
 import UserEdit from '@pages/user/UserEdit';
 import Edit from '@pages/user/Edit';
 import AllCitiesWeather from '@pages/main/AllCitiesWeather';
+import Oauth from '@pages/user/Oauth'
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
           {
             path: 'edit',
             element: <Edit />,
+          },
+          {
+            path: 'oauth',
+            element:<Oauth/>,
           },
         ],
       },
