@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '@components/layout/Loading';
 import DetailPageHeader from '@components/layout/DetailPageHeader';
+import LocationMap from '@pages/food/LocationMap';
 import LocationMap from '@pages/location/LocationMap';
 import LocationBookMark from './LocationBookmark';
+
 import LocationAddReply from './LocationAddReply';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
@@ -209,7 +211,7 @@ function LocationDetailPage() {
               />
             </div>
         </div>
-        <LocationBookMark />
+
         <LocationAddReply id={id} />
       </div>
     </>
