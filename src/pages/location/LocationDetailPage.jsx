@@ -3,9 +3,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '@components/layout/Loading';
 import DetailPageHeader from '@components/layout/DetailPageHeader';
-import LocationMap from '@pages/food/LocationMap';
+
 import LocationMap from '@pages/location/LocationMap';
-import LocationBookMark from './LocationBookmark';
 
 import LocationAddReply from './LocationAddReply';
 
@@ -103,14 +102,13 @@ function LocationDetailPage() {
           ))}
         </div>
         <div className="flex flex-col gap-4 lg:flex-row">
-        <div className="rounded-lg">
-          <img
-            src={detailData.firstimage}
-            alt="이미지1"
-            className=" w-full md:w- rounded-lg"
-          />
-         
-            
+          <div className="rounded-lg">
+            <img
+              src={detailData.firstimage}
+              alt="이미지1"
+              className=" w-full md:w- rounded-lg"
+            />
+
             <table className="table-fixed rounded-lg bg-gray-100 ">
               <thead>
                 <tr>
@@ -141,7 +139,7 @@ function LocationDetailPage() {
                     )}
                   </td>
                 </tr>
-                {superDetail.length > 0 && (
+                {superDetail?.length > 0 && (
                   <>
                     <tr>
                       <td className="text-center p-2">전화번호</td>
@@ -201,15 +199,15 @@ function LocationDetailPage() {
             </table>
           </div>
           <div>
-              <p>
-                주소: {detailData.addr1} ({detailData.addr2})
-              </p>
-              <LocationMap
-                latitude={Number(detailData.mapy)}
-                longitude={Number(detailData.mapx)}
-                locationName={detailData.title}
-              />
-            </div>
+            <p>
+              주소: {detailData.addr1} ({detailData.addr2})
+            </p>
+            <LocationMap
+              latitude={Number(detailData.mapy)}
+              longitude={Number(detailData.mapx)}
+              locationName={detailData.title}
+            />
+          </div>
         </div>
 
         <LocationAddReply id={id} />
