@@ -52,10 +52,7 @@ function UserPage() {
       suspense: true,
       refetchOnMount: "always"
   });
-  console.log(user);
-  console.log(data);
   const itemList = data?.item?.filter((item) => item.user._id === user._id).map((item) => <CommunityItem key={item._id} item={item} />);
-  console.log(data.item.filter(e => e.user._id === user._id));
   //여기까지 바뀜
 
   return (
@@ -88,7 +85,9 @@ function UserPage() {
                   {/* 여기부터 */}
                   <div>
                     <button type="button" onClick={() => setClick(true)} className="text-blue-500 hover:underline">나의 활동</button>
-                    {click && itemList}
+                    <div className="flex flex-col gap-2">
+                      {click && itemList}
+                    </div>
                   </div>
                   {/* 여기까지 바뀜 */}
                 </li>

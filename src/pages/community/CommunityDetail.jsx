@@ -7,7 +7,6 @@ import { FaArrowLeft } from 'react-icons/fa';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useQuery } from '@tanstack/react-query';
 import Button from '@components/layout/Button';
-import React from 'react';
 
 
 function CommunityDetail() {
@@ -136,4 +135,4 @@ function CommunityDetail() {
   );
 }
 
-export default React.memo(CommunityDetail);
+export default CommunityDetail
