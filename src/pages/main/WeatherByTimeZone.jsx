@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import gsap from 'gsap';
 
@@ -72,7 +72,7 @@ function WeatherByTimeZone() {
   }
 
   return (
-    <div className="w-full  bg-opacity-80 h-[130px]  flex items-center justify-center gap-5 sm:gap-6 overflow-x-scroll scrollbar-hide mb-20 weather-container ">
+    <div className="w-full bg-opacity-80 h-[130px] flex items-center justify-center gap-5 sm:gap-6 overflow-x-scroll scrollbar-hide mb-20 weather-container ">
       {memoizedWeatherData.list.map(item => (
         <div key={item.dt} className="flex items-center justify-center">
           <div className="w-16 bg-slate-300 h-28 rounded-[32.5px] sm:w-14 flex justify-center items-center">
@@ -97,4 +97,4 @@ function WeatherByTimeZone() {
   );
 }
 
-export default WeatherByTimeZone;
+export default React.memo(WeatherByTimeZone);

@@ -8,6 +8,16 @@ function WeatherDetail() {
 
   console.log('weatherDetail', detailWeather);
 
+  function getWindStatus(speed) {
+    if (speed > 1 && speed < 3) {
+      return '보통';
+    } else if (speed >= 4) {
+      return '위험';
+    } else {
+      return '높음'; // 이 외의 경우에는 "기타"를 반환하거나 다른 처리를 수행할 수 있습니다.
+    }
+  }
+
   return (
     <>
       <div>
@@ -42,7 +52,7 @@ function WeatherDetail() {
               <div className="bg-white w-[77px] h-[88px] flex flex-col items-center  justify-center shadow-lg rounded-lg">
                 <img src="uvi.svg" className="w-[31px] " />
                 <p className="text-[#00179C] font-medium">자외선</p>
-                <p>{detailWeather.wind.speed}</p>
+                <p>{getWindStatus(detailWeather.wind.speed)}</p>
               </div>
             </div>
           )}
