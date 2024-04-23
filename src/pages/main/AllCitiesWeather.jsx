@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 
@@ -60,9 +60,10 @@ function AllCitiesWeather() {
     <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {data?.length > 0 && (
         <>
-          <div>
+          <div className="flex flex-col justify-center items-center">
             <h1 className="font-bold ">전국날씨 한눈에 보기 😊 </h1>
             <p className="text-lg">기준 :{unixToHumanTime(data[0].dt)}</p>
+            <img src="clothes-m-2.svg" className="h-24" />
           </div>
           {data.map(item => {
             const cityName = citiesMappingData[item.name] || item.name;
@@ -70,7 +71,7 @@ function AllCitiesWeather() {
             return (
               <div
                 key={item.id}
-                className="bg-white p-4 rounded-md shadow-md px-7 justify-center items-center border-primary border-2"
+                className="bg-white p-4  rounded-md shadow-md px-7 justify-center items-center border-primary border-2"
               >
                 <div className="text-center">
                   <h2 className="text-2xl font-bold mb-2">{cityName}</h2>
@@ -92,4 +93,4 @@ function AllCitiesWeather() {
   );
 }
 
-export default AllCitiesWeather;
+export default React.memo(AllCitiesWeather);

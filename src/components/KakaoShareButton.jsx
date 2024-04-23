@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 const { Kakao } = window;
 
 function KakaoShareButton(data) {
-  const url = 'http://localhost:5173/';
+  const url = import.meta.env.VITE_APP_TITLE;
   const resultUrl = window.location.href;
 
   useEffect(() => {

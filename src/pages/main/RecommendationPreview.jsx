@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useCurrentLocation from '../../hooks/useCurrentLocation';
 import { Link } from 'react-router-dom';
@@ -92,4 +92,4 @@ function RecommendationPreview() {
   );
 }
 
-export default RecommendationPreview;
+export default React.memo(RecommendationPreview);
