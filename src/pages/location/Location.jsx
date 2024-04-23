@@ -8,22 +8,20 @@ import { useRecoilValue } from 'recoil';
 import { memberState } from '@recoil/atom.mjs';
 import Loading from '@components/layout/Loading';
 
-/* eslint-disable */
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
-const SEVER_KEY = import.meta.env.VITE_API_SERVER;
+/* eslint-disable */
 
 function Location({ keyword }) {
+  const user = useRecoilValue(memberState);
   const [locationData, setLocationData] = useState([]); //
   const [locationReady, setLocationReady] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [selectedOption, setSelectedOption] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [contentID, setContentID] = useState('12');
-
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const user = useRecoilValue(memberState);
   const radius = '200000';
+
   const { latitude, longitude } = useCurrentLocation();
 
   useEffect(() => {
@@ -81,7 +79,7 @@ function Location({ keyword }) {
   }, [searchKeyword, contentID]);
 
   const formatDistance = distance => `${(distance / 1000).toFixed(1)} km`;
-  const recoDefaultImg = '/littleCloud.svg';
+  const recoDefaultImg = '/readyforimage.jpeg';
 
   const fetchNextPage = async () => {
     try {
@@ -98,14 +96,15 @@ function Location({ keyword }) {
         '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
         error,
       );
+    } finally {
     }
   };
 
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
     if (
-      scrollTop + clientHeight >= scrollHeight - 5 &&
-      locationData.length > 0
+      locationData.length > 0 &&
+      scrollTop + clientHeight >= scrollHeight - 5
     ) {
       fetchNextPage();
     }
@@ -129,6 +128,7 @@ function Location({ keyword }) {
         let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
         bookmarks.push(contentId);
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        alert('해당 게시물이 북마크에 추가 되었습니다.');
         console.log('북마크 추가 성공:', contentId);
       } catch (error) {
         console.error('북마크 추가 실패:', error);
@@ -138,7 +138,7 @@ function Location({ keyword }) {
 
   const options = [
     { id: '12', label: '관광지', img_src: 'tour.svg' },
-    { id: '14', label: '문화시설', img_src: 'communityplace.svg' },
+    { id: '14', label: '문화', img_src: 'communityplace.svg' },
     { id: '15', label: '행사', img_src: 'festival.svg' },
     { id: '25', label: '여행지', img_src: 'travel.svg' },
     { id: '28', label: '레포츠', img_src: 'reports.svg' },
@@ -172,7 +172,6 @@ function Location({ keyword }) {
 
   return (
     <div className="container mx-auto p-4 min-h-screen">
-      <p className="mb-3 text-xs">웨더메이트 추천 키워드</p>
       <div className="flex flex-wrap justify-center items-center ">
         {options.map((option, index) => (
           <div className="w-1/4" key={option.id}>
@@ -190,44 +189,48 @@ function Location({ keyword }) {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative">
           {locationData?.map((item, index) => (
             <div
-              className="p-4 rounded-md shadow-md overflow-y-hidden"
-              key={index} // 이 위치에 고유한 키를 제공합니다.
+              className="p-4 rounded-md shadow-md overflow-y-hidden relative m-w-[400]" // 부모 요소도 relative로 설정합니다.
+              key={index}
             >
-              <IoIosBookmark
-                className="text-sub_sal w-[35px] h-[35px] ml-auto"
-                onClick={() => handleBookMark(item.contentid)}
-              />
-              <Link to={`/location/${item.contentid}`}>
-                <h2 className="text-xl font-bold mb-2">{item.title}</h2>
-                <p className="">주소:{item.addr1}</p>
-                <img
-                  src={item.firstimage ? item.firstimage : recoDefaultImg}
-                  alt="이미지1"
-                  className="w-full  mb-2 rounded-md overflow-hidden aspect-square object-cover"
-                />
+              <div className="flex gap-4">
+                <div className="relative">
+                  <img
+                    src={item.firstimage ? item.firstimage : recoDefaultImg}
+                    alt="이미지1"
+                    className="max-w-32 mb-2 rounded-md overflow-hidden aspect-square object-cover border-2"
+                  />
+                  <IoIosBookmark
+                    className="text-sub_sal w-[35px] h-[35px] ml-auto absolute top-0 right-0 m-2 cursor-pointer"
+                    onClick={() => handleBookMark(item.contentid)}
+                  />
+                </div>
 
-                <div className="flex w-[200px] box-border gap-3 mt-8">
-                  <div className="flex justify-center items-center ml-auto gap-3">
-                    <div className="bg-[#FFF387] w-[112px] h-[95px] flex flex-col gap-5">
-                      <p className="text-center">거리</p>
-                      <p className="text-xs text-center">
-                        {isNaN(parseFloat(item.dist))
-                          ? '너무멀어요!'
-                          : formatDistance(parseFloat(item.dist))}
-                      </p>
-                    </div>
-                    <div className="bg-primary w-[112px] h-[95px] flex flex-col gap-5">
-                      <p className="text-center">분류</p>
-                      <p className="text-xs text-center">
-                        {getCategoryText(item.cat2)}
-                      </p>
+                <div>
+                  <Link to={`/location/${item.contentid}`}>
+                    <p className="text-base text-left">
+                      {getCategoryText(item.cat2)}
+                    </p>
+                    <h2 className="text-base font-bold mb-2">{item.title}</h2>
+                    <p className="">{item.addr1}</p>
+                  </Link>
+
+                  <div className="flex justify-end box-border mt-8">
+                    <div className="flex items-center ml-3">
+                      <div className="bg-[#FFF387] w-[112px] h-10 absolute bottom-0 right-0">
+                        {/* 노란색 박스에 absolute 위치를 설정합니다. */}
+                        <p className="text-base text-right">
+                          {isNaN(parseFloat(item.dist))
+                            ? ''
+                            : formatDistance(parseFloat(item.dist))}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>

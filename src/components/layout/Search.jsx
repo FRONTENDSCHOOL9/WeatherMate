@@ -15,7 +15,7 @@ function Search({ onClick }) {
   };
 
   return (
-    <form className="pt-3 px-5 box-border">
+    <form className="box-border">
       <div className='flex justify-end gap-2'>
         <p className='text-nowrap font-bold text-lg '>검색하기</p>
         <input

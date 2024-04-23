@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import CommunityHeader from './CommunityHeader';
@@ -45,7 +44,7 @@ function CommunityNew() {
     navigate(`/community/${res.data.item._id}`);
   };
 
-  const iconColors = ['bg-gray-300', 'bg-blue-300'];
+  const iconColors = ['bg-white', 'bg-blue-300'];
   const [weatherArr, setWeatherArr] = useState([]);
   const [dataWeater, setDataWeather] = useState('')
 
@@ -61,17 +60,15 @@ function CommunityNew() {
 
   return (
     <div className="px-5 box-border min-h-screen min-w-96">
-      <Button
-        onClick={() => navigate('/community')}
-        className="absolute left-6 top-10"
-      >
-        <FaArrowLeft className="text-2xl" />
-      </Button>
-      <CommunityHeader title={'글 작성하기'} />
+      <div className="flex">
+        <Button onClick={() => navigate('/community')} className=""><FaArrowLeft className="text-2xl" /></Button>
+        <CommunityHeader title={'새 글쓰기'} />
+      </div>
       <br />
-      <form onSubmit={handleSubmit(onSubmit)} className="grid lg:grid-cols-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-3">
+
         <div>
-          <div className="flex">
+          <div className="flex gap-2">
             <label
               htmlFor="file"
               className="w-20 h-20 bg-blue-400 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white"
@@ -79,8 +76,8 @@ function CommunityNew() {
               <MdOutlineCameraAlt className="text-3xl" />
               사진 추가
             </label>
-
             <input
+              className=""
               type="file"
               name="contentImg"
               accept="image/*"
@@ -92,53 +89,53 @@ function CommunityNew() {
           <div className="my-4 flex flex-col">
             <p className="text-lg font-bold">오늘의 날씨 선택</p>
             <div className="border mt-2 py-2 rounded-xl">
-              <div onClick={handleClick} className="flex justify-between px-5">
-                <button type="button"  >
+              <div onClick={handleClick} className="grid grid-cols-6 gap-1 px-2 lg:grid-cols-3">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
-                    src="/Sun.svg"
-                    alt="Sun"
-                    data-weather="Sun"
-                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                    src="/uvi.svg"
+                    alt="uvi"
+                    data-weather="uvi"
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
-                    src="/Cloudy.svg"
-                    alt="Cloudy"
-                    data-weather="Cloudy"
-                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                    src="/manyClouds.svg"
+                    alt="manyClouds"
+                    data-weather="manyClouds"
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
-                    src="/Rainy.svg"
-                    alt="Rainy"
-                    data-weather="Rainy"
-                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                    src="/rain.svg"
+                    alt="rain"
+                    data-weather="rain"
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
-                    src="/Foggy.svg"
-                    alt="Foggy"
-                    data-weather="Foggy"
-                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                    src="/littleCloud.svg"
+                    alt="littleCloud"
+                    data-weather="littleCloud"
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
-                    src="/Snow.svg"
-                    alt="Snow"
-                    data-weather="Snow"
-                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                    src="/mainSnow.svg"
+                    alt="mainSnow"
+                    data-weather="mainSnow"
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button">
+                <button type="button" className={`${iconColors[0]} rounded-lg`}>
                   <img
-                    src="/Wind.svg"
-                    alt="Wind"
-                    data-weather="Wind"
-                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                    src="/windspeed.svg"
+                    alt="windspeed"
+                    data-weather="windspeed"
+                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
                   />
                 </button>
               </div>

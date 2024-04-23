@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { userWeatherState } from '../../recoil/atom.mjs';
@@ -7,7 +7,7 @@ import { IoIosRefresh } from 'react-icons/io';
 import Loading from '../../components/layout/Loading';
 // import WeatherByTimeZone from './WeatherByTimeZone';
 
-function MyLocationWeather() {
+const MyLocationWeather = () => {
   const [myPlace, setMyPlace] = useState('');
   const [userWeather, setUserWeather] = useRecoilState(userWeatherState);
   const [loading, setLoading] = useState(true);
@@ -182,6 +182,5 @@ function MyLocationWeather() {
       )}
     </div>
   );
-}
-
-export default MyLocationWeather;
+};
+export default React.memo(MyLocationWeather);

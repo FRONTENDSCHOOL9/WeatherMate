@@ -7,14 +7,14 @@
       "@pages/*": ["pages/*"],
       "@hooks/*": ["hooks/*"],
       "@main/*": ["main/*"],
-      "@Mbti/*": ["Mbti/*"],
+
       "@Mbti/*": ["Mbti/*"],
       "@user/*": ["user/*"],
       "@location/*": ["location/*"],
       "@community/*": ["community/*"],
       "@food/*": ["food/*"],
-      "@randing/*":["randing/*"]
+      "@randing/*": ["randing/*"]
     }
   }
 }
-// 이게 수정 
+// 이게 수정

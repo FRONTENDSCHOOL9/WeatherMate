@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 
@@ -9,12 +10,14 @@ function CommunityPopularItem({data}) {
   const navigate = useNavigate();
 
   const itemViews = data.item.sort((a,b) => b.views-a.views).slice(0,3).map(item => 
-    <div key={item._id} className="bg-gray-300 rounded-md h-32 p-2 text-nowrap" onClick={() => navigate(`/community/${item._id}`)}>
-      <p>닉네임 : {item.user?.name}</p>
-
-      <p>내용 : {item.content}</p>
-      <p>조회수 : {item.views}</p>
-      <p>댓글수 : {item.repliesCount}</p>
+    <div key={item._id} className={`bg-gray-300 rounded-md h-32 p-2 text-nowrap relative -z-20 w-full`} onClick={() => navigate(`/community/${item._id}`)}>
+      <div className="relative">
+        <img className="absolute h-28 -z-10" src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`} alt="" />
+      </div>
+      <div className="font-bold text-gray-500">
+        <p>{item.user?.name}</p>
+        <p>조회수 {item.views}</p>
+      </div>
     </div>  
   );
   

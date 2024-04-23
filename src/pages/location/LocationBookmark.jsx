@@ -8,6 +8,7 @@ function LocationBookMark() {
   const [bookmarkData, setBookmarkData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
   const fetchData = async contentId => {
     try {
       const response = await axios.get(
@@ -35,28 +36,52 @@ function LocationBookMark() {
     fetchDataForBookmarks();
   }, [bookmarks]);
 
-  const moveToBookMarkPage = () => {
-    navigate(`/location/${bookmarkData[0].contentid}`);
+  const moveToBookMarkPage = contentId => {
+    navigate(`/location/${contentId}`);
+  };
+
+  const removeBookmark = contentId => {
+    const updatedBookmarks = bookmarks.filter(
+      bookmark => bookmark !== contentId,
+    );
+    setBookmarks(updatedBookmarks);
+    localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));
+    // 새로운 북마크 데이터 배열 생성
+    const updatedBookmarkData = bookmarkData.filter(
+      item => item.contentid !== contentId,
+    );
+    setBookmarkData(updatedBookmarkData);
   };
 
   return (
-    <div className="h-[300px] bg-red-200 overflow-y-scroll">
+    <div className="h-[300px] bg-slate-300 overflow-y-scroll">
       <h1>북마크 목록</h1>
       {loading ? (
         <Loading />
       ) : (
-        <ul onClick={moveToBookMarkPage}>
+        <ul>
           {bookmarkData.map((item, index) => (
-            <div
-              key={index}
-              className="flex justify-center items-center flex-wrap"
-            >
-              <img
-                src={item.firstimage ? item.firstimage : '/01.svg'}
-                className="w-20 h-20 rounded-3xl"
-              />
-              <p className="text-base">{item.title}</p>
-            </div>
+            <li key={index}>
+              <div className="">
+                <img
+                  src={item.firstimage ? item.firstimage : '/01.svg'}
+                  className="w-20 h-20 rounded-3xl"
+                />
+                <p className="text-base">{item.title}</p>
+                <button
+                  onClick={() => moveToBookMarkPage(item.contentid)}
+                  className="bg-primary text-white px-3"
+                >
+                  이동
+                </button>
+                <button
+                  onClick={() => removeBookmark(item.contentid)}
+                  className="bg-primary text-white px-3"
+                >
+                  삭제
+                </button>
+              </div>
+            </li>
           ))}
         </ul>
       )}
