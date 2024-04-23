@@ -6,7 +6,7 @@ import { memberState } from "@recoil/atom.mjs";
 import CommunityItem from "./CommunityItem";
 import { useQuery } from "@tanstack/react-query";
 import useCustomAxios from "@hooks/useCustomAxios.mjs";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Search from "@components/layout/Search";
 import ToTheTopButton from "@components/layout/ToTheTopButton";
 import CommunityPopularItem from "@pages/community/CommunityPopularItem";
@@ -86,4 +86,4 @@ function CommunityMain() {
   )
 }
 
-export default CommunityMain
+export default React.memo(CommunityMain)

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { memberState } from "@recoil/atom.mjs";
 import {useNavigate} from 'react-router-dom';
@@ -91,4 +91,4 @@ function CommunityItem({item}) {
   )
 }
 
-export default CommunityItem
+export default React.memo(CommunityItem)
