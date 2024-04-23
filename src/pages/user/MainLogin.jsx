@@ -14,7 +14,6 @@ function MainLogin() {
     navigate('/');
   };
 
-
   const Rest_api_key = '2fd33ea8cc22119f8666788667295bed'; //REST API KEY
   const redirect_uri = 'http://localhost:5173/oauth'; //Redirect URI
   // oauth 요청 URL
@@ -78,13 +77,12 @@ function MainLogin() {
           </button>
           <button
             className="text-gray-700 text-sm hover:underline"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/main')}
           >
             웨더메이트 둘러보기
           </button>
         </div>
       </div>
-
     </nav>
   );
 }
