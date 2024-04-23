@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Button from '@components/layout/Button';
 
-function userpage() {
+function UserPage() {
   const navigate = useNavigate();
+  const [user, setUser] = useRecoilState(memberState);
 
   const handleLogout = () => {
     setUser(null);
@@ -24,91 +25,75 @@ function userpage() {
   };
 
   const Edit = () => {
-    console.log({ user });
-    console.log({ user });
+    navigate('/user/edit');
   };
 
-  const [user, setUser] = useRecoilState(memberState);
-
   return (
-    <div className="min-h-screen">
-      <nav className=" flex items-center justify-center h-screen">
-        {/* <div>
-          <Link to="/">
-            <span>로고(홈으로)</span>
-          </Link>
-        </div> */}
-
-        <div>
-          {user ? (
-            <div>
-              <p>
-                <img
-                  className="size-20"
-                  src={
-                    user.profile
-                      ? `https://market-lion.koyeb.app/api/files/${user.profile}`
-                      : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
-                  }
-                  alt="Profile"
-                />
-                {user.name}님 오늘 날씨 어때요?
-                <Button onClick={handleLogout}>로그아웃</Button>
-              </p>
-
-              <ul>
-                <li>
-                  <Link to="/mbti">MBTI 테스트 하러가기</Link>
-                </li>
-                <li>
-                  <Link to="/">저장한 장소</Link>
-                </li>
-                {/* 내가 좋아요 누른 게시물 */}
-                <li>
-                  <Link to="/">나의 활동</Link>
-                </li>
-                {/* 내가 좋아요 누른 장소 */}
-              </ul>
-
-              <Button onClick={() => navigate('/user/Setting')}>설정</Button>
-              <Button onClick={() => navigate('/user/edit')}>수정</Button>
+    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+      <div className="bg-white rounded-md p-8 max-w-md w-full">
+        {user && user.name ? (
+          <div>
+            <div className="flex items-center mb-4">
+              <img
+                className="w-10 h-10 rounded-full mr-4"
+                src={
+                  user.profile
+                    ? `https://market-lion.koyeb.app/api/files/${user.profile}`
+                    : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+                }
+                alt="Profile"
+              />
+              <p className="text-lg font-semibold">{user.name}님 오늘 날씨 어때요?</p>
             </div>
-          ) : (
-            <div className="text-center flex flex-col gap-y-8">
-              <h2>로그인 후 이용할 수 있어요</h2>
-              <p>원활한 서비스 사용을 위해 로그인을 해주세요!</p>
+            <div className="mb-4">
+              <ul>
+                <li className="mb-2">
+                  <Link to="/mbti" className="text-blue-500 hover:underline">MBTI 테스트 하러가기</Link>
+                </li>
+                <li className="mb-2">
+                  <Link to="/" className="text-blue-500 hover:underline">저장한 장소</Link>
+                </li>
+                <li>
+                  <Link to="/" className="text-blue-500 hover:underline">나의 활동</Link>
+                </li>
+              </ul>
+            </div>
+            <div className="flex justify-between">
+              <Button onClick={() => navigate('/user/Setting')} className="bg-primary">설정</Button>
+              <Button onClick={Edit} className="bg-gray-300">수정</Button>
+              <Button onClick={handleLogout} className="bg-red-500">로그아웃</Button>
+            </div>
+          </div>
+        ) : (
+          <div className="text-center">
+            <h2 className="text-2xl font-semibold mb-4">로그인 후 이용할 수 있어요</h2>
+            <p className="mb-4">원활한 서비스 사용을 위해 로그인을 해주세요!</p>
+            <div className="mb-4">
               <button
-                className="bg-primary py-1 text-base font-medium"
+                className="bg-primary text-white py-2 px-4 rounded-lg mr-2 hover:bg-blue-700"
                 onClick={() => navigate('/user/Login')}
               >
                 로그인
               </button>
               <button
-                className="bg-white border-2 border-primary hover:primary py-1 text-base font-medium"
+                className="bg-white border-primary border-2 text-primary py-2 px-4 rounded-lg mr-2 hover:bg-gray-200"
                 onClick={() => navigate('/user/SignUp')}
               >
                 회원가입
               </button>
               <button
-                className="bg-kakao py-1 text-base text-kakao-lable font-medium"
+                className="bg-yellow-500 text-white py-2 px-4 rounded-lg mr-2 hover:bg-yellow-600"
                 onClick={handleLogin}
               >
                 카카오로 시작하기
               </button>
-              <button
-                className="bg-white text-gray-700 text-sm"
-                onClick={() => navigate('/')}
-              >
-                웨더메이트 둘러보기
-              </button>
-              <div>충돌발생</div>
             </div>
-          )}
-        </div>
-      </nav>
+            <Link to="/" className="text-gray-500 hover:underline">웨더메이트 둘러보기</Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
-export default userpage;
-// 이게 수정
+export default UserPage;

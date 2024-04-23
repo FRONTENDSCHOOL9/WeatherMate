@@ -54,10 +54,11 @@ function CommunityMain() {
   };
 
   const itemList = data?.item?.map((item) => <CommunityItem key={item._id} item={item} />);
-  
+
   // console.log(data.item);
   
   return (
+
     <div className="min-h-screen min-w-96">
       <div className="px-5 box-border">
         <div className="flex items-center justify-center border-b-4">
