@@ -21,7 +21,7 @@ function SignUp() {
     },
   });
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async formData => {
     try {
       formData.type = 'user';
 
@@ -29,7 +29,7 @@ function SignUp() {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.profileImage[0]);
 
-        const fileRes = await axios.post('/api/files', imageFormData, {
+        const fileRes = await axios.post('/files', imageFormData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -46,8 +46,8 @@ function SignUp() {
     } catch (err) {
       console.error(err);
       if (err.response?.data.errors) {
-        err.response?.data.errors.forEach((error) =>
-          setError(error.path, { message: error.msg })
+        err.response?.data.errors.forEach(error =>
+          setError(error.path, { message: error.msg }),
         );
       } else if (err.response?.data.message) {
         alert(err.response?.data.message);
@@ -62,7 +62,10 @@ function SignUp() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
               이름
             </label>
             <input
@@ -84,7 +87,10 @@ function SignUp() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               이메일
             </label>
             <input
@@ -94,19 +100,25 @@ function SignUp() {
               {...register('email', {
                 required: '이메일을 입력하세요',
                 pattern: {
-                  value: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+                  value:
+                    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
                   message: '이메일 형식이 아닙니다',
                 },
               })}
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
             {errors.email && (
-              <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+              <p className="mt-1 text-xs text-red-500">
+                {errors.email.message}
+              </p>
             )}
           </div>
 
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               비밀번호
             </label>
             <input
@@ -117,12 +129,17 @@ function SignUp() {
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
             {errors.password && (
-              <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>
+              <p className="mt-1 text-xs text-red-500">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
           <div className="mb-4">
-            <label htmlFor="profileImage" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="profileImage"
+              className="block text-sm font-medium text-gray-700"
+            >
               프로필 이미지
             </label>
             <input

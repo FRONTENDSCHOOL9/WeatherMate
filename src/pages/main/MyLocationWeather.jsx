@@ -160,9 +160,7 @@ const MyLocationWeather = () => {
                 {userWeather.weather[0].description}
               </p>
               <p className="mb-7">기준 : {unixToHumanTime(userWeather.dt)}</p>
-              <h2 className="text-2xl font-bold mb-4">
-                {myPlace},{/* {userWeather.sys.country} */}
-              </h2>
+              <h2 className="text-2xl font-bold mb-4">{myPlace}</h2>
 
               <div className="flex gap-5 mb-20">
                 <div className="flex flex-col justify-center items-center">
