@@ -17,12 +17,12 @@ function MainWeather() {
       <div className="w-full">
         <div>
           <div className="w-full ">
-            <div className="flex flex-col sm:flex-row sm:flex-wrap ">
+            <div className="flex flex-col xl:flex-row sm:flex-wrap ">
               <div className="sm:w-[50%] ">
                 <TodaysComent />
                 <MyLocationWeather />
               </div>
-              <div className="sm:order-3 w-[100%]">
+              <div className="xl:order-3 w-[100%]">
                 <WeatherByTimeZone />
               </div>
               <div className="sm:w-[50%] sm:mt-40">

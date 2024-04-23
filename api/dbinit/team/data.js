@@ -46,12 +46,12 @@ export const initData = async (nextSeq) => {
         type: "community",
         content: "오늘 날씨 좋다잉",
         title: "Sun",
-        user:{
-          _id:1,
-          name:"웨더메이트"
+        user: {
+          _id: 1,
+          name: "웨더메이트"
         },
         extra: {
-          image: "/01.svg",
+          image: "/02.svg",
         },
       },
     ],
