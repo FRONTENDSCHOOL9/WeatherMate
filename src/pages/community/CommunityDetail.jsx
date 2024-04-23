@@ -59,7 +59,7 @@ function CommunityDetail() {
   //   }
   //   getFiles();
   // },[])
-            
+  
   const item = data?.item;
   // console.log(data);
   // console.log(item);
