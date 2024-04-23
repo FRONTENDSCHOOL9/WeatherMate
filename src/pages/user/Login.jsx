@@ -57,8 +57,9 @@ function Login() {
   return (
     <>
       <nav className="h-screen flex items-center justify-center bg-gray-100 p-16 max-w-full min-w-80">
-        <div className="text-center rounded-md p-8 w-full max-w-md">
-          <h2 className="text-3xl font-semibold">로그인</h2>
+        <div className="bg-white text-center rounded-2xl p-8 w-full max-w-md">
+          <h2 className="text-xl font-semibold text-primary font-TTLaundryGothicB">Weather Mate</h2>
+          <p className='text-sm text-gray-700 font-medium pt-2 pb-2'>회원 서비스 이용을 위해 로그인 해주세요</p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
             <div className="flex flex-col space-y-4">
@@ -67,7 +68,7 @@ function Login() {
                   이메일
                 </label>
                 <input
-                  className="py-2 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-400 focus:border-transparent w-full"
+                  className="py-2 px-4 rounded-lg bg-slate-100 border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
                   type="email"
                   id="email"
                   placeholder="이메일을 입력하세요"
@@ -92,7 +93,7 @@ function Login() {
                   비밀번호
                 </label>
                 <input
-                  className="py-2 px-4 rounded-lg border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent w-full"
+                  className="py-2 px-4 rounded-lg bg-slate-100 border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
                   type="password"
                   id="password"
                   placeholder="비밀번호를 입력하세요"
@@ -107,7 +108,9 @@ function Login() {
                 )}
               </div>
 
-              <Submit className="w-full bg-primary rounded-md p-2">로그인</Submit>
+              <Submit className="w-full bg-primary rounded-md p-2 hover:bg-primary_deep text-white font-bold">
+                로그인
+              </Submit>
               <Link
                 className="mt-2 text-primary_deep hover:underline inline-block text-center"
                 to="/user/signup"
