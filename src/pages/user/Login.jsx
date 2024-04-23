@@ -28,7 +28,7 @@ function Login() {
   const onSubmit = async formData => {
     try {
       const res = await axios.post(
-        'https://market-lion.koyeb.app/api/users/login',
+        '/users/login',
         formData,
       );
 

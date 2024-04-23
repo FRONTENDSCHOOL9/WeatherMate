@@ -3,7 +3,7 @@ import React from 'react';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import Submit from '../../components/layout/Submit';
+import Submit from '@components/layout/Submit';
 
 function SignUp() {
   const axios = useCustomAxios();
@@ -29,7 +29,7 @@ function SignUp() {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.profileImage[0]);
 
-        const fileRes = await axios.post('https://market-lion.koyeb.app/api/files', imageFormData, {
+        const fileRes = await axios.post('/api/files', imageFormData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

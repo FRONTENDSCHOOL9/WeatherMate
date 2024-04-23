@@ -33,7 +33,7 @@ function EditProfile() {
       }
 
       const response = await customAxios.patch(
-        `https://market-lion.koyeb.app/api/users/${user._id}`, // user 상태의 _id 사용
+        `/users/${user._id}`, // user 상태의 _id 사용
         updatedData,
       );
       if (response.status !== 200) {
