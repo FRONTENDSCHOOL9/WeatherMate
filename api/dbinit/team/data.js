@@ -17,7 +17,7 @@ export const initData = async (nextSeq) => {
         email: "test@weathermate.com",
         password:
           "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
-        name: "웨더메이트",
+        name: "Tester",
         phone: "010-1234-1234",
         address: "서울시 종로구 종로3길 127",
         type: "user",
@@ -25,7 +25,7 @@ export const initData = async (nextSeq) => {
         updatedAt: getTime(-100, -60 * 60 * 3),
         extra: {
           birthday: "01-01",
-          profileImage: `01.svg`,
+          profileImage: 'uvi.svg',
         },
       },
     ],
@@ -42,19 +42,146 @@ export const initData = async (nextSeq) => {
     // QnA, 공지사항, 게시판
     post: [
       {
-        _id: await nextSeq("post"),
-        type: "community",
-        content: "오늘 날씨 좋다잉",
-        title: "Sun",
-        user:{
-          _id:1,
-          name:"웨더메이트"
+        _id: await nextSeq('post'),
+        type: 'community',
+        product_id: 1,
+        seller_id: 2,
+        user: {
+          _id: 1,
+          name: 'Tester',
         },
-        extra: {
-          image: "/01.svg",
-        },
+        title: 'uvi',
+        content: '테스트용 게시글입니다.',
+        replies: [
+          {
+            _id: 1,
+            user: {
+              _id: 2,
+              name: 'Reply1',
+            },
+            content: '테스트 댓글입니다.',
+            createdAt: getTime(-2, -60 * 60 * 20),
+            updatedAt: getTime(-2, -60 * 60 * 2),
+          },
+          {
+            _id: 2,
+            user: {
+              _id: 3,
+              name: 'Reply2',
+            },
+            content: '테스트 댓글입니다.',
+            createdAt: getTime(-2, -60 * 60 * 10),
+            updatedAt: getTime(-2, -60 * 60 * 1),
+          },
+          {
+            _id: 3,
+            user: {
+              _id: 4,
+              name: 'Reply3',
+            },
+            content: '테스트 댓글입니다.',
+            createdAt: getTime(-2, -60 * 60 * 9),
+            updatedAt: getTime(-1, -60 * 60 * 20),
+          },
+        ],
+        createdAt: getTime(-3, -60 * 60 * 2),
+        updatedAt: getTime(-3, -60 * 60 * 2),
       },
+
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        image: 'mbtibg.png',
+        product_id: 1,
+        seller_id: 2,
+        user: {
+          _id: 2,
+          name: 'Tester1',
+        },
+        title: 'manyClouds',
+        content: '테스트용 게시글입니다.',
+        createdAt: getTime(-2, -60 * 60 * 1),
+        updatedAt: getTime(-1, -60 * 60 * 20),
+      },
+
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        image: 'mbtibg.png',
+        product_id: 1,
+        seller_id: 2,
+        user: {
+          _id: 2,
+          name: 'Tester1',
+        },
+        title: 'manyClouds',
+        content: '테스트용 게시글입니다.',
+        createdAt: getTime(-2, -60 * 60 * 1),
+        updatedAt: getTime(-1, -60 * 60 * 20),
+      },
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        image: 'mbtibg.png',
+        product_id: 1,
+        seller_id: 2,
+        user: {
+          _id: 2,
+          name: 'Tester1',
+        },
+        title: 'manyClouds',
+        content: '테스트용 게시글입니다.',
+        createdAt: getTime(-2, -60 * 60 * 1),
+        updatedAt: getTime(-1, -60 * 60 * 20),
+      },
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        image: 'mbtibg.png',
+        product_id: 1,
+        seller_id: 2,
+        user: {
+          _id: 2,
+          name: 'Tester1',
+        },
+        title: 'manyClouds',
+        content: '테스트용 게시글입니다.',
+        createdAt: getTime(-2, -60 * 60 * 1),
+        updatedAt: getTime(-1, -60 * 60 * 20),
+      },
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        image: 'mbtibg.png',
+        product_id: 1,
+        seller_id: 2,
+        user: {
+          _id: 2,
+          name: 'Tester1',
+        },
+        title: 'manyClouds',
+        content: '테스트용 게시글입니다.',
+        createdAt: getTime(-2, -60 * 60 * 1),
+        updatedAt: getTime(-1, -60 * 60 * 20),
+      },
+      {
+        _id: await nextSeq('post'),
+        type: 'community',
+        image: 'mbtibg.png',
+        product_id: 1,
+        seller_id: 2,
+        user: {
+          _id: 2,
+          name: 'Tester1',
+        },
+        title: 'manyClouds',
+        content: '테스트용 게시글입니다.',
+        createdAt: getTime(-2, -60 * 60 * 1),
+        updatedAt: getTime(-1, -60 * 60 * 20),
+      },
+      
     ],
+
     // 코드
     code: [],
     // 설정
