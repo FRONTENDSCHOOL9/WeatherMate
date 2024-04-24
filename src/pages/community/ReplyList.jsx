@@ -42,7 +42,7 @@ function ReplyList() {
   // console.log(replyList);
 
   return (
-    <div className="p-5 bg-gray-200 rounded-md">
+    <div className="p-5 bg-gray-100 rounded-md">
       {/* <ReplyNew newReply={newReply} setNewReply={setNewReply}/> -> 불필요 props 전달*/}
       <ReplyNew refetch={refetch}/>
       <div className="flex mt-2 gap-2">

@@ -15,7 +15,7 @@ function ReplyItem({item, handleDelete}) {
   // console.log(user);
   // console.log(item);
   return (
-    <div className="mt-2 p-3 bg-gray-300 border flex gap-3 rounded-lg items-center shadow-lg shadow-gray-400">
+    <div className="mt-2 p-3 flex gap-3 rounded-lg items-center ">
       <div className="rounded-full w-12 h-12 bg-blue-400 border-white border-2">
         
       </div>
@@ -27,7 +27,7 @@ function ReplyItem({item, handleDelete}) {
           </div>
           {user._id === item.user._id ? <button onClick={() => handleDelete(item._id)} className="bg-gray-500 rounded font-bold text-white px-1 border-white border-2">삭제</button> : null}
         </div>
-        <div className="border-2 rounded-lg p-1 bg-white border-gray-400">{item.comment}</div>
+        <div className="border-2 rounded-lg p-2 bg-white border-gray-200">{item.comment}</div>
       </div>
     </div>
   );
