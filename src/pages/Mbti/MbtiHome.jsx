@@ -7,7 +7,7 @@ function MbtiHome() {
   return (
     <div
       className="bg-cover bg-center 
-       h-screen min-w-[430px]  py-60"
+       h-screen   py-60 xl:px-60"
       style={{ backgroundImage: `url(${mbtiStart})` }}
     >
       <div className="flex gap-10 flex-col text-center items-center font-TTLaundryGothicB text-gray_04 ">

@@ -6,8 +6,6 @@ import DetailPageHeader from '@components/layout/DetailPageHeader';
 
 import LocationMap from '@pages/location/LocationMap';
 
-import LocationAddReply from './LocationAddReply';
-
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
 function LocationDetailPage() {
@@ -95,7 +93,7 @@ function LocationDetailPage() {
             <button
               key={index}
               onClick={() => window.open(url, '_blank')}
-              className="bg-white border-2 rounded-xl p-2 text-sm text-indigo-400 font-bold  "
+              className="bg-white border-2 rounded-xl p-2 text-sm text-indigo-400 font-bold  hover:bg-primary hover:text-black "
             >
               홈페이지로 이동하기
             </button>
@@ -205,8 +203,6 @@ function LocationDetailPage() {
             locationName={detailData.title}
           />
         </div>
-
-        <LocationAddReply id={id} />
       </div>
     </>
   );
