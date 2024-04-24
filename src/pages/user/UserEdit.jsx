@@ -12,7 +12,7 @@ function EditProfile() {
 
   console.log('userDAs', user);
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const updatedData = {};
@@ -38,15 +38,15 @@ function EditProfile() {
 
       const response = await customAxios.patch(
         `/users/${user._id}`, // user 상태의 _id 사용
-        updatedData,
+        updatedData
       );
       if (response.status !== 200) {
         throw new Error('회원가입 정보를 수정하는 데 실패했습니다.');
       }
 
-      setUser(prevUser => ({
+      setUser((prevUser) => ({
         ...prevUser,
-        ...updatedData,
+        ...updatedData
       }));
 
       // 변경된 부분만 초기화
@@ -64,35 +64,61 @@ function EditProfile() {
       alert('회원가입 정보 수정에 실패했습니다.');
     }
   };
+
   return (
-    <nav>
-      <form onSubmit={handleSubmit}>
-        <label>
-          이름:
+    <nav className="h-screen flex items-center justify-center bg-slate-100 p-16 max-w-full min-w-80">
+
+      <div className='bg-white text-center rounded-2xl p-8 w-full max-w-md gap-4'>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="name" className="sr-only">
+            이름:
+          </label>
           <input
+            id="name"
             type="text"
+            placeholder="수정할 이름을 입력하세요"
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
+            className="py-2 px-4 rounded-lg bg-slate-100 border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
           />
-        </label>
-        <label>
-          이메일:
+        </div>
+
+        <div>
+          <label htmlFor="email" className="sr-only">
+            이메일:
+          </label>
           <input
+            id="email"
             type="email"
+            placeholder="새로운 이메일을 입력하세요"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
+            className="py-2 px-4 rounded-lg bg-slate-100 border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
           />
-        </label>
-        <label>
-          비밀번호:
+        </div>
+        
+        <div>
+          <label htmlFor="password" className="sr-only">
+            비밀번호:
+          </label>
           <input
+            id="password"
             type="password"
+            placeholder="새로운 비밀번호 입력하세요"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
+            className="py-2 px-4 rounded-lg bg-slate-100 border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent w-full"
           />
-        </label>
-        <button type="submit">수정</button>
+        </div>
+        <button
+          type="submit"
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary_deep focus:outline-none "
+        >
+          수정
+        </button>
       </form>
+      </div>
     </nav>
   );
 }
