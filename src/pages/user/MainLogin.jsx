@@ -56,19 +56,19 @@ function MainLogin() {
         </div>
         <div className="w-full flex flex-col gap-4 comment-text">
           <button
-            className="bg-primary text-white py-2 px-4 rounded-lg  hover:bg-primary_deep"
+            className="bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary_deep"
             onClick={() => navigate('/user/Login')}
           >
             로그인
           </button>
           <button
-            className="bg-white border-primary border-2 text-primary py-2 px-4 rounded-lg mr-2 hover:bg-gray-200"
+            className="bg-white border-primary border-2 text-primary py-2 px-4 rounded-lg hover:bg-gray-200"
             onClick={() => navigate('/user/SignUp')}
           >
             회원가입
           </button>
           <button
-            className="bg-[#FEE500] text-[#55461a] py-2 px-4 rounded-lg mr-2 hover:bg-[#fed400]"
+            className="bg-[#FEE500] text-[#55461a] py-2 px-4 rounded-lg hover:bg-[#fed400]"
             onClick={handleLogin}
           >
             카카오로 시작하기

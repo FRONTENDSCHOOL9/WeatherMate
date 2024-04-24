@@ -56,7 +56,7 @@ function Login() {
 
   return (
     <>
-      <nav className="h-screen flex items-center justify-center bg-gray-100 p-16 max-w-full min-w-80">
+      <nav className="h-screen flex items-center justify-center bg-slate-100 p-16 max-w-full min-w-80">
         <div className="bg-white text-center rounded-2xl p-8 w-full max-w-md">
           <h2 className="text-xl font-semibold text-primary font-TTLaundryGothicB">
             Weather Mate
