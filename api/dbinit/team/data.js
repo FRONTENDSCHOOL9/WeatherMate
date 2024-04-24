@@ -28,6 +28,22 @@ export const initData = async (nextSeq) => {
           profileImage: 'uvi.svg',
         },
       },
+      {
+        _id: await nextSeq("user"),
+        email: "hello@weathermate.com",
+        password:
+          "$2b$10$S.8GNMDyvUF0xzujPtHBu.j5gtS19.OhRmYbpJBnCHg2S83WLx1T2",
+        name: "김햇살",
+        phone: "010-1234-1234",
+        address: "서울시 송파구 잠실동",
+        type: "user",
+        createdAt: getTime(-100, -60 * 60 * 3),
+        updatedAt: getTime(-100, -60 * 60 * 3),
+        extra: {
+          birthday: "12-04",
+          profileImage: 'uvi.svg',
+        },
+      },
     ],
     // 상품
     product: [],
