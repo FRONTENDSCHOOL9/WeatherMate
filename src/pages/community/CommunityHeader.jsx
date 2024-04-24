@@ -9,7 +9,7 @@ function CommunityHeader({title}) {
   const navigate = useNavigate();
   return (
     <div className="p-5 text-center grow" onClick={() => navigate('/community')}>
-      <h1 className="inline-block font-bold text-xl md:text-2xl pl-24 xl:text-3xl">{title}</h1>
+      <h1 className="inline-block font-bold text-xl lg:text-xl xl:text-2xl">{title}</h1>
     </div>
   )
 }

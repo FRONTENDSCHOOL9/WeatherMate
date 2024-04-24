@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { userWeatherState } from '../../recoil/atom.mjs';
@@ -7,7 +7,7 @@ import { IoIosRefresh } from 'react-icons/io';
 import Loading from '../../components/layout/Loading';
 // import WeatherByTimeZone from './WeatherByTimeZone';
 
-function MyLocationWeather() {
+const MyLocationWeather = () => {
   const [myPlace, setMyPlace] = useState('');
   const [userWeather, setUserWeather] = useRecoilState(userWeatherState);
   const [loading, setLoading] = useState(true);
@@ -55,42 +55,7 @@ function MyLocationWeather() {
 
   console.log('mylocationWeather:', userWeather);
   const defaultImgPath = '/01.svg'; // 디폴트 이미지 경로
-  // const getKoreanWeatherDescription = englishDescription => {
-  //   switch (englishDescription) {
-  //     case 'Clear':
-  //       return '맑음';
-  //     case 'Clouds':
-  //       return '구름';
-  //     case 'Rain':
-  //       return '비';
-  //     case 'Drizzle':
-  //       return '이슬비';
-  //     case 'Thunderstorm':
-  //       return '천둥번개';
-  //     case 'Snow':
-  //       return '눈';
-  //     case 'Mist':
-  //       return '안개';
-  //     case '':
-  //       return '흐림';
-  //     default:
-  //       return englishDescription;
-  //   }
-  // };
 
-  // const weatherImageMapping = {
-  //   맑음: '/02.svg',
-  //   'few clouds': '/uvi.svg',
-  //   'scattered clouds': '/uvi.svg',
-  //   'broken clouds': '/uvi.svg',
-  //   'shower rain': '/05.svg',
-  //   rain: '/06.svg',
-  //   thunderstorm: '/07.svg',
-  //   snow: '/08.svg',
-  //   mist: '/09.svg',
-  //   온흐림: '/uvi.svg',
-  //   // 추가적인 날씨 종류에 따른 매핑 추가 가능
-  // };
   const weatherImageMapping = {
     Clear: '/uvi.svg',
     Clouds: '/manyClouds.svg',
@@ -138,9 +103,12 @@ function MyLocationWeather() {
 
   return (
     <div className=" w-full pl-9  mb-20 mt-20 ">
-      <div className="absolute top-12 right-12">
+      <div className="absolute top-12 right-12 xl:top-24 xl:right-72">
         {/* 자식 요소에 absolute 클래스 추가하여 절대 위치 지정 */}
-        <IoIosRefresh className="text-4xl" onClick={handleRefresh} />
+        <IoIosRefresh
+          className="text-2xl xl:text-3xl"
+          onClick={handleRefresh}
+        />
       </div>
       {loading ? (
         <Loading />
@@ -160,9 +128,7 @@ function MyLocationWeather() {
                 {userWeather.weather[0].description}
               </p>
               <p className="mb-7">기준 : {unixToHumanTime(userWeather.dt)}</p>
-              <h2 className="text-2xl font-bold mb-4">
-                {myPlace},{/* {userWeather.sys.country} */}
-              </h2>
+              <h2 className="text-2xl font-bold mb-4">{myPlace}</h2>
 
               <div className="flex gap-5 mb-20">
                 <div className="flex flex-col justify-center items-center">
@@ -171,9 +137,9 @@ function MyLocationWeather() {
                   <p>{unixToHumanTime(userWeather.sys.sunset)}</p>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                  <img src="sunset.svg" className="w-5 h-5 mb-1" />
-                  <p> {unixToHumanTime(userWeather.sys.sunrise)}</p>
-                  <p>{unixToHumanTime(userWeather.sys.sunset)}</p>
+                  <img src="dgree.svg" className="w-5 h-5 mb-1" />
+                  <p> {(userWeather.main.temp_max - 273.15).toFixed(1)}°C</p>
+                  <p> {(userWeather.main.temp_min - 274.15).toFixed(1)}°C</p>
                 </div>
               </div>
             </>
@@ -182,6 +148,18 @@ function MyLocationWeather() {
       )}
     </div>
   );
-}
+};
+export default React.memo(MyLocationWeather);
 
-export default MyLocationWeather;
+{
+  /* <div className="bg-white w-[77px] h-[88px] flex flex-col items-center  justify-center shadow-lg rounded-lg">
+                  <img src="humidity.svg" className="w-[31px] " />
+                  <p className="text-[#00179C] font-medium">최고온도</p>
+                  <p>{(detailWeather.main.temp_max - 269.15).toFixed(1)}°C</p>
+                </div>
+                <div className="bg-white w-[77px] h-[88px] flex flex-col items-center  justify-center shadow-lg rounded-lg">
+                  <img src="humidity.svg" className="w-[31px] " />
+                  <p className="text-[#00179C] font-medium">최저온도</p>
+                  <p>{(detailWeather.main.temp_min - 269.15).toFixed(1)}°C</p>
+                </div> */
+}

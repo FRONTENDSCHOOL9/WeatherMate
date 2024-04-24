@@ -3,9 +3,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '@components/layout/Loading';
 import DetailPageHeader from '@components/layout/DetailPageHeader';
-import LocationMap from '@pages/food/LocationMap';
-import LocationBookMark from './LocationBookmark';
-import LocationAddReply from './LocationAddReply';
+
+import LocationMap from '@pages/location/LocationMap';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 
@@ -85,7 +84,7 @@ function LocationDetailPage() {
   return (
     <>
       <DetailPageHeader title={'상세보기'} />
-      <div className="p-5  flex flex-col gap-4 md:px-60 lg:px-96">
+      <div className="p-5  flex flex-col gap-4 xl:px-60">
         <div className="flex justify-between">
           <h1 className="text-3xl font-semibold content-center ">
             {detailData.title}
@@ -94,121 +93,116 @@ function LocationDetailPage() {
             <button
               key={index}
               onClick={() => window.open(url, '_blank')}
-              className="bg-white border-2 rounded-xl p-2 text-sm text-indigo-400 font-bold  "
+              className="bg-white border-2 rounded-xl p-2 text-sm text-indigo-400 font-bold  hover:bg-primary hover:text-black "
             >
               홈페이지로 이동하기
             </button>
           ))}
         </div>
-        <div className="flex flex-col gap-4 lg:flex-row">
+
+        <div className="flex flex-col gap-4 xl:flex-row xl:justify-between rounded-lg">
           <img
             src={detailData.firstimage}
             alt="이미지1"
-            className=" w-full rounded-lg"
+            className=" w-full xl:w-6/12 rounded-lg"
           />
-          <div className="rounded-lg">
-            <div>
-              <p>
-                주소: {detailData.addr1} ({detailData.addr2})
-              </p>
-              <LocationMap
-                latitude={Number(detailData.mapy)}
-                longitude={Number(detailData.mapx)}
-                locationName={detailData.title}
-              />
-            </div>
-            <table className="table-fixed bg-gray-100 md:mt-6">
-              <thead>
-                <tr>
-                  <th scope="col" className="w-24 px-6 py-3">
-                    정보
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    내용
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="text-center p-2">설명</td>
-                  <td>
-                    {detailData.overview
-                      ? isMoreView
-                        ? detailData.overview
-                        : detailData.overview.substring(0, 40) + '...'
-                      : '내용 없음'}
-                    {detailData.overview && (
-                      <button
-                        onClick={onClickMoreViewButton}
-                        className="text-blue-500  left-0 "
-                      >
-                        {isMoreView ? '접기' : '더보기'}
-                      </button>
-                    )}
-                  </td>
-                </tr>
-                {superDetail.length > 0 && (
-                  <>
-                    <tr>
-                      <td className="text-center p-2">전화번호</td>
-                      <td>
-                        {superDetail[0].infocenter
-                          ? superDetail[0].infocenter
-                          : '내용 없음'}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center p-2">주차 여부</td>
-                      <td>
-                        {superDetail[0].parking
-                          ? superDetail[0].parking
-                          : '내용 없음'}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center p-2">이용 시간</td>
-                      <td>
-                        {' '}
-                        {superDetail[0].usetime
-                          ? superDetail[0].usetime
-                          : '내용 없음'}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center p-2">쉬는날</td>
-                      <td>
-                        {' '}
-                        {superDetail[0].restdate
-                          ? superDetail[0].restdate
-                          : '내용 없음'}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center p-2">카시트 이용 여부</td>
-                      <td>
-                        {' '}
-                        {superDetail[0].chkbabycarriage
-                          ? superDetail[0].chkbabycarriage
-                          : '내용 없음'}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="text-center p-2">반려 동물 동반</td>
-                      <td>
-                        {' '}
-                        {superDetail[0].chkpet
-                          ? superDetail[0].chkpet
-                          : '내용 없음'}
-                      </td>
-                    </tr>
-                  </>
-                )}
-              </tbody>
-            </table>
-          </div>
+
+          <table className=" rounded-lg bg-gray-100 p-2">
+            <thead>
+              <tr>
+                <th scope="col" className="w-24 px-6 py-3">
+                  정보
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  내용
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="text-center p-2">설명</td>
+                <td className="p-2">
+                  {detailData.overview
+                    ? isMoreView
+                      ? detailData.overview
+                      : detailData.overview.substring(0, 65) + '...'
+                    : '내용 없음'}
+                  {detailData.overview && (
+                    <button
+                      onClick={onClickMoreViewButton}
+                      className="text-blue-500  left-0 "
+                    >
+                      {isMoreView ? '접기' : '더보기'}
+                    </button>
+                  )}
+                </td>
+              </tr>
+              {superDetail?.length > 0 && (
+                <>
+                  <tr>
+                    <td className="text-center p-2">전화번호</td>
+                    <td className="p-2">
+                      {superDetail[0].infocenter
+                        ? superDetail[0].infocenter
+                        : '내용 없음'}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center p-2">주차 여부</td>
+                    <td className="p-2">
+                      {superDetail[0].parking
+                        ? superDetail[0].parking
+                        : '내용 없음'}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center p-2">이용 시간</td>
+                    <td className="p-2">
+                      {' '}
+                      {superDetail[0].usetime
+                        ? superDetail[0].usetime
+                        : '내용 없음'}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center p-2">쉬는날</td>
+                    <td className="p-2">
+                      {superDetail[0].restdate
+                        ? superDetail[0].restdate
+                        : '내용 없음'}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center p-2">카시트 이용 여부</td>
+                    <td className="p-2">
+                      {superDetail[0].chkbabycarriage
+                        ? superDetail[0].chkbabycarriage
+                        : '내용 없음'}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-center p-2">반려 동물 동반</td>
+                    <td className="p-2">
+                      {superDetail[0].chkpet
+                        ? superDetail[0].chkpet
+                        : '내용 없음'}
+                    </td>
+                  </tr>
+                </>
+              )}
+            </tbody>
+          </table>
         </div>
-        <LocationBookMark />
-        <LocationAddReply id={id} />
+        <div>
+          <p>
+            주소: {detailData.addr1} ({detailData.addr2})
+          </p>
+          <LocationMap
+            latitude={Number(detailData.mapy)}
+            longitude={Number(detailData.mapx)}
+            locationName={detailData.title}
+          />
+        </div>
       </div>
     </>
   );

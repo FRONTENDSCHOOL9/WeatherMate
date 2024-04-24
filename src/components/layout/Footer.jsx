@@ -1,42 +1,51 @@
-import { GoHomeFill } from 'react-icons/go';
-import { SiGooglechat } from 'react-icons/si';
-import { MdLocationOn } from 'react-icons/md';
-import { FaAddressBook } from 'react-icons/fa';
+import { IoLogoFacebook, IoLogoGoogle } from 'react-icons/io';
+import { BiLogoInstagram } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
     <>
-      <footer className="w-full flex text-white min-h-24 rounded-t-3xl items-center justify-center gap-8 bg-white sticky bottom-0 shadow-inner sm:hidden">
-        <Link to="/" className="flex flex-col items-center text-primary px-2">
-          <GoHomeFill className="text-4xl mb-1" />
-          <p className="text-nowrap">홈</p>
-        </Link>
-
-        <Link
-          to="/community"
-          className="flex flex-col items-center px-2 text-primary"
-        >
-          <SiGooglechat className="text-4xl mb-1" />
-          <p className="text-nowrap">커뮤니티</p>
-        </Link>
-
-        <Link
-          to="/location"
-          className="flex flex-col items-center px-2 text-primary"
-        >
-          <MdLocationOn className="text-4xl mb-1" />
-          <p className="text-nowrap">장소추천</p>
-        </Link>
-
-        <Link
-          to="/user/mypage"
-          className="flex flex-col items-center px-2 text-primary"
-        >
-          <FaAddressBook className="text-4xl mb-1" />
-          <p className="text-nowrap">마이페이지</p>
-        </Link>
-      </footer>
+      <div className="p-4 pt-12 flex justify-between items-end border-t-2 border-gray_01 lg:px-56 xl:px-60 text-gray_03">
+        <div>
+          <div className="flex gap-2 pb-4">
+            <Link to="https://github.com/FRONTENDSCHOOL9/WeatherMate">
+              프로젝트 소개
+            </Link>{' '}
+            |
+            <Link to="/" className="font-bold text-gray_04">
+              개인정보처리방침
+            </Link>
+            |
+            <Link to="/" className="">
+              이용약관
+            </Link>
+          </div>
+          <div className="flex gap-1">
+            <p>(주)웨더메이트</p>|{' '}
+            <Link
+              to="https://github.com/FRONTENDSCHOOL9/WeatherMate"
+              className="mr-2"
+            >
+              연락하기
+            </Link>
+          </div>
+          <p>
+            ©<span className="mr-2">2024</span>
+            <Link
+              to="https://github.com/FRONTENDSCHOOL9/WeatherMate"
+              className="mr-2"
+            >
+              loot-at-this.
+            </Link>{' '}
+            All rights reserved.
+          </p>
+        </div>
+        <div className="text-2xl flex md:gap-4 justify-end item-end">
+          <IoLogoFacebook />
+          <IoLogoGoogle />
+          <BiLogoInstagram />
+        </div>
+      </div>
     </>
   );
 }

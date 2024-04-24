@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import CommunityHeader from './CommunityHeader';
@@ -45,7 +44,7 @@ function CommunityNew() {
     navigate(`/community/${res.data.item._id}`);
   };
 
-  const iconColors = ['bg-gray-300', 'bg-blue-300'];
+  const iconColors = ['border-white', 'border-sky-300'];
   const [weatherArr, setWeatherArr] = useState([]);
   const [dataWeater, setDataWeather] = useState('')
 
@@ -60,27 +59,25 @@ function CommunityNew() {
   };
 
   return (
-    <div className="px-5 box-border min-h-screen min-w-96">
-      <Button
-        onClick={() => navigate('/community')}
-        className="absolute left-6 top-10"
-      >
-        <FaArrowLeft className="text-2xl" />
-      </Button>
-      <CommunityHeader title={'글 작성하기'} />
+    <div className="px-5 box-border min-h-screen min-w-96 md:px-48 lg:px-60 xl:px-80">
+      <div className="flex">
+        <Button onClick={() => navigate('/community')} className=""><FaArrowLeft className="text-xl" /></Button>
+        <CommunityHeader title={'새 글쓰기'} />
+      </div>
       <br />
-      <form onSubmit={handleSubmit(onSubmit)} className="grid lg:grid-cols-2">
-        <div>
-          <div className="flex">
+      <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2">
+
+        <div className="flex flex-col gap-0 lg:justify-between xl:flex-row xl:gap-40 xl:justify-between">
+          <div className="flex gap-2 relative">
             <label
               htmlFor="file"
-              className="w-20 h-20 bg-blue-400 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white"
+              className="w-24 h-22 bg-blue-400 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white"
             >
               <MdOutlineCameraAlt className="text-3xl" />
               사진 추가
             </label>
-
             <input
+              className="absolute -z-10 left-2"
               type="file"
               name="contentImg"
               accept="image/*"
@@ -89,70 +86,75 @@ function CommunityNew() {
             />
           </div>
 
-          <div className="my-4 flex flex-col">
+          <div className=" flex flex-col lg:grow lg:m-0">
             <p className="text-lg font-bold">오늘의 날씨 선택</p>
-            <div className="border mt-2 py-2 rounded-xl">
-              <div onClick={handleClick} className="flex justify-between px-5">
-                <button type="button"  >
+            <div className="border mt-2 py-1 rounded-xl lg:grow">
+              <div onClick={handleClick} className="grid grid-cols-6 gap-1 px-2 lg:grid-rows-3 lg:grid-cols-2">
+                <button type="button">
                   <img
-                    src="/Sun.svg"
-                    alt="Sun"
-                    data-weather="Sun"
-                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                    src="/uvi.svg"
+                    alt="uvi"
+                    data-weather="uvi"
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
                   />
                 </button>
                 <button type="button">
                   <img
-                    src="/Cloudy.svg"
-                    alt="Cloudy"
-                    data-weather="Cloudy"
-                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                    src="/manyClouds.svg"
+                    alt="manyClouds"
+                    data-weather="manyClouds"
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
                   />
                 </button>
                 <button type="button">
                   <img
-                    src="/Rainy.svg"
-                    alt="Rainy"
-                    data-weather="Rainy"
-                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                    src="/rain.svg"
+                    alt="rain"
+                    data-weather="rain"
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
                   />
                 </button>
                 <button type="button">
                   <img
-                    src="/Foggy.svg"
-                    alt="Foggy"
-                    data-weather="Foggy"
-                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                    src="/littleCloud.svg"
+                    alt="littleCloud"
+                    data-weather="littleCloud"
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
                   />
                 </button>
                 <button type="button">
                   <img
-                    src="/Snow.svg"
-                    alt="Snow"
-                    data-weather="Snow"
-                    className={`border rounded-full w-10 h-10 p-1 ${iconColors[0]}`}
+                    src="/mainSnow.svg"
+                    alt="mainSnow"
+                    data-weather="mainSnow"
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
                   />
                 </button>
                 <button type="button">
                   <img
-                    src="/Wind.svg"
-                    alt="Wind"
-                    data-weather="Wind"
-                    className={`border rounded-full w-10 h-10 ${iconColors[0]}`}
+                    src="/windspeed.svg"
+                    alt="windspeed"
+                    data-weather="windspeed"
+                    className={`rounded-md w-28 h-12 place-content-center m-auto  top-0 ${iconColors[0]} rounded-lg border-2`}
                   />
                 </button>
               </div>
             </div>
+            {errors.content && (
+              <p className="ml-1 mb-2 text-bold text-red-500">
+              날씨를 선택하세요.
+              </p>
+            )}
           </div>
         </div>
 
         <div>
           <textarea
             id="content"
-            className="w-full p-4 text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            className="w-full p-4 text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 lg:text-lg"
             autoFocus
             cols="50"
-            rows="15"
+            rows="10"
             placeholder="웨더메이트에게 공유하고 싶은 날씨 이야기를 해주세요!"
             {...register('content', { required: '내용을 입력하세요.' })}
           />
@@ -166,11 +168,11 @@ function CommunityNew() {
             <Button
               type="button"
               onClick={() => navigate('/community')}
-              className="grow p-1 box-border bg-gray-300 text-white rounded-lg"
+              className="grow p-1 box-border bg-gray-300 text-white rounded-lg md:text-lg lg:py-2"
             >
               취소
             </Button>
-            <Submit className="grow p-1 box-border bg-blue-400 text-white rounded-lg">
+            <Submit className="grow p-1 box-border bg-blue-400 text-white rounded-lg md:text-lg lg:py-2">
               완료
             </Submit>
         </div>
