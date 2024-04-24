@@ -10,7 +10,7 @@ function NavigationBarBottom() {
       <footer className="w-full flex text-white min-h-24 rounded-t-3xl items-center justify-center gap-8 bg-white sticky bottom-0 shadow-inner sm:hidden">
         <Link
           to="/main"
-          className={`flex flex-col items-center text-black px-2 hover:text-primary ${
+          className={`flex flex-col items-center text-gray_03 px-2 hover:text-primary ${
             location.pathname === '/' ? 'text-primary ' : ''
           }`}
         >
@@ -20,7 +20,7 @@ function NavigationBarBottom() {
 
         <Link
           to="/community"
-          className={`flex flex-col items-center px-2 text-black hover:text-primary ${
+          className={`flex flex-col items-center px-2 text-gray_03 hover:text-primary ${
             location.pathname === '/community' ? 'text-primary ' : ''
           }`}
         >
@@ -30,7 +30,7 @@ function NavigationBarBottom() {
 
         <Link
           to="/location"
-          className={`flex flex-col items-center px-2 text-black hover:text-primary ${
+          className={`flex flex-col items-center px-2 text-gray_03 hover:text-primary ${
             location.pathname === '/location' ? 'text-primary ' : ''
           }`}
         >
@@ -40,7 +40,7 @@ function NavigationBarBottom() {
 
         <Link
           to="/user/mypage"
-          className={`flex flex-col items-center px-2 text-black hover:text-primary ${
+          className={`flex flex-col items-center px-2 text-gray_03 hover:text-primary ${
             location.pathname === '/location' ? 'text-primary ' : ''
           }`}
         >

@@ -42,10 +42,10 @@ function KakaoShareButton(data) {
   return (
     <button
       onClick={shareKakao}
-      className="flex gap-2 bg-kakao hover:bg-primary text-kakao-lable py-3 px-7 border border-gray-400 rounded-3xl shadow"
+      className="flex gap-2 justify-center bg-kakao hover:bg-primary text-kakao-lable py-3 px-7 border border-gray-400 rounded-lg shadow xl:grow "
     >
-      <img src={kakaoLogo} alt="" className="w-[28px] " />
-      <p className="align-middle">공유하기</p>
+      <img src={kakaoLogo} alt="kakao logo" className="w-[28px] xl:w-[32px] " />
+      <p className="align-middle xl:text-xl">공유하기</p>
     </button>
   );
 }
