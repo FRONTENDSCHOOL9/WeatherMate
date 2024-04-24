@@ -34,9 +34,11 @@ function CommunityDetail() {
   
 
   const handleDelete = async () => {
-    await axios.delete(`/posts/${_id}`);
-    alert('삭제되었습니다.');
-    navigate('/community');
+    const deleteRes = confirm('삭제하시겠습니까?');
+    if(deleteRes){
+      await axios.delete(`/posts/${_id}`)
+      navigate('/community')
+    }
   };
 
   // 이미지 재호출 불필요
@@ -65,12 +67,12 @@ function CommunityDetail() {
   // console.log(item);
 
   return (
-    <div className="min-h-screen min-w-96 md:px-32 lg:px-60">
+    <div className="min-h-screen min-w-96 p-5 md:px-32 lg:px-60">
     <div>
       <div className="">
-        <div className="px-5 box-border flex">
+        <div className="box-border flex">
         <Button onClick={() => navigate('/community')} className="">
-          <FaArrowLeft className="text-2xl" />
+          <FaArrowLeft className="text-xl" />
         </Button>
         <CommunityHeader title={'상세보기'} />
         </div>
