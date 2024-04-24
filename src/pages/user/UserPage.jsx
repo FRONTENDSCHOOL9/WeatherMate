@@ -47,6 +47,7 @@ function UserPage() {
   const Edit = () => {
     navigate('/user/edit');
   };
+  
 
 
   //여기부터
@@ -79,43 +80,52 @@ function UserPage() {
       <div className="bg-white rounded-3xl drop-shadow-md p-8 max-w-md w-full">
         {user && user.name ? (
           <div>
-            <div className="flex items-center mb-4">
-              <img
-                className="w-10 h-10 rounded-full mr-4"
-                src={
-                  user.profile?.startsWith('http') ?
-                  user.profile : `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${user.profile}`
-                }
-                alt="Profile"
-              />
-              <p className="text-lg font-semibold">{user.name}님 오늘 날씨 어때요?</p>
+            <div className="flex items-center mb-6 justify-between">
+              <div className='flex'>
+                <img
+                  className="w-12 h-12 rounded-full mr-4"
+                  src={
+                    user.profile?.startsWith('http') ?
+                    user.profile : `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${user.profile}`
+                  }
+                  alt="Profile"
+                />
+                <div>
+                  <p className="text-lg font-semibold text-primary_deep">{user.name}님</p>
+                  <p className='text-sm font-medium text-slate-600'>오늘 날씨 어때요?</p>
+                </div>
+              </div>
+                <Button onClick={Edit} className="bg-slate-300 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-600 hover:bg-primary hover:text-white">수정</Button>
+
             </div>
             <div className="mb-4">
               <ul>
-                <li className="mb-2 bg-slate-200">
-                  <Link to="/mbti" className="text-blue-500 hover:underline">MBTI 테스트 하러가기</Link>
+                <li className="mb-2 bg-white border-2 rounded-md px-2 py-1 hover:bg-primary hover:border-slate-100 mb-6">
+                  <Link to="/mbti" className="text-slate-600 font-semibold text-md hover:text-white">MBTI 테스트 하러가기</Link>
+
                 </li>
-                
-                <li className="mb-2">
-                  <Link to="/" className="text-blue-500 hover:underline">저장한 장소</Link>
-                </li>
-                <li>
-                  {/* 여기부터 */}
-                  <div>
-                    <button type="button" onClick={() => setClick(true)} className="text-blue-500 hover:underline">나의 활동</button>
-                    <div className="flex flex-col gap-2">
-                      {click && itemList}
-                    </div>
+
+
+                <div className='flex justify-between text-center pt-8'>
+                    <div className='flex gap-8'>
+                    <li className="mb-2">
+                      <Link to="/" className="text-slate-500 hover:text-primary_deep hover:font-semibold">저장한 장소</Link>
+                    </li>
+                    <li>
+                      <div>
+                        <button type="button" onClick={() => setClick(true)} className="text-slate-500 hover:text-primary_deep hover:font-semibold">나의 활동</button>
+                        <div className="flex flex-col gap-2">
+                          {click && itemList}
+                        </div>
+                      </div>
+                    </li>
                   </div>
-                  {/* 여기까지 바뀜 */}
-                </li>
+                  <Button onClick={handleLogout} className="bg-slate-300 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-600 hover:bg-primary hover:text-white">로그아웃</Button>
+                </div>
+
               </ul>
             </div>
-            <div className="flex justify-between">
-              <Button onClick={() => navigate('/user/Setting')} className="bg-primary">설정</Button>
-              <Button onClick={Edit} className="bg-gray-300">수정</Button>
-              <Button onClick={handleLogout} className="bg-red-500">로그아웃</Button>
-            </div>
+
             <LocationBookMark />
           </div>
 
