@@ -12,6 +12,9 @@ const Oauth = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
 
+    const redirect_uri = `${window.location.origin}/auth/kakao`; //Redirect URI
+    const REST_API_KEY=import.meta.env.VITE_KAKAO_REST_API_KEY;
+
     const getUserInfo = async (accessToken) => {
       try {
         const userInfoResponse = await axios.get('https://kapi.kakao.com/v2/user/me', {
