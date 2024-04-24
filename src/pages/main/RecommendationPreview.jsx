@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import useCurrentLocation from '../../hooks/useCurrentLocation';
+import useCurrentLocation from '@hooks/useCurrentLocation';
 import { Link } from 'react-router-dom';
-import Loading from '@components/layout/Loading';
-// import { userWeatherState } from '../../recoil/atom.mjs';
-// import { useRecoilState } from 'recoil';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
-
 /* eslint-disable */
+import Loading from '@components/layout/Loading';
+import Loading2 from '@components/layout/Loading2';
+
 function RecommendationPreview() {
   const [locationData, setLocationData] = useState([]);
   const [locationReady, setLocationReady] = useState(false);
-  const [contentTypeId, setContentTypeId] = useState('28');
-  // const [userWeather, setUserWeather] = useRecoilState(userWeatherState);
-  const [loading, setLoading] = useState(true); // 로딩 상태 추가
+  const [contentTypeId, setContentTypeId] = useState('14');
+  const [loading, setLoading] = useState(true);
 
-  const radius = '8000';
-
+  const radius = '100000';
   const { latitude, longitude } = useCurrentLocation();
 
   useEffect(() => {
@@ -27,48 +24,50 @@ function RecommendationPreview() {
   }, [latitude, longitude]);
 
   useEffect(() => {
-    if (locationReady) {
-      const fetchData = async () => {
+    const fetchData = async () => {
+      if (locationReady) {
         try {
           const response = await axios.get(
-            `https://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=3&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentTypeId}&_type=json&arrange=A`,
+            `https://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${apiKey}&pageNo=1&numOfRows=3&mapX=${longitude}&mapY=${latitude}&radius=${radius}&MobileApp=AppTest&MobileOS=ETC&contentTypeId=${contentTypeId}&_type=json&arrange=R`,
           );
-
           setLocationData(response.data.response.body.items.item);
-          setLoading(false); // 데이터 로딩 완료 후 로딩 상태 변경
+          setLoading(false);
           console.log(response.data);
         } catch (error) {
           console.error(
             '데이터를 원활하게 가져오는데 오류가 발생하였습니다.',
             error,
           );
-          setLoading(false); // 데이터 로딩 실패 시에도 로딩 상태 변경
+          setLoading(false);
         }
-      };
+      }
+    };
 
-      fetchData();
-    }
-  }, [locationReady, latitude, longitude]);
+    fetchData();
+  }, [locationReady, latitude, longitude, contentTypeId]); // contentTypeId 추가
 
-  console.log('xx', locationData);
-
-  // 로딩 중일 때 보여줄 컴포넌트
-  if (loading) {
-    return <Loading />;
-  }
+  useEffect(() => {
+    const getRandomContentTypeId = () => {
+      const options = ['12', '14', '15', '25']; // 사용 가능한 contentTypeId 옵션
+      const randomIndex = Math.floor(Math.random() * options.length); // 랜덤한 인덱스 선택
+      return options[randomIndex]; // 선택된 contentTypeId 반환
+    };
+    setContentTypeId(getRandomContentTypeId());
+  }, []); // 초기 렌더링 시 한 번 실행됩니다.
 
   return (
     <div className="flex items-center justify-center w-full px-8">
       <div className="mt-10">
-        <h1 className="text-xl mb-7 font-bold">
+        <div className=" mb-7">
           <strong className="text-primary">웨더메이트</strong> 의 추천장소
-          <Link to="/location" className="ml-5">
+          <Link to="/location" className="ml-5 text-gray-400 hover:text-black">
             더보기
           </Link>
-        </h1>
-
+        </div>
         <div>
-          {locationData && (
+          {loading ? (
+            <Loading2 />
+          ) : (
             <div className="flex gap-8 font-sans text-sm">
               {locationData.map(item => (
                 <div key={item.contentid}>
@@ -79,7 +78,7 @@ function RecommendationPreview() {
                       alt="recommendation"
                     />
                   </Link>
-                  <p className="text-center  font-bold mt-2">
+                  <p className="text-center text-sm mt-2">
                     {item.title.length > 5
                       ? `${item.title.slice(0, 5)}...`
                       : item.title}
