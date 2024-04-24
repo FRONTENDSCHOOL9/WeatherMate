@@ -54,7 +54,7 @@ function LocationBookMark() {
   };
 
   return (
-    <div className="h-[300px] border-t-2 py-4 overflow-y-scroll">
+    <div className="h-[300px] border-t-2 py-4 overflow-y-scroll mb-16 bg-slate-100 p-4 rounded-lg">
 
       {loading ? (
         <Loading />
@@ -74,13 +74,13 @@ function LocationBookMark() {
                 <div className='flex gap-1'>
                   <button
                     onClick={() => moveToBookMarkPage(item.contentid)}
-                    className="bg-slate-100 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-400 hover:text-slate-800 h-9"
+                    className="bg-slate-200 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-500 hover:text-slate-800 h-9"
                   >
                     이동
                   </button>
                   <button
                     onClick={() => removeBookmark(item.contentid)}
-                    className="bg-slate-100 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-400 hover:bg-primary hover:text-slate-800 h-9"
+                    className="bg-slate-200 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-500 hover:bg-primary hover:text-white h-9"
                   >
                     삭제
                   </button>

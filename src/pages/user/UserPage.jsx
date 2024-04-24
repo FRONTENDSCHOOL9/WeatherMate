@@ -24,19 +24,6 @@ function UserPage() {
   };
 
 
-  // const redirect_uri = `${window.location.origin}/auth/kakao`; //Redirect URI
-  // const REST_API_KEY=import.meta.env.VITE_KAKAO_REST_API_KEY;
-  
-
-  //인가 코드를 받고
-
-
-  //우리 api 서버에 보내주기
-  //api 서버가 카카오에 연결이 돼서 정보를 받아온다
-
-  
-  // oauth 요청 URL
-  // const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code`;
 
   const handleLogin = () => {
     // console.log(REST_API_KEY, kakaoURL)
@@ -51,7 +38,7 @@ function UserPage() {
 
 
   //여기부터
-  const [click, setClick] = useState(false);
+  // const [click, setClick] = useState(false);
   const axios = useCustomAxios();
   const { data } = useQuery({
     queryKey: ['posts'],
@@ -79,7 +66,7 @@ function UserPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-      <div className="bg-white rounded-3xl drop-shadow-md p-8 max-w-md w-full">
+      <div className="bg-white rounded-3xl drop-shadow-md p-8 max-w-md w-full mt-20">
         {user && user.name ? (
           <div>
             <div className="flex items-center mb-6 justify-between">
@@ -97,38 +84,27 @@ function UserPage() {
                   <p className='text-sm font-medium text-slate-600'>오늘 날씨 어때요?</p>
                 </div>
               </div>
+              <div>
                 <Button onClick={Edit} className="bg-slate-300 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-600 hover:bg-primary hover:text-white">수정</Button>
-
+                <Button onClick={handleLogout} className="bg-slate-300 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-600 hover:bg-primary hover:text-white">로그아웃</Button>
+                </div>
             </div>
             <div className="mb-4">
               <ul>
-                <li className="mb-2 bg-white border-2 rounded-md px-2 py-1 hover:bg-primary hover:border-slate-100 mb-6">
+                <li className="bg-white border-2 rounded-md px-2 py-1 hover:bg-primary hover:border-slate-100 mb-10">
                   <Link to="/mbti" className="text-slate-600 font-semibold text-md hover:text-white">MBTI 테스트 하러가기</Link>
-
                 </li>
-
-
-                <div className='flex justify-between text-center pt-8'>
-                    <div className='flex gap-8'>
-                    <li className="mb-2">
-                      <Link to="/" className="text-slate-500 hover:text-primary_deep hover:font-semibold">저장한 장소</Link>
-                    </li>
-                    <li>
-                      <div>
-                        <button type="button" onClick={() => setClick(true)} className="text-slate-500 hover:text-primary_deep hover:font-semibold">나의 활동</button>
-                        <div className="flex flex-col gap-2">
-                          {click && itemList}
-                        </div>
-                      </div>
-                    </li>
-                  </div>
-                  <Button onClick={handleLogout} className="bg-slate-300 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-600 hover:bg-primary hover:text-white">로그아웃</Button>
-                </div>
-
+                
+                <p className="text-slate-500 ml-2">저장한 장소</p>
               </ul>
             </div>
 
             <LocationBookMark />
+
+            <p className="text-slate-500 px-2 py-4">나의 활동</p>
+            <div className="h-[300px] border-t-2 py-4 overflow-y-scroll bg-slate-100 p-4 rounded-lg">
+              {itemList}
+            </div>
           </div>
 
         ) : (
