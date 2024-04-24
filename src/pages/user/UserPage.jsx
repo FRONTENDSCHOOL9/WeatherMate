@@ -67,9 +67,10 @@ function UserPage() {
             <div className="flex items-center mb-6 justify-between">
               <div className="flex">
                 <img
-                  className="w-10 h-10 rounded-full mr-4"
-                  src={user.profile ? user.profile : '/nulluser.svg'}
-                  alt="Profile"
+                className="w-10 h-10 rounded-full mr-4"
+                src={user.profile ? user.profile : '/nulluser.svg'}
+                alt="Profile"
+
                 />
                 <div>
                   <p className="text-lg font-semibold text-primary_deep">
