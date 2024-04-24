@@ -70,7 +70,7 @@ function SignUp() {
           <div className="mb-4">
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 pt-14"
             >
               이름
             </label>
