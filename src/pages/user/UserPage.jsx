@@ -92,7 +92,7 @@ function UserPage() {
             </div>
             <div className="mb-4">
               <ul>
-                <li className="mb-2">
+                <li className="mb-2 bg-slate-200">
                   <Link to="/mbti" className="text-blue-500 hover:underline">MBTI 테스트 하러가기</Link>
                 </li>
                 
@@ -130,7 +130,7 @@ function UserPage() {
                 className="bg-primary text-white py-2 px-4 rounded-lg mr-2 hover:bg-primary_deep"
                 onClick={() => navigate('/user/Login')}
               >
-                로그인
+                이메일 로그인
               </button>
               <button
                 className="bg-white border-primary border-2 text-primary py-2 px-4 rounded-lg mr-2 hover:bg-gray-200"
