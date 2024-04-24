@@ -103,9 +103,12 @@ const MyLocationWeather = () => {
 
   return (
     <div className=" w-full pl-9  mb-20 mt-20 ">
-      <div className="absolute top-12 right-12">
+      <div className="absolute top-12 right-12 xl:top-24 xl:right-72">
         {/* 자식 요소에 absolute 클래스 추가하여 절대 위치 지정 */}
-        <IoIosRefresh className="text-4xl" onClick={handleRefresh} />
+        <IoIosRefresh
+          className="text-2xl xl:text-3xl"
+          onClick={handleRefresh}
+        />
       </div>
       {loading ? (
         <Loading />

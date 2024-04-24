@@ -12,9 +12,9 @@ function DetailPageHeader({ title }) {
   };
   return (
     <>
-      <div className="px-5 p-5 border-b-4 flex items-center justify-between">
+      <div className="xl:mx-60 px-5 p-5 border-y-[1px] border-gray-100 flex items-center justify-between">
         <Button onClick={handleGoBack} className="flex items-center">
-          <FaArrowLeft className="text-2xl" />
+          <FaArrowLeft className="text-xl" />
         </Button>
 
         <h1 className="font-bold text-xl">{title}</h1>

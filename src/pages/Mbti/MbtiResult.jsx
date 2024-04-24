@@ -27,25 +27,25 @@ function MbtiResult() {
     <>
       <DetailPageHeader title={'날씨 성격 테스트 결과'} />
 
-      <div className="py-4 px-8 min-w-[360px] min-h-[400px] font-TTLaundryGothicB">
-        <div className="relative top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 p-[15px] w-[180px] h-[180px]  rounded-full bg-white">
+      <div className="py-4 px-8 xl:py-16 xl:px-80 min-w-[360px] min-h-[400px] font-TTLaundryGothicB">
+        <div className="relative top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 p-[15px] w-[180px] h-[180px]  xl:p-[25px] xl:w-[250px] xl:h-[250px] rounded-full bg-white">
           <img
             src={resultData.image}
-            className=" w-[150px] h-[150px] rounded-full"
+            className=" w-[150px] h-[150px]  xl:w-[200px] xl:h-[200px]  rounded-full"
           />
         </div>
 
-        <div className="relative z-0 top-[-90px] border-4 rounded-3xl pt-20 pb-8 px-5 mb-6">
-          <p className="text-xl ">{resultData.title}</p>
+        <div className="relative z-0 top-[-90px] xl:top-[-150px] border-4 rounded-lg pt-20 p-8 xl:pt-36 xl:p-12 mb-6">
+          <p className="text-xl xl:text-3xl">{resultData.title}</p>
           <br />
-          <p className="text-lg ">{resultData.desc}</p>
+          <p className="text-lg xl:text-2xl">{resultData.desc}</p>
         </div>
 
-        <div className="relative z-0 top-[-90px] flex gap-6 flex-col items-center ">
-          <div className="flex gap-12">
+        <div className="relative z-0 top-[-90px] flex xl:flex-row gap-6 xl:gap-12 flex-col items-center ">
+          <div className="flex gap-12 xl:grow">
             <button
               onClick={() => navigate('/mbti')}
-              className="bg-white hover:bg-primary text-gray-800 font-semibold py-3 px-7 border border-gray-400 rounded-full shadow "
+              className="bg-white hover:bg-primary text-gray-800 font-semibold py-3 px-7 border border-gray-400 rounded-lg shadow  xl:text-xl xl:grow"
             >
               테스트 다시하기
             </button>
@@ -53,7 +53,7 @@ function MbtiResult() {
           </div>
           <button
             onClick={() => navigate('/')}
-            className="bg-white hover:bg-primary text-gray-800 font-semibold py-3 px-7 border border-gray-400 rounded-full shadow w-full "
+            className="bg-white hover:bg-primary text-gray-800 font-semibold py-3 px-7 border border-gray-400 rounded-lg shadow w-full xl:w-fit xl:text-xl xl:grow"
           >
             WeatherMate 둘러보기
           </button>
