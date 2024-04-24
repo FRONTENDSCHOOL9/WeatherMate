@@ -119,7 +119,7 @@ function CommunityDetail() {
                   {user?._id === item.user._id && (
                     <div className='flex gap-1'>
                       {/* <Button className="bg-gray-500 p-1 rounded-md" onClick={handleDelete}>수정</Button> */}
-                      <Button className="bg-red-500 px-2 py-1 rounded-md" onClick={handleDelete}>삭제</Button>
+                      <Button className="bg-red-500 px-3 py-1 rounded-md text-white" onClick={handleDelete}>삭제</Button>
                     </div>
                   )}
                 </div>
