@@ -55,42 +55,7 @@ const MyLocationWeather = () => {
 
   console.log('mylocationWeather:', userWeather);
   const defaultImgPath = '/01.svg'; // 디폴트 이미지 경로
-  // const getKoreanWeatherDescription = englishDescription => {
-  //   switch (englishDescription) {
-  //     case 'Clear':
-  //       return '맑음';
-  //     case 'Clouds':
-  //       return '구름';
-  //     case 'Rain':
-  //       return '비';
-  //     case 'Drizzle':
-  //       return '이슬비';
-  //     case 'Thunderstorm':
-  //       return '천둥번개';
-  //     case 'Snow':
-  //       return '눈';
-  //     case 'Mist':
-  //       return '안개';
-  //     case '':
-  //       return '흐림';
-  //     default:
-  //       return englishDescription;
-  //   }
-  // };
 
-  // const weatherImageMapping = {
-  //   맑음: '/02.svg',
-  //   'few clouds': '/uvi.svg',
-  //   'scattered clouds': '/uvi.svg',
-  //   'broken clouds': '/uvi.svg',
-  //   'shower rain': '/05.svg',
-  //   rain: '/06.svg',
-  //   thunderstorm: '/07.svg',
-  //   snow: '/08.svg',
-  //   mist: '/09.svg',
-  //   온흐림: '/uvi.svg',
-  //   // 추가적인 날씨 종류에 따른 매핑 추가 가능
-  // };
   const weatherImageMapping = {
     Clear: '/uvi.svg',
     Clouds: '/manyClouds.svg',
@@ -170,8 +135,8 @@ const MyLocationWeather = () => {
                 </div>
                 <div className="flex flex-col justify-center items-center">
                   <img src="sunset.svg" className="w-5 h-5 mb-1" />
-                  <p> {unixToHumanTime(userWeather.sys.sunrise)}</p>
-                  <p>{unixToHumanTime(userWeather.sys.sunset)}</p>
+                  <p> {(userWeather.main.temp_max - 273.15).toFixed(1)}°C</p>
+                  <p> {(userWeather.main.temp_min - 274.15).toFixed(1)}°C</p>
                 </div>
               </div>
             </>
@@ -182,3 +147,16 @@ const MyLocationWeather = () => {
   );
 };
 export default React.memo(MyLocationWeather);
+
+{
+  /* <div className="bg-white w-[77px] h-[88px] flex flex-col items-center  justify-center shadow-lg rounded-lg">
+                  <img src="humidity.svg" className="w-[31px] " />
+                  <p className="text-[#00179C] font-medium">최고온도</p>
+                  <p>{(detailWeather.main.temp_max - 269.15).toFixed(1)}°C</p>
+                </div>
+                <div className="bg-white w-[77px] h-[88px] flex flex-col items-center  justify-center shadow-lg rounded-lg">
+                  <img src="humidity.svg" className="w-[31px] " />
+                  <p className="text-[#00179C] font-medium">최저온도</p>
+                  <p>{(detailWeather.main.temp_min - 269.15).toFixed(1)}°C</p>
+                </div> */
+}

@@ -46,50 +46,54 @@ function AllCitiesWeather() {
     'Jeju-do': '제주도',
     // 여기에 더 많은 도시를 추가할 수 있습니다.
   };
-  const unixToHumanTime = unixTimestamp => {
-    const date = new Date(unixTimestamp * 1000);
-    const hours = date.getHours();
-    let minutes = date.getMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM'; // 오전과 오후를 판별합니다.
-    const hour = hours % 12 || 12; // 12시간 형식으로 변경합니다.
-    minutes = minutes === 0 ? '' : ':' + (minutes < 10 ? '0' : '') + minutes;
-    return `${hour}${minutes} ${ampm}`;
-  };
+
+  function getCurrentTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+  }
+  console.log('allciteis', data);
 
   return (
-    <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {data?.length > 0 && (
-        <>
-          <div className="flex flex-col justify-center items-center">
-            <h1 className="font-bold ">전국날씨 한눈에 보기 😊 </h1>
-            <p className="text-lg">기준 :{unixToHumanTime(data[0].dt)}</p>
-            <img src="clothes-m-2.svg" className="h-24" />
-          </div>
-          {data.map(item => {
-            const cityName = citiesMappingData[item.name] || item.name;
-            const iconURL = `http://openweathermap.org/img/wn/${item.weather[0].icon}.png`;
-            return (
-              <div
-                key={item.id}
-                className="bg-white p-4  rounded-md shadow-md px-7 justify-center items-center border-primary border-2"
-              >
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-2">{cityName}</h2>
-                  <p className="text-lg">
-                    날씨 : {item.weather[0].description}
-                  </p>
-                  <p className="text-lg">현재 온도: {item.main.temp}°C</p>
-                  <p className="text-lg">체감 온도: {item.main.feels_like}°C</p>
-                  <p className="text-lg">최고 :{item.main.temp_max}°C</p>
-                  <p className="text-lg">최저 :{item.main.temp_min}°C</p>
-                  <img src={iconURL} alt="Weather Icon" className="mx-auto" />
+    <>
+      <div className="flex flex-col justify-center items-center">
+        <h1 className="font-bold ">전국날씨 한눈에 보기 😊 </h1>
+        <p className="text-lg">기준 :{getCurrentTime()}</p>
+        <img src="clothes-m-2.svg" className="h-24" />
+      </div>
+      <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:px-60 gap-4 ">
+        {data?.length > 0 && (
+          <>
+            {data.map(item => {
+              const cityName = citiesMappingData[item.name] || item.name;
+              const iconURL = `http://openweathermap.org/img/wn/${item.weather[0].icon}.png`;
+              return (
+                <div
+                  key={item.id}
+                  className="bg-white p-4  rounded-md shadow-md px-7 justify-center items-center border-primary border-2"
+                >
+                  <div className="text-center">
+                    <h2 className="text-lg font-bold mb-2">{cityName}</h2>
+                    <img src={iconURL} alt="Weather Icon" className="mx-auto" />
+                    <p className="text-base">
+                      날씨: {item.weather[0].description}
+                    </p>
+                    <p className="text-xs">현재 온도: {item.main.temp}°C</p>
+                    <p className="text-xs">
+                      체감 온도: {item.main.feels_like}°C
+                    </p>
+                    <p className="text-sm">시간별</p>
+                    <p className="text-xs">최고 :{item.main.temp_max}°C</p>
+                    <p className="text-xs">최저 :{item.main.temp_min}°C</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </>
-      )}
-    </div>
+              );
+            })}
+          </>
+        )}
+      </div>
+    </>
   );
 }
 

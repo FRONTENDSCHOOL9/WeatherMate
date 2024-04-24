@@ -7,6 +7,7 @@ import LocationKeywords from './LocationKeyword';
 import { useRecoilValue } from 'recoil';
 import { memberState } from '@recoil/atom.mjs';
 import Loading from '@components/layout/Loading';
+import { FiMapPin } from 'react-icons/fi';
 
 const apiKey = import.meta.env.VITE_REACT_APP_LOCATION_API_KEY;
 /* eslint-disable */
@@ -210,20 +211,20 @@ function Location({ keyword }) {
 
                 <div>
                   <Link to={`/location/${item.contentid}`}>
-                    <p className="text-base text-left">
+                    <p className="text-base text-left text-slate-400">
                       {getCategoryText(item.cat2)}
                     </p>
-                    <h2 className="text-base font-bold mb-2">{item.title}</h2>
-                    <p className="">{item.addr1}</p>
+                    <h2 className="text-base font-bold mb-2 ">{item.title}</h2>
+                    <p className="text-pretty">{item.addr1}</p>
                   </Link>
 
                   <div className="flex justify-end box-border mt-8">
                     <div className="flex items-center ml-3">
-                      <div className="bg-[#FFF387] w-[112px] h-10 absolute bottom-0 right-0">
-                        {/* 노란색 박스에 absolute 위치를 설정합니다. */}
+                      <div className="bg-[#FFF387] w-[112px] absolute bottom-0 right-0 flex justify-center items-center gap-3 opacity-80 rounded-md">
+                        <FiMapPin />
                         <p className="text-base text-right">
                           {isNaN(parseFloat(item.dist))
-                            ? ''
+                            ? '너무 멀어요!'
                             : formatDistance(parseFloat(item.dist))}
                         </p>
                       </div>
