@@ -1,17 +1,13 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { memberState } from '@recoil/atom.mjs';
-import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import Button from '@components/layout/Button';
 import LocationBookMark from '@pages/location/LocationBookmark';
-//여기도
 import { useQuery } from '@tanstack/react-query';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
-import CommunityItem from '@pages/community/CommunityItem';
 import UserBoard from '@pages/user/UserBoard';
-//여기까지 바뀜
 
 function UserPage() {
   const navigate = useNavigate();
@@ -23,17 +19,18 @@ function UserPage() {
   };
 
   const handleLogin = () => {
-    // console.log(REST_API_KEY, kakaoURL)
-    // window.location.href = kakaoURL;
+    // handle login logic here
   };
 
   const Edit = () => {
     navigate('/user/edit');
   };
 
+
   //여기부터
   // const [click, setClick] = useState(false);
   const axios = useCustomAxios();
+
   const { data } = useQuery({
     queryKey: ['posts'],
     queryFn: () =>
@@ -42,6 +39,7 @@ function UserPage() {
           type: 'community',
         },
       }),
+
     select: response => response.data,
     suspense: true,
     refetchOnMount: 'always',
@@ -58,6 +56,7 @@ function UserPage() {
     })
     .map(item => <UserBoard key={item._id} item={item} />);
   //여기까지 바뀜
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
@@ -98,6 +97,7 @@ function UserPage() {
             </div>
             <div className="mb-4">
               <ul>
+
                 <li className="bg-white border-2 rounded-md px-2 py-1 hover:bg-primary hover:border-slate-100 mb-10">
                   <Link
                     to="/mbti"
@@ -105,6 +105,7 @@ function UserPage() {
                   >
                     MBTI 테스트 하러가기
                   </Link>
+
                 </li>
 
                 <p className="text-slate-500 ml-2">저장한 장소</p>
@@ -130,6 +131,7 @@ function UserPage() {
               className="w-[50%] m-auto comment-float pt-2 pb-10"
               src="/mainlogin.svg"
             />
+
 
             <div className="mb-4 w-full flex flex-col gap-4 comment-text">
               <button
