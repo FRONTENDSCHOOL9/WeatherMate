@@ -53,7 +53,7 @@ function MbtiQuestion() {
   return (
     <>
       <DetailPageHeader title={'날씨 성격 테스트'} />
-      <div className="min-w-[90vw] min-h-[700px] py-10 px-4 flex gap-10 flex-col items-center font-TTLaundryGothicB  lg:px-12 xl:px-80">
+      <div className="min-w-[90vw] min-h-[700px] py-10 px-4 flex gap-10 flex-col items-center font-TTLaundryGothicB  lg:px-12 xl:px-60">
         <h1 className="text-2xl font-bold">다음 상황에서 당신의 선택은?</h1>
         <div className="w-full xl:w-[70vw] bg-gray-200 rounded-full ">
           <div

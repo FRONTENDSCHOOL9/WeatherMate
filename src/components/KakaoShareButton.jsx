@@ -20,7 +20,7 @@ function KakaoShareButton(data) {
       content: {
         title: '🌤️날씨 성격 테스트🌤️',
         description: ` ${data.data.title}`,
-        imageUrl: url + data.data.image,
+        imageUrl: `url + data.data.image`,
         link: {
           mobileWebUrl: resultUrl,
           webUrl: resultUrl,

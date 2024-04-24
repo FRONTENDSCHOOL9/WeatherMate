@@ -27,7 +27,7 @@ function MbtiResult() {
     <>
       <DetailPageHeader title={'날씨 성격 테스트 결과'} />
 
-      <div className="py-4 px-8 xl:py-16 xl:px-80 min-w-[360px] min-h-[400px] font-TTLaundryGothicB">
+      <div className="py-4 px-8 xl:py-16 xl:px-60 min-w-[360px] min-h-[400px] font-TTLaundryGothicB">
         <div className="relative top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 p-[15px] w-[180px] h-[180px]  xl:p-[25px] xl:w-[250px] xl:h-[250px] rounded-full bg-white">
           <img
             src={resultData.image}
