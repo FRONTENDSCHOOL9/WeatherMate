@@ -91,12 +91,12 @@ function TodaysComent() {
               </div>
             </div>
 
-            <p className="comment-text whitespace-normal truncate w-full mb-3 text-2xl font-semibold">
+            <p className="comment-text truncate w-full mb-3 text-2xl font-semibold whitespace-pre-line">
               {recomendClothes}
             </p>
             <div className="font-sans text-base">
               <Link to="/allcity">
-                <div className="flex px-3 py-1 items-center rounded border-primary border-2 text-slate-700">
+                <div className="flex px-3 py-1 items-center rounded border-primary border-2 text-slate-700 hover:bg-primary hover:text-white transition-all duration-300 ">
                   <p>전국날씨</p>
                   <MdOutlineKeyboardArrowRight />
                 </div>
