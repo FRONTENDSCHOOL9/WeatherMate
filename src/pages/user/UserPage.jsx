@@ -10,6 +10,7 @@ import LocationBookMark from '@pages/location/LocationBookmark';
 import { useQuery } from '@tanstack/react-query';
 import useCustomAxios from '@hooks/useCustomAxios.mjs';
 import CommunityItem from '@pages/community/CommunityItem';
+import UserBoard from '@pages/user/UserBoard';
 //여기까지 바뀜
 
 function UserPage() {
@@ -63,7 +64,7 @@ function UserPage() {
       suspense: true,
       refetchOnMount: "always"
   });
-  const itemList = data?.item?.filter((item) => item.user._id === user._id).map((item) => <CommunityItem key={item._id} item={item} />);
+  const itemList = data?.item?.filter((item) => item.user._id === user._id).map((item) => <UserBoard key={item._id} item={item} />);
   //여기까지 바뀜
 
   return (

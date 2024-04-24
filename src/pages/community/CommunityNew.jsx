@@ -44,7 +44,7 @@ function CommunityNew() {
     navigate(`/community/${res.data.item._id}`);
   };
 
-  const iconColors = ['bg-white', 'bg-blue-300'];
+  const iconColors = ['border-white', 'border-sky-300'];
   const [weatherArr, setWeatherArr] = useState([]);
   const [dataWeater, setDataWeather] = useState('')
 
@@ -59,13 +59,13 @@ function CommunityNew() {
   };
 
   return (
-    <div className="px-5 box-border min-h-screen min-w-96">
+    <div className="px-5 box-border min-h-screen min-w-96 md:px-48 lg:px-60 xl:px-80">
       <div className="flex">
-        <Button onClick={() => navigate('/community')} className=""><FaArrowLeft className="text-2xl" /></Button>
+        <Button onClick={() => navigate('/community')} className=""><FaArrowLeft className="text-xl" /></Button>
         <CommunityHeader title={'새 글쓰기'} />
       </div>
       <br />
-      <form onSubmit={handleSubmit(onSubmit)} className="grid lg:grid-cols-2 gap-3 ">
+      <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2">
 
         <div className="flex flex-col lg:justify-between xl:flex-row xl:justify-normal">
           <div className="flex gap-2">
@@ -86,67 +86,72 @@ function CommunityNew() {
             />
           </div>
 
-          <div className="my-4 flex flex-col lg:grow lg:m-0">
+          <div className=" flex flex-col lg:grow lg:m-0">
             <p className="text-lg font-bold">오늘의 날씨 선택</p>
-            <div className="border mt-2 py-2 rounded-xl lg:grow">
+            <div className="border mt-2 py-1 rounded-xl lg:grow">
               <div onClick={handleClick} className="grid grid-cols-6 gap-1 px-2 lg:grid-rows-3 lg:grid-cols-2">
-                <button type="button" className={`${iconColors[0]} rounded-lg`}>
+                <button type="button" className={`${iconColors[0]} rounded-lg border-2`}>
                   <img
                     src="/uvi.svg"
                     alt="uvi"
                     data-weather="uvi"
-                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
+                    className={`rounded-md px-3 w-20 h-12 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button" className={`${iconColors[0]} rounded-lg`}>
+                <button type="button" className={`${iconColors[0]} rounded-lg border-2`}>
                   <img
                     src="/manyClouds.svg"
                     alt="manyClouds"
                     data-weather="manyClouds"
-                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
+                    className={`rounded-md px-3 w-20 h-12 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button" className={`${iconColors[0]} rounded-lg`}>
+                <button type="button" className={`${iconColors[0]} rounded-lg border-2`}>
                   <img
                     src="/rain.svg"
                     alt="rain"
                     data-weather="rain"
-                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
+                    className={`rounded-md px-3 w-20 h-12 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button" className={`${iconColors[0]} rounded-lg`}>
+                <button type="button" className={`${iconColors[0]} rounded-lg border-2`}>
                   <img
                     src="/littleCloud.svg"
                     alt="littleCloud"
                     data-weather="littleCloud"
-                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
+                    className={`rounded-md px-3 w-20 h-12 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button" className={`${iconColors[0]} rounded-lg`}>
+                <button type="button" className={`${iconColors[0]} rounded-lg border-2`}>
                   <img
                     src="/mainSnow.svg"
                     alt="mainSnow"
                     data-weather="mainSnow"
-                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
+                    className={`rounded-md px-3 w-20 h-12 place-content-center m-auto `}
                   />
                 </button>
-                <button type="button" className={`${iconColors[0]} rounded-lg`}>
+                <button type="button" className={`${iconColors[0]} rounded-lg border-2`}>
                   <img
                     src="/windspeed.svg"
                     alt="windspeed"
                     data-weather="windspeed"
-                    className={`rounded-md px-3 w-20 h-full lg:h-14 place-content-center m-auto `}
+                    className={`rounded-md px-3 w-20 h-12 place-content-center m-auto `}
                   />
                 </button>
               </div>
             </div>
+            {errors.content && (
+              <p className="ml-1 mb-2 text-bold text-red-500">
+              날씨를 선택하세요.
+              </p>
+            )}
           </div>
         </div>
 
         <div>
           <textarea
             id="content"
-            className="w-full p-4 text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 md:text-lg"
+            className="w-full p-4 text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 lg:text-lg"
             autoFocus
             cols="50"
             rows="10"
@@ -163,11 +168,11 @@ function CommunityNew() {
             <Button
               type="button"
               onClick={() => navigate('/community')}
-              className="grow p-1 box-border bg-gray-300 text-white rounded-lg md:text-lg"
+              className="grow p-1 box-border bg-gray-300 text-white rounded-lg md:text-lg lg:py-2"
             >
               취소
             </Button>
-            <Submit className="grow p-1 box-border bg-blue-400 text-white rounded-lg md:text-lg">
+            <Submit className="grow p-1 box-border bg-blue-400 text-white rounded-lg md:text-lg lg:py-2">
               완료
             </Submit>
         </div>
