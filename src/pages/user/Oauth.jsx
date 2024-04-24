@@ -56,9 +56,13 @@ const Oauth = () => {
     })
 
   return (
-    <div>
+    <div className='min-h-screen '>
       {loading ? (
-        <div>Loading...</div>
+
+    <div className="flex flex-col items-center justify-center">
+      <img className='w-60 md:w-48 mx-auto mb-4 md:mb-6 lg:w-96' src="/error.svg" alt="Loading" />
+      <h1 className="text-lg md:text-xl font-semibold pt-3 pb-4 font-TTLaundryGothicB m-0">Loading</h1>
+    </div>
       ) : (
         <div>Successfully received user data.</div>
       )}

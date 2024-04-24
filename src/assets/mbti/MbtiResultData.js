@@ -1,10 +1,10 @@
-import Entp from '@assets/mbti/mbtiimg/Entp.jpg';
+import Entp from '@assets/mbti/mbtiimg/Entp.svg';
 import Enfj from '@assets/mbti/mbtiimg/Enfj.svg';
-import Esfp from '@assets/mbti/mbtiimg/Esfp.jpg';
-import Estp from '@assets/mbti/mbtiimg/Estp.jpg';
-import Intp from '@assets/mbti/mbtiimg/Intp.jpg';
-import Infp from '@assets/mbti/mbtiimg/Infp.jpg';
-import Isfp from '@assets/mbti/mbtiimg/Isfp.jpg';
+import Esfp from '@assets/mbti/mbtiimg/Esfp.svg';
+import Estp from '@assets/mbti/mbtiimg/Estp.svg';
+import Intp from '@assets/mbti/mbtiimg/Intp.svg';
+import Infp from '@assets/mbti/mbtiimg/Infp.svg';
+import Isfp from '@assets/mbti/mbtiimg/Isfp.svg';
 import Istp from '@assets/mbti/mbtiimg/Istp.jpg';
 import Infj from '@assets/mbti/mbtiimg/Infj.jpg';
 import Isfj from '@assets/mbti/mbtiimg/Isfj.jpg';
@@ -27,7 +27,7 @@ const MbtiResultData = [
   {
     id: 2,
     type: 'ENFJ',
-    title: '당신은 긍정적이고 따뜻한 "맑은 햇살" 입니다.',
+    title: '당신은 긍정적이고 따뜻한 "태양" 입니다.',
     desc: '“파이팅!”이 말버릇이며 그냥 항상 말이 많습니다.  밝고 명랑한 에너지를 가지고 있어, 주변 사람들과 두루두루 잘 지내며 사람들에게 즐거움을 전파합니다. 또한, 인류애와 배려심이 풍부하여, 사람들을 도우는 것을 좋아합니다. 친절함이 디폴트이긴 하나 선넘는 사람은 칼같이 끊어냅니다. 자신의 부정적인 감정을 최대한 통제하려고 하며 가치관을 정립하는 자아성찰을 좋아해서 혼자있는 시간을 중요시합니다.',
     image: `${Enfj}`,
   },

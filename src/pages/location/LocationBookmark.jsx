@@ -54,32 +54,37 @@ function LocationBookMark() {
   };
 
   return (
-    <div className="h-[300px] bg-slate-300 overflow-y-scroll">
-      <h1>북마크 목록</h1>
+    <div className="h-[300px] border-t-2 py-4 overflow-y-scroll mb-16 bg-slate-100 p-4 rounded-lg">
+
       {loading ? (
         <Loading />
       ) : (
         <ul>
           {bookmarkData.map((item, index) => (
             <li key={index}>
-              <div className="">
-                <img
-                  src={item.firstimage ? item.firstimage : '/01.svg'}
-                  className="w-20 h-20 rounded-3xl"
-                />
-                <p className="text-base">{item.title}</p>
-                <button
-                  onClick={() => moveToBookMarkPage(item.contentid)}
-                  className="bg-primary text-white px-3"
-                >
-                  이동
-                </button>
-                <button
-                  onClick={() => removeBookmark(item.contentid)}
-                  className="bg-primary text-white px-3"
-                >
-                  삭제
-                </button>
+              <div className="flex justify-between mb-8">
+                <div className='flex gap-4'>
+                  <img
+                    src={item.firstimage ? item.firstimage : '/01.svg'}
+                    className="w-20 h-20 rounded-3xl"
+                  />
+                  <p className="text-base mt-2 font-medium hover:text-primary_deep">{item.title}</p>
+                </div>
+
+                <div className='flex gap-1'>
+                  <button
+                    onClick={() => moveToBookMarkPage(item.contentid)}
+                    className="bg-slate-200 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-500 hover:text-slate-800 h-9"
+                  >
+                    이동
+                  </button>
+                  <button
+                    onClick={() => removeBookmark(item.contentid)}
+                    className="bg-slate-200 ml-6 px-2 py-1 rounded-md font-medium text-sm text-slate-500 hover:bg-primary hover:text-white h-9"
+                  >
+                    삭제
+                  </button>
+                </div>
               </div>
             </li>
           ))}

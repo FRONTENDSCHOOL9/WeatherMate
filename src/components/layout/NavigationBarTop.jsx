@@ -5,7 +5,7 @@ function NavigationBarTop() {
 
   return (
     <>
-      <div className="w-full text-white text-lg min-h-20 items-center justify-between bg-[#EEF8FF] sticky bottom-0 shadow-inner hidden md:flex lg:px-72">
+      <div className="w-full text-white min-h-16 items-center justify-between bg-[#EEF8FF] sticky bottom-0 shadow-inner hidden md:flex md:px-20 lg:px-56 xl:px-60">
         <Link to="/main">
           <img
             src="/weatherMateLogo.svg"
@@ -13,7 +13,7 @@ function NavigationBarTop() {
             className="w-12 "
           />
         </Link>
-        <div className="flex  gap-20">
+        <div className="flex  gap-24">
           <Link
             to="/main"
             className={` text-gray_04 font-bold hover:text-primary ${

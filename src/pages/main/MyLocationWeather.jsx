@@ -137,7 +137,7 @@ const MyLocationWeather = () => {
                   <p>{unixToHumanTime(userWeather.sys.sunset)}</p>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                  <img src="sunset.svg" className="w-5 h-5 mb-1" />
+                  <img src="dgree.svg" className="w-5 h-5 mb-1" />
                   <p> {(userWeather.main.temp_max - 273.15).toFixed(1)}°C</p>
                   <p> {(userWeather.main.temp_min - 274.15).toFixed(1)}°C</p>
                 </div>

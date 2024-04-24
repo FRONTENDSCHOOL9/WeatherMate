@@ -60,7 +60,7 @@ function CommunityItem({item}) {
     <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border rounded-lg " >
       <div className="flex flex-col gap-3 grow" onClick={() => navigate(`/community/${item._id}`)}>
         <div className="flex gap-3">
-          <img src={item.user.profile} className="rounded-full border-gray-400 border-2 w-12 h-12" />
+          <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`} className="rounded-full border-gray-400 border-2 w-12 h-12" />
           <div className="grow flex items-center">
             <div className="grow">
               <h1 className="text-lg font-bold">{item.user?.name}</h1>
