@@ -68,7 +68,9 @@ function UserPage() {
   console.log(data);
   const itemList = data?.item?.filter((item) =>{
     if(user){
-      item.user._id === user._id
+      if(item.user._id === user._id){
+        return item
+      }
     }
   })
   .map((item) => <UserBoard key={item._id} item={item} />);
