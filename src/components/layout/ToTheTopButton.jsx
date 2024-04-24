@@ -26,7 +26,7 @@ function ToTheTopButton() {
 
   return (
     <button
-      className={`fixed bottom-24 right-5 rounded-full w-12 h-12  z-30 shadow-xl border-2  duration-500 transition-opacity flex justify-center items-center ${
+      className={`fixed bottom-36 right-5 rounded-full w-12 h-12 z-30 shadow-xl border-2 bg-white duration-500 transition-opacity flex justify-center items-center ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       onClick={handleClick}

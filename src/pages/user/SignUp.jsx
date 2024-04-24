@@ -59,18 +59,19 @@ function SignUp() {
   return (
     <div className="h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
       <div className="max-w-md w-full  p-8 bg-white dark:bg-gray-800 rounded shadow-lg">
-      <h2 className="font-TTLaundryGothicB text-xl text-primary text-center">Weather Mate</h2>
-        <h2 className="text-center text-lg font-semibold pt-2 text-slate-500">반가워요!</h2>
+        <h2 className="font-TTLaundryGothicB text-xl text-primary text-center">
+          Weather Mate
+        </h2>
+        <h2 className="text-center text-lg font-semibold pt-2 text-slate-500">
+          반가워요!
+        </h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-
           <div className="mb-4">
-
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 pt-14"
             >
-
               이름
             </label>
             <input
@@ -92,14 +93,17 @@ function SignUp() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
               휴대폰번호
             </label>
             <input
               type="text"
               id="phone"
               placeholder="휴대폰 번호를 입력하세요"
-              {...register('phone', { 
+              {...register('phone', {
                 required: '휴대폰 번호를 입력하세요',
                 minLength: {
                   value: /^\d{3}-\d{3,4}-\d{4}$/,
@@ -180,7 +184,7 @@ function SignUp() {
 
           <Submit className="bg-primary text-white py-2 px-4 mt-6 rounded-lg hover:bg-primary_deep w-[100%]">
             회원가입
-            </Submit>
+          </Submit>
         </form>
       </div>
     </div>
