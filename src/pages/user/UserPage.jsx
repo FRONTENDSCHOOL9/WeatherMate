@@ -24,8 +24,8 @@ function UserPage() {
   };
 
 
-  // const redirect_uri = `${window.location.origin}/auth/kakao`; //Redirect URI
-  // const REST_API_KEY=import.meta.env.VITE_KAKAO_REST_API_KEY;
+  const redirect_uri = `${window.location.origin}/auth/kakao`; //Redirect URI
+  const REST_API_KEY=import.meta.env.VITE_KAKAO_REST_API_KEY;
   
 
   //인가 코드를 받고
@@ -36,11 +36,11 @@ function UserPage() {
 
   
   // oauth 요청 URL
-  // const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code`;
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code`;
 
   const handleLogin = () => {
-    // console.log(REST_API_KEY, kakaoURL)
-    // window.location.href = kakaoURL;
+    console.log(REST_API_KEY, kakaoURL)
+    window.location.href = kakaoURL;
   };
 
 
