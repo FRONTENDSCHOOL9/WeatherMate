@@ -87,7 +87,7 @@ function CommunityDetail() {
                 onClick={() => navigate(`/community/${item._id}`)}
               >
                 <div className="flex gap-3">
-                  {item.user.profile && <img src={`${import.meta.env.VITE_API_SERVER}/users/${item.user._id}/${item.user.profile}`} className="rounded-full border w-12 h-12" />}
+                  {item.user.profile ? <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`} className="rounded-full border-2 w-12 h-12" /> : <p className="rounded-full border w-12 h-12"></p>}
                   <div className="grow">
                     <h1 className="text-lg font-bold">{item.user.name}</h1>
                     <p className="grow text-gray-400">{item.createdAt.substring(5,16)}</p>

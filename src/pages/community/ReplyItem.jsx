@@ -16,8 +16,8 @@ function ReplyItem({item, handleDelete}) {
   // console.log(item);
   return (
     <div className="mt-2 p-3 flex gap-3 rounded-lg items-center ">
-      <div className="rounded-full w-12 h-12 bg-blue-400 border-white border-2">
-        
+      <div>
+        {item.user.profile ? <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`} className="rounded-full border w-12 h-12" /> : <p className="rounded-full border-2 w-12 h-12"></p>}
       </div>
       <div className="flex flex-col justify-between grow gap-1">
         <div className="flex">
