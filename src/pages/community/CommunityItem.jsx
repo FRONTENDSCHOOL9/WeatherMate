@@ -58,7 +58,7 @@ function CommunityItem({item}) {
 
   return (
     <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border rounded-lg " >
-      <div className="flex flex-col gap-3" onClick={() => navigate(`/community/${item._id}`)}>
+      <div className="flex flex-col gap-3 grow" onClick={() => navigate(`/community/${item._id}`)}>
         <div className="flex gap-3">
           <img src={item.user.profile} className="rounded-full border-gray-400 border-2 w-12 h-12" />
           <div className="grow flex items-center">
@@ -66,26 +66,26 @@ function CommunityItem({item}) {
               <h1 className="text-lg font-bold">{item.user?.name}</h1>
               <p className="text-blue-500">조회수 {item.views}</p>
             </div>
-            {item.title && <img className="w-10 h-10 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weatherIcon" />}
+            {item.title && <img className="w-10 h-10 border rounded-full bg-blue-200 p-1 xl:w-14 xl:h-14" src={`/${item.title}.svg`} alt="weatherIcon" />}
           </div>
         </div>
         <div>
           <div className="bg-gray-500 text-white rounded-md p-2 box-border">{item.content}</div>
-          {image ?
-            <img className="w-full" src={image} alt="image" /> : 
-            <div className="flex flex-col justify-center items-center pt-2">
+          {image 
+          ? <img className="w-full" src={image} alt="image" /> 
+          : <div className="flex flex-col justify-center items-center pt-2">
               {item.title ? <img  className="w-fit" src={`/${item.title}.svg`} alt="image"/> : null}
-              <br />
-              <p className="text-xl text-sky-500">내 날씨는 {item.title ? item.title : '없어요'}!!</p>
-            </div>}
+              {/* <p className="text-xl text-sky-500">내 날씨는 {item.title ? item.title : '없어요'}!!</p> */}
+            </div>
+          }
           {/* <div>{item.image}</div> */}
         </div>
       </div>
-      <div className="flex gap-2">
-        <button onClick={handleLikeBTN} className="flex gap-2 items-center">{like === 1 ? <FaHeart className="text-orange-300 text-2xl"/> : <FaRegHeart className="text-orange-300 text-2xl"/>}</button>
-        <p className="text-orange-300">좋아요 {like}</p>
-        <p className="flex gap-2 items-center"><IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl"/></p>
-        <p className="text-orange-300">댓글 {item.repliesCount}개</p>
+      <div className="flex gap-3">
+        <button onClick={handleLikeBTN} className="flex items-center">{like === 1 ? <FaHeart className="text-orange-300 text-2xl"/> : <FaRegHeart className="text-orange-300 text-2xl"/>}</button>
+        <p className="text-orange-300 md:text-xl">좋아요 {like}</p>
+        <p className="flex items-center md:text-xl"><IoChatbubbleEllipsesOutline className="text-orange-300 text-2xl"/></p>
+        <p className="text-orange-300 md:text-xl">댓글 {item.repliesCount}개</p>
       </div>
     </div>
   )

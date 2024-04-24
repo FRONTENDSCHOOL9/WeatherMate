@@ -4,30 +4,34 @@ import { useRecoilState } from 'recoil';
 import { memberState } from '@recoil/atom.mjs';
 
 function EditProfile() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [user, setUser] = useRecoilState(memberState);
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState('');
   const customAxios = useCustomAxios(); // 커스텀 엑시오스 훅을 사용하여 인스턴스 생성
 
-  console.log(user);
+  console.log('userDAs', user);
 
   const handleSubmit = async event => {
     event.preventDefault();
     try {
       const updatedData = {};
+      let updated = false;
 
       if (name !== user.name) {
         updatedData.name = name;
+        updated = true;
       }
       if (email !== user.email) {
         updatedData.email = email;
+        updated = true;
       }
-      if (password !== user.password) {
+      if (password !== '') {
         updatedData.password = password;
+        updated = true;
       }
 
-      if (Object.keys(updatedData).length === 0) {
+      if (!updated) {
         alert('변경된 정보가 없습니다.');
         return;
       }
@@ -40,18 +44,19 @@ function EditProfile() {
         throw new Error('회원가입 정보를 수정하는 데 실패했습니다.');
       }
 
-      // Recoil 상태 업데이트
       setUser(prevUser => ({
         ...prevUser,
-        ...updatedData, // 변경된 데이터 업데이트
+        ...updatedData,
       }));
 
-      // 입력 필드 초기화
-      setName('');
-      setEmail('');
+      // 변경된 부분만 초기화
+      if (updatedData.name) {
+        setName(updatedData.name);
+      }
+      if (updatedData.email) {
+        setEmail(updatedData.email);
+      }
       setPassword('');
-
-      console.log('final');
 
       alert('회원가입 정보가 성공적으로 수정되었습니다.');
     } catch (error) {
@@ -59,7 +64,6 @@ function EditProfile() {
       alert('회원가입 정보 수정에 실패했습니다.');
     }
   };
-
   return (
     <nav>
       <form onSubmit={handleSubmit}>

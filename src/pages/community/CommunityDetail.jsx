@@ -34,9 +34,11 @@ function CommunityDetail() {
   
 
   const handleDelete = async () => {
-    await axios.delete(`/posts/${_id}`);
-    alert('삭제되었습니다.');
-    navigate('/community');
+    const deleteRes = confirm('삭제하시겠습니까?');
+    if(deleteRes){
+      await axios.delete(`/posts/${_id}`)
+      navigate('/community')
+    }
   };
 
   // 이미지 재호출 불필요
@@ -65,17 +67,17 @@ function CommunityDetail() {
   // console.log(item);
 
   return (
-    <div className="min-h-screen min-w-96">
+    <div className="min-h-screen min-w-96 p-5 md:px-32 lg:px-60">
     <div>
       <div className="">
-        <div className="px-5 box-border flex">
+        <div className="box-border flex">
         <Button onClick={() => navigate('/community')} className="">
-          <FaArrowLeft className="text-2xl" />
+          <FaArrowLeft className="text-xl" />
         </Button>
         <CommunityHeader title={'상세보기'} />
         </div>
       </div>
-      <div className="grid md:grid-cols-2">
+      <div className="grid 2xl:grid-cols-2 gap-8">
       <div className="px-5 rounded-md border">
         <div>
           {item && (
@@ -91,13 +93,13 @@ function CommunityDetail() {
                     <p className="grow text-gray-400">{item.createdAt.substring(5,16)}</p>
                   </div>
                   <div className="flex flex-col items-center justify-center">
-                    {item.title && <img className="w-12 h-12 border rounded-full bg-blue-200 p-1" src={`/${item.title}.svg`} alt="weather" />}
+                    {item.title && <img className="w-12 h-12 border rounded-full bg-blue-200 p-1 xl:w-16 xl:h-16" src={`/${item.title}.svg`} alt="weather" />}
                   </div>
                 </div>
 
-                <div className='grid'>
+                <div className='grid lg:grid-cols-2'>
                   <div>
-                    {item.image && <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`} alt="" className="w-full h-60 max-w-fit"/>} {/*바로 불러오기*/}
+                    {item.image && <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`} alt="" className="h-full"/>} {/*바로 불러오기*/}
                   </div>
                   <div className="bg-gray-400 text-white rounded-md p-2 box-border">
                     {item.content}
@@ -106,10 +108,10 @@ function CommunityDetail() {
               </div>
 
               <div className="flex justify-center items-end mt-3 gap-1">
-                <p className="grow text-md font-bold text-orange-400">조회수 {item.views}</p>
+                <p className="grow text-md font-semibold text-slate-400">조회수 {item.views}</p>
                 <div className="flex grow-0 gap-1">
                   <Button
-                    className="bg-indigo-400 px-2 py-1 rounded-md"
+                    className="bg-primary text-white px-3 py-1 rounded-md"
                     onClick={() => navigate('/community')}
                   >
                     목록
@@ -135,4 +137,4 @@ function CommunityDetail() {
   );
 }
 
-export default CommunityDetail;
+export default CommunityDetail
