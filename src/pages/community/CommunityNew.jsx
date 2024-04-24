@@ -67,17 +67,17 @@ function CommunityNew() {
       <br />
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2">
 
-        <div className="flex flex-col lg:justify-between xl:flex-row xl:justify-normal">
-          <div className="flex gap-2">
+        <div className="flex flex-col gap-0 lg:justify-between xl:flex-row xl:gap-40 xl:justify-between">
+          <div className="flex gap-2 relative">
             <label
               htmlFor="file"
-              className="w-20 h-20 bg-blue-400 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white"
+              className="w-24 h-22 bg-blue-400 py-3 mb-4 rounded-lg flex flex-col justify-center items-center text-white"
             >
               <MdOutlineCameraAlt className="text-3xl" />
               사진 추가
             </label>
             <input
-              className=""
+              className="absolute -z-10 left-2"
               type="file"
               name="contentImg"
               accept="image/*"
