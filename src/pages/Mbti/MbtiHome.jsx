@@ -10,9 +10,9 @@ function MbtiHome() {
        h-screen min-w-[430px]  py-60"
       style={{ backgroundImage: `url(${mbtiStart})` }}
     >
-      <div className="flex gap-10 flex-col items-center font-TTLaundryGothicB text-gray_04 ">
+      <div className="flex gap-10 flex-col text-center items-center font-TTLaundryGothicB text-gray_04 ">
         <h1 className="text-4xl font-bold  text-gray-4">날씨 성격 테스트</h1>
-        <div className="text-2xl font-bold">
+        <div className="text-2xl font-bold ">
           <p>
             날씨별 상황에 따라
             <br />내 행동을 골라보자!
@@ -22,7 +22,7 @@ function MbtiHome() {
         </div>
         <button
           onClick={() => navigate('question')}
-          className="bg-white p-6 text-xl rounded-full text-gray_04 "
+          className="bg-white hover:bg-primary p-6 text-xl rounded-lg text-gray_04 "
         >
           테스트 시작하기
         </button>

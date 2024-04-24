@@ -33,7 +33,9 @@ function LocationMap({ latitude, longitude, locationName }) {
 
     infowindow.open(map, marker);
   }, [latitude, longitude, locationName]);
-  return <div id="map" className="w-full h-80 rounded-lg"></div>;
+  return (
+    <div id="map" className="z-[-10] w-full h-80 xl:h-100 rounded-lg"></div>
+  );
 }
 
 export default LocationMap;
