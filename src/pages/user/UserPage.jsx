@@ -23,8 +23,8 @@ function UserPage() {
   };
 
 
-  const redirect_uri = `${window.location.origin}/auth/kakao`; //Redirect URI
-  const REST_API_KEY=import.meta.env.VITE_KAKAO_REST_API_KEY;
+  // const redirect_uri = `${window.location.origin}/auth/kakao`; //Redirect URI
+  // const REST_API_KEY=import.meta.env.VITE_KAKAO_REST_API_KEY;
   
 
   //인가 코드를 받고
@@ -35,11 +35,11 @@ function UserPage() {
 
   
   // oauth 요청 URL
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code`;
+  // const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${redirect_uri}&response_type=code`;
 
   const handleLogin = () => {
-    console.log(REST_API_KEY, kakaoURL)
-    window.location.href = kakaoURL;
+    // console.log(REST_API_KEY, kakaoURL)
+    // window.location.href = kakaoURL;
   };
 
 
@@ -75,8 +75,9 @@ function UserPage() {
               <img
                 className="w-10 h-10 rounded-full mr-4"
                 src={
-                  user.profile.starstWith('http') ?
-                    user.profile : `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${user.profile}`
+                  user.profile
+                    ? `/api/files/07-WeatherMate/${user.profile}`
+                    : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
                 }
                 alt="Profile"
               />
