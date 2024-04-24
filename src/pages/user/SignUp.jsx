@@ -30,7 +30,7 @@ function SignUp() {
         const imageFormData = new FormData();
         imageFormData.append('attach', formData.profileImage[0]);
 
-        const fileRes = await axios.post('/api/files', imageFormData, {
+        const fileRes = await axios.post('/files', imageFormData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
