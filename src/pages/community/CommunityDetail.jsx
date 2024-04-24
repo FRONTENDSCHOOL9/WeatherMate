@@ -77,7 +77,7 @@ function CommunityDetail() {
         <CommunityHeader title={'상세보기'} />
         </div>
       </div>
-      <div className="grid 2xl:grid-cols-2">
+      <div className="grid 2xl:grid-cols-2 gap-8">
       <div className="px-5 rounded-md border">
         <div>
           {item && (
@@ -97,7 +97,7 @@ function CommunityDetail() {
                   </div>
                 </div>
 
-                <div className='grid'>
+                <div className='grid lg:grid-cols-2'>
                   <div>
                     {item.image && <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.image}`} alt="" className="h-full"/>} {/*바로 불러오기*/}
                   </div>
@@ -108,10 +108,10 @@ function CommunityDetail() {
               </div>
 
               <div className="flex justify-center items-end mt-3 gap-1">
-                <p className="grow text-md font-bold text-orange-400">조회수 {item.views}</p>
+                <p className="grow text-md font-semibold text-slate-400">조회수 {item.views}</p>
                 <div className="flex grow-0 gap-1">
                   <Button
-                    className="bg-indigo-400 px-2 py-1 rounded-md"
+                    className="bg-primary text-white px-3 py-1 rounded-md"
                     onClick={() => navigate('/community')}
                   >
                     목록

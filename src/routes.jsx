@@ -111,7 +111,7 @@ const router = createBrowserRouter([
             element: <Edit />,
           },
           {
-            path: 'oauth',
+            path: 'auth/kakao',
             element:<Oauth/>,
           },
         ],
