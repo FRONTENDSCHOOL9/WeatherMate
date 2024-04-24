@@ -64,7 +64,14 @@ function UserPage() {
       suspense: true,
       refetchOnMount: "always"
   });
-  const itemList = data?.item?.filter((item) => item.user._id === user._id).map((item) => <UserBoard key={item._id} item={item} />);
+  console.log(user);
+  console.log(data);
+  const itemList = data?.item?.filter((item) =>{
+    if(user){
+      item.user._id === user._id
+    }
+  })
+  .map((item) => <UserBoard key={item._id} item={item} />);
   //여기까지 바뀜
 
   return (
