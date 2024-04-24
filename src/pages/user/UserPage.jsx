@@ -83,9 +83,8 @@ function UserPage() {
               <img
                 className="w-10 h-10 rounded-full mr-4"
                 src={
-                  user.profile
-                    ? `/api/files/07-WeatherMate/${user.profile}`
-                    : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+                  user.profile.startsWith('http') ?
+                  user.profile : `${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${user.profile}`
                 }
                 alt="Profile"
               />
