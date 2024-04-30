@@ -60,7 +60,7 @@ function CommunityItem({item}) {
     <div className="flex flex-col gap-3 bg-gray-200 p-3 box-border rounded-lg " >
       <div className="flex flex-col gap-3 grow" onClick={() => navigate(`/community/${item._id}`)}>
         <div className="flex gap-3">
-          <img src={item.user.profile} className="rounded-full border-gray-400 border-2 w-12 h-12" />
+          {item.user.profile ? <img src={`${import.meta.env.VITE_API_SERVER}/files/07-WeatherMate/${item.user.profile}`} className="rounded-full border-gray-400 border-2 w-12 h-12" /> : <p className="w-12 h-12 border-2 border-gray-400 rounded-full"></p>}
           <div className="grow flex items-center">
             <div className="grow">
               <h1 className="text-lg font-bold">{item.user?.name}</h1>
@@ -71,14 +71,7 @@ function CommunityItem({item}) {
         </div>
         <div>
           <div className="bg-gray-500 text-white rounded-md p-2 box-border">{item.content}</div>
-          {image 
-          ? <img className="w-full" src={image} alt="image" /> 
-          : <div className="flex flex-col justify-center items-center pt-2">
-              {item.title ? <img  className="w-fit" src={`/${item.title}.svg`} alt="image"/> : null}
-              {/* <p className="text-xl text-sky-500">내 날씨는 {item.title ? item.title : '없어요'}!!</p> */}
-            </div>
-          }
-          {/* <div>{item.image}</div> */}
+          {image && <img className="w-full" src={image} alt="image" />}
         </div>
       </div>
       <div className="flex gap-3">
