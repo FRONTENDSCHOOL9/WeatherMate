@@ -19,7 +19,7 @@
 
 ### 🌤️ 웨더메이트 배포 링크 및 테스트 계정
 
-👉🏻 [웨더 메이트 ](https://weathermates.netlify.app/, '바로가기')
+👉🏻 [웨더 메이트 ](https://weathermates.netlify.app/ '바로가기')
 
 ```수정하기
 ID: hello@weathermate.com
